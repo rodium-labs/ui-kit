@@ -1,0 +1,204 @@
+:root {
+  --glass-blur: blur(14px) saturate(1.4);
+  --glass-rim: 2px;
+  --glass-rim-inner:
+    inset 0 0 0 1px rgb(255 255 255 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.3), inset 0 -1px 0
+    rgb(255 255 255 / 0.06);
+  --glass-sheen: linear-gradient(
+    177deg,
+    rgb(255 255 255 / 0.22) 0%,
+    rgb(255 255 255 / 0.05) 26%,
+    rgb(255 255 255 / 0) 55%,
+    rgb(255 255 255 / 0.03) 100%
+  );
+  --glass-sweep: linear-gradient(
+    105deg,
+    rgb(255 255 255 / 0) 0%,
+    rgb(255 255 255 / 0.32) 50%,
+    rgb(255 255 255 / 0) 100%
+  );
+  --glass-specular:
+    inset 0 1px 0 rgb(255 255 255 / 0.55), inset 1px 0 0 rgb(255 255 255 / 0.22),
+    inset -1px 0 0 rgb(255 255 255 / 0.22), inset 0 -1px 0 rgb(255 255 255 / 0.1), 0 14px 34px rgb(0 0 0 / 0.3),
+    0 2px 6px rgb(0 0 0 / 0.16);
+  --glass-specular-hover:
+    inset 0 1px 0 rgb(255 255 255 / 0.8), inset 1px 0 0 rgb(255 255 255 / 0.34),
+    inset -1px 0 0 rgb(255 255 255 / 0.34), inset 0 -1px 0 rgb(255 255 255 / 0.16), 0 20px 44px rgb(0 0 0 / 0.36),
+    0 3px 8px rgb(0 0 0 / 0.2);
+  --glass-glow:
+    inset 0 0 2px 1px rgb(255 255 255 / 0.35), inset 0 0 10px 4px rgb(255 255 255 / 0.15), 0 8px 24px rgb(0 0 0 / 0.2);
+
+  --accent-base: var(--color-brand-green);
+  --accent-fill: color-mix(in oklab, var(--accent-base) 18%, transparent);
+  --accent-fill-hover: color-mix(in oklab, var(--accent-base) 30%, transparent);
+  --accent-neon:
+    inset 0 1px 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px color-mix(in oklab, var(--accent-base) 70%, transparent),
+    inset 0 0 10px color-mix(in oklab, var(--accent-base) 28%, transparent),
+    0 0 14px color-mix(in oklab, var(--accent-base) 40%, transparent),
+    0 0 3px color-mix(in oklab, var(--accent-base) 55%, transparent);
+  --accent-neon-hover:
+    inset 0 1px 0 rgb(255 255 255 / 0.45), inset 0 0 0 1px color-mix(in oklab, var(--accent-base) 95%, transparent),
+    inset 0 0 12px color-mix(in oklab, var(--accent-base) 40%, transparent),
+    0 0 20px color-mix(in oklab, var(--accent-base) 55%, transparent),
+    0 0 4px color-mix(in oklab, var(--accent-base) 75%, transparent);
+
+  --chip: rgb(255 255 255 / 0.12);
+  --chip-hover: rgb(255 255 255 / 0.2);
+  --veil: rgb(0 0 0 / 0.55);
+  --sheet: color-mix(in oklab, var(--color-night) 82%, transparent);
+
+  --backdrop-still:
+    radial-gradient(120% 90% at 12% 18%, var(--color-brand-green) 0%, transparent 58%),
+    radial-gradient(100% 80% at 88% 78%, var(--color-brand-pink) 0%, transparent 55%),
+    linear-gradient(160deg, var(--color-brand-ink) 0%, #000000 100%);
+  --backdrop-scrim: linear-gradient(
+    100deg,
+    rgb(0 0 0 / 0.62) 0%,
+    rgb(0 0 0 / 0.5) 38%,
+    rgb(0 0 0 / 0.1) 72%,
+    rgb(0 0 0 / 0) 100%
+  );
+}
+
+/* the grid that belongs to a first screen: green near the top, pink below it.
+   two layers rather than one masked gradient, because a two-mask stack needs
+   mask-composite and where that is unsupported the mask drops entirely. */
+.grid-ground {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--color-night);
+}
+
+.grid-ground::before,
+.grid-ground::after {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  z-index: -1;
+  height: 100svh;
+  pointer-events: none;
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+  animation: rl-ground 900ms var(--ease-out-rl) backwards;
+}
+
+.grid-ground::before {
+  --grid-line: color-mix(in oklab, var(--color-brand-green) 26%, transparent);
+  mask-image: radial-gradient(62% 54% at 50% 2%, #000 0%, #000 26%, transparent 100%);
+}
+
+.grid-ground::after {
+  --grid-line: color-mix(in oklab, var(--color-brand-pink) 22%, transparent);
+  mask-image: radial-gradient(56% 34% at 50% 42%, #000 0%, #000 14%, transparent 100%);
+}
+
+@keyframes rl-ground {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* one warm bloom behind a cover, so a first screen is not flat black */
+.grid-bloom {
+  background-image: radial-gradient(
+    58% 34% at 50% 0%,
+    color-mix(in oklab, var(--color-brand-green) 12%, transparent) 0%,
+    transparent 72%
+  );
+}
+
+/* the one authored entrance: things arrive out of focus and settle. backwards
+   rather than both, because a filled last frame reads back as blur(0px) and
+   keeps the text on a composited layer for good. */
+@keyframes rl-arrive {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0);
+    filter: blur(var(--rise-blur, 10px));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+.rise {
+  animation: rl-arrive 700ms var(--ease-out-rl) backwards;
+}
+
+.rise-lead {
+  --rise-blur: 20px;
+  animation-duration: 900ms;
+  animation-delay: 90ms;
+}
+
+.rise-1 {
+  animation-delay: 70ms;
+}
+
+.rise-2 {
+  animation-delay: 140ms;
+}
+
+.rise-3 {
+  animation-delay: 210ms;
+}
+
+.rise-4 {
+  animation-delay: 280ms;
+}
+
+/* everything past the cover arrives on the scroll that reveals it. the scroller
+   is the clock, so there is no script and nothing to hydrate. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      --rise-blur: 6px;
+      animation: rl-arrive 1s linear backwards;
+      animation-timeline: view();
+      animation-range: entry 8px entry 140px;
+    }
+  }
+}
+
+/* the arrow leans out of the link it sits in, and the link takes the press.
+   written here rather than as utilities because stacking motion-safe onto
+   group-focus-visible drops the media guard and the rule escapes it. */
+@media (prefers-reduced-motion: no-preference) {
+  .nudge svg {
+    transition: translate var(--motion-base) var(--ease-out-rl);
+  }
+
+  .nudge:focus-visible svg {
+    translate: 2px -2px;
+  }
+
+  .press {
+    transition: scale var(--motion-fast) ease-out;
+  }
+
+  .press:active {
+    scale: 0.96;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .nudge:hover svg {
+    translate: 2px -2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rise,
+  .grid-ground::before,
+  .grid-ground::after {
+    animation: none;
+  }
+}
