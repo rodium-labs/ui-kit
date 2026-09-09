@@ -1,0 +1,31 @@
+@layer base {
+  html {
+    background-color: var(--color-night);
+    color-scheme: dark;
+    overflow-x: clip;
+
+    /* macos renders geist heavier than it was drawn. both properties are
+       non-standard, so both are written by hand. */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-ink-on-night);
+  }
+
+  ::selection {
+    background: var(--color-brand-green);
+    color: var(--color-on-accent);
+  }
+
+  :root {
+    scrollbar-color: var(--color-night-rule) var(--color-night);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-brand-green);
+    outline-offset: 2px;
+  }
+}
