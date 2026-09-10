@@ -1,4 +1,4 @@
-import { Eyebrow } from '@rodium/ui'
+import { Eyebrow, Title } from '@rodium/ui'
 import type { ReactNode } from 'react'
 
 export interface SectionProps {
@@ -12,36 +12,34 @@ export function Section({ id, title, blurb, children }: SectionProps) {
   return (
     <section
       id={id}
-      className="reveal scroll-mt-28 border-t border-night-rule pt-10">
-      <header className="flex flex-col gap-2">
-        <Eyebrow>{id}</Eyebrow>
-        <h2 className="text-display-s font-book text-ink-on-night">{title}</h2>
-        {blurb ? <p className="max-w-[62ch] text-[14px] leading-relaxed text-ink-on-night-mid">{blurb}</p> : null}
-      </header>
-      <div className="mt-7 flex flex-col gap-6">{children}</div>
+      className="scroll-mt-[calc(var(--nav-h)+1.5rem)]">
+      <div className="reveal">
+        <Eyebrow>{id}/</Eyebrow>
+        <Title className="mt-4 max-w-[20ch]">{title}</Title>
+        {blurb ? <p className="mt-5 max-w-[52ch] text-body text-ink-on-night-mid">{blurb}</p> : null}
+      </div>
+      <div className="mt-10 flex flex-col gap-10">{children}</div>
     </section>
   )
 }
 
 export interface DemoProps {
-  label?: string
+  label: string
   note?: string
   children: ReactNode
   className?: string
 }
 
+// a demo is framed the way the site frames a device shot: one hairline, square
+// corners, and the label set in the surface's own uppercase above it.
 export function Demo({ label, note, children, className }: DemoProps) {
   return (
-    <div className="flex flex-col gap-3">
-      {label ? (
-        <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-          <span className="text-[12px] font-medium tracking-[0.12em] text-ink-on-night-dim uppercase">{label}</span>
-          {note ? <span className="text-[12px] text-ink-on-night-dim">{note}</span> : null}
-        </div>
-      ) : null}
-      <div className={`rounded-[14px] border border-night-frame bg-night-raised/60 p-6 ${className ?? ''}`.trimEnd()}>
-        {children}
+    <div className="reveal flex flex-col gap-3">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+        <span className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">{label}</span>
+        {note ? <span className="text-[12px] text-ink-on-night-dim">{note}</span> : null}
       </div>
+      <div className={`border border-night-frame p-6 ${className ?? ''}`.trimEnd()}>{children}</div>
     </div>
   )
 }
@@ -51,5 +49,5 @@ export function Row({ children, className }: { children: ReactNode; className?: 
 }
 
 export function Grid({ children, className }: { children: ReactNode; className?: string }) {
-  return <div className={`grid gap-5 sm:grid-cols-2 ${className ?? ''}`.trimEnd()}>{children}</div>
+  return <div className={`grid gap-6 sm:grid-cols-2 ${className ?? ''}`.trimEnd()}>{children}</div>
 }

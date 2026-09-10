@@ -1,46 +1,40 @@
-import { Eyebrow, Facts, GradientText, Rule } from '@rodium/ui'
-import { Demo, Section } from '../ui/Showcase'
+import { Action, Avatar, Eyebrow, Facts, Rule, Status, Table, Tag, Ticker, Title } from '@rodium/ui'
+import { Demo, Row, Section } from '../ui/Showcase'
+
+const DISCIPLINES = [
+  'Design',
+  'Firmware',
+  'Web',
+  'Hardware',
+  'Tooling',
+] as const
 
 export function Editorial() {
   return (
     <Section
       id="editorial"
-      title="Editorial"
-      blurb="The parts that carry copy rather than input: the label above a heading, the hairline between things, the table of numbers that makes the argument, and the one piece of colour the kit allows itself in text.">
-      <Demo label="Type scale">
-        <div className="flex flex-col gap-4">
-          <p className="text-display-xl font-book tracking-tight text-ink-on-night">Display XL</p>
-          <p className="text-display-l font-book text-ink-on-night">Display L</p>
-          <p className="text-display-m font-book text-ink-on-night">Display M</p>
-          <p className="text-display-s font-book text-ink-on-night">Display S</p>
-          <p className="text-lede text-ink-on-night-mid">
-            A lede sits under a heading and carries the one sentence that explains it.
-          </p>
-          <p className="max-w-[62ch] text-[14px] leading-relaxed text-ink-on-night-mid">
-            Body copy runs at fourteen pixels with a relaxed leading and a measure that stops around sixty-two
-            characters, because a line longer than that is harder to come back to.
-          </p>
-        </div>
-      </Demo>
-
-      <Demo label="Eyebrow, rule, facts">
-        <div className="flex flex-col gap-4">
-          <Eyebrow>Rodium Labs</Eyebrow>
-          <p className="text-display-s font-book text-ink-on-night">One workshop, one surface</p>
+      title="The parts that carry copy."
+      blurb="A slug above a heading, a hairline between sections, a table of numbers that makes the argument. The trailing slash on an eyebrow is the surface's own convention and it runs all the way through — section slugs, contents links, captions.">
+      <Demo label="Eyebrow, title, rule, facts">
+        <div className="flex flex-col gap-5">
+          <div>
+            <Eyebrow>work/</Eyebrow>
+            <Title className="mt-4 max-w-[20ch]">One project at a time.</Title>
+          </div>
           <Rule />
           <Facts
             rows={[
               [
                 'Components',
-                '21',
+                '24',
               ],
               [
                 'Dependencies',
                 '2',
               ],
               [
-                'Bundled CSS',
-                'Tailwind v4',
+                'Corners',
+                'square',
               ],
               [
                 'Licence',
@@ -52,27 +46,105 @@ export function Editorial() {
       </Demo>
 
       <Demo
-        label="Gradient text"
-        note="one background-position animation, no layout cost">
-        <div className="flex flex-col gap-4">
-          <p className="text-display-m font-book">
-            <GradientText>Built in the open</GradientText>
-          </p>
-          <p className="text-display-m font-book">
-            <GradientText
-              colors={[
-                '#ff95f8',
-                '#12a776',
-                '#ff95f8',
-              ]}
-              speed={5}>
-              Warm to cool
-            </GradientText>
-          </p>
-          <p className="text-display-m font-book">
-            <GradientText animate={false}>Still, when motion is off</GradientText>
-          </p>
+        label="Ticker"
+        note="a list where the column holds it, a marquee where it does not">
+        <div className="border-t border-night-rule pt-6">
+          <Ticker words={DISCIPLINES} />
         </div>
+      </Demo>
+
+      <Demo
+        label="Status and tag"
+        note="a state is set, not boxed">
+        <div className="flex flex-col gap-5">
+          <Row className="gap-6">
+            <Status>Shipping</Status>
+            <Status tone="neutral">Archived</Status>
+            <Status tone="warm">Preview</Status>
+            <Status tone="danger">Failing</Status>
+          </Row>
+          <Row>
+            <Tag>v0.0.0</Tag>
+            <Tag>STM32F401</Tag>
+            <Tag muted>284x76</Tag>
+          </Row>
+        </div>
+      </Demo>
+
+      <Demo
+        label="A record, laid out"
+        note="the site's own arrangement"
+        className="p-0">
+        <article className="p-6">
+          <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
+            <h3 className="text-[26px] font-semibold tracking-[-0.02em] text-ink-on-night">Waltz</h3>
+            <span className="text-[13px] text-ink-on-night-dim tabular-nums">2025</span>
+            <Status className="ms-auto">Shipping</Status>
+          </div>
+          <p className="mt-3 max-w-[46ch] text-[15px] leading-[1.6] text-ink-on-night-mid">
+            An MP3 player on an STM32F401 and a 284x76 bar panel, painted in bands with no framebuffer.
+          </p>
+          <div className="mt-7">
+            <Facts
+              rows={[
+                [
+                  'Panel',
+                  '284x76',
+                ],
+                [
+                  'MCU',
+                  'STM32F401',
+                ],
+                [
+                  'Framebuffer',
+                  'none',
+                ],
+              ]}
+            />
+          </div>
+          <Row className="mt-8 gap-5">
+            <Avatar name="Yusuf Yildirim" />
+            <div className="flex flex-col">
+              <span className="text-[13px] text-ink-on-night">Yusuf Yildirim</span>
+              <span className="text-[12px] text-ink-on-night-dim">pushed 3 commits</span>
+            </div>
+            <Action
+              href="#editorial"
+              className="ms-auto">
+              Read the build
+            </Action>
+          </Row>
+        </article>
+      </Demo>
+
+      <Demo
+        label="Table"
+        note="hairline rows, each column a step down the ink scale">
+        <Table
+          caption="in use"
+          rows={[
+            [
+              'PA5',
+              'SPI1_SCK',
+              'panel clock',
+            ],
+            [
+              'PA7',
+              'SPI1_MOSI',
+              'panel data',
+            ],
+            [
+              'PB0',
+              'GPIO',
+              'panel reset',
+            ],
+            [
+              'PB1',
+              'GPIO',
+              'panel chip select',
+            ],
+          ]}
+        />
       </Demo>
     </Section>
   )
