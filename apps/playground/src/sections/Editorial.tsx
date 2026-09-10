@@ -32,7 +32,7 @@ export function Editorial() {
             rows={[
               [
                 'Components',
-                '18',
+                '21',
               ],
               [
                 'Dependencies',
