@@ -14,8 +14,8 @@
   /* lines, named for what they separate */
   --color-night-rule: rgb(255 255 255 / 0.08);
   --color-night-frame: rgb(255 255 255 / 0.1);
-  --color-night-edge: rgb(255 255 255 / 0.15);
-  --color-night-edge-lit: rgb(255 255 255 / 0.35);
+  --color-night-edge: rgb(255 255 255 / 0.38);
+  --color-night-edge-lit: rgb(255 255 255 / 0.55);
   --color-night-underline: rgb(255 255 255 / 0.25);
 
   /* the one fill a bordered control takes on hover */
@@ -35,7 +35,7 @@
   --color-danger: #ff6369;
 
   --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* headings are fluid: they are set once here and never re-tuned per page */
   --text-display: clamp(2.4rem, 5.6vw, 4.25rem);
@@ -61,10 +61,21 @@
 
   --animate-spin-rl: rl-spin 0.7s linear infinite;
   --animate-shimmer: rl-shimmer 1.6s linear infinite;
+  --animate-pulse-rl: rl-pulse 1.4s ease-in-out infinite;
 
   @keyframes rl-spin {
     to {
       rotate: 360deg;
+    }
+  }
+
+  @keyframes rl-pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
     }
   }
 
