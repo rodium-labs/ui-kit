@@ -2,7 +2,7 @@
 
 import { type ReactNode, type SyntheticEvent, useCallback, useEffect, useRef } from 'react'
 import { cn } from './cn'
-import { Close } from './glyphs'
+import { focus } from './focus'
 
 export interface DialogProps {
   open: boolean
@@ -59,27 +59,43 @@ export function Dialog({ open, onClose, title, description, footer, children, cl
       onCancel={onCancel}
       onClose={onClose}
       className={cn(
-        'm-auto w-[min(calc(100vw-2rem),34rem)] rounded-[14px] border border-night-frame bg-night-raised p-0 text-ink-on-night',
-        'shadow-[0_32px_80px_rgb(0_0_0/0.6)] backdrop:bg-(--veil) backdrop:backdrop-blur-[2px]',
-        'open:animate-sheet motion-reduce:open:animate-none',
+        'm-auto w-[min(calc(100vw-2rem),34rem)] border border-night-edge bg-night p-0 text-ink-on-night',
+        'backdrop:bg-black/70 backdrop:backdrop-blur-[2px]',
         className,
       )}>
-      <div className="flex items-start justify-between gap-4 p-5 pb-0">
-        <div className="flex flex-col gap-1">
-          <h2 className="text-[17px] font-medium tracking-[-0.01em]">{title}</h2>
-          {description ? <p className="text-[13px] leading-relaxed text-ink-on-night-mid">{description}</p> : null}
+      <div className="flex items-start justify-between gap-4 border-b border-night-rule px-6 py-5">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-[20px] font-semibold tracking-[-0.01em]">{title}</h2>
+          {description ? <p className="text-[14px] leading-[1.6] text-ink-on-night-mid">{description}</p> : null}
         </div>
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="-mt-1 -mr-1 flex size-9 shrink-0 cursor-pointer items-center justify-center rounded-[10px] text-ink-on-night-dim transition-[background-color,color] duration-(--motion-fast) ease-rl hover:bg-night-wash hover:text-ink-on-night focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand-green) motion-reduce:transition-none">
-          <Close size={14} />
+          className={cn(
+            'press -me-2 -mt-2 flex size-11 shrink-0 cursor-pointer items-center justify-center text-ink-on-night-dim transition-colors duration-(--motion-fast) hover:text-ink-on-night motion-reduce:transition-none',
+            focus,
+          )}>
+          <svg
+            width={14}
+            height={14}
+            viewBox="0 0 16 16"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.6}
+            strokeLinecap="square"
+            aria-hidden="true"
+            focusable="false">
+            <path d="M4 4 L12 12" />
+            <path d="M12 4 L4 12" />
+          </svg>
         </button>
       </div>
-      {children ? <div className="p-5 text-[14px] leading-relaxed text-ink-on-night-mid">{children}</div> : null}
+      {children ? <div className="px-6 py-5 text-[15px] leading-[1.65] text-ink-on-night-mid">{children}</div> : null}
       {footer ? (
-        <div className="flex items-center justify-end gap-2 border-t border-night-rule px-5 py-4">{footer}</div>
+        <div className="flex flex-wrap items-center justify-end gap-3 border-t border-night-rule px-6 py-4">
+          {footer}
+        </div>
       ) : null}
     </dialog>
   )

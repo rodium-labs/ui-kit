@@ -27,8 +27,8 @@ export function Tooltip({ label, side = 'top', className, children }: TooltipPro
         id={id}
         role="tooltip"
         className={cn(
-          'pointer-events-none absolute z-50 w-max max-w-56 rounded-[8px] border border-night-frame bg-night-raised px-2.5 py-1.5 text-[12px] leading-snug text-ink-on-night',
-          'opacity-0 shadow-[0_12px_30px_rgb(0_0_0/0.5)] transition-opacity duration-(--motion-fast) ease-rl',
+          'pointer-events-none absolute z-50 w-max max-w-56 border border-night-edge bg-night px-2.5 py-1.5 text-[12px] leading-snug text-ink-on-night',
+          'opacity-0 transition-opacity duration-(--motion-fast)',
           'group-hover:opacity-100 group-focus-within:opacity-100',
           'motion-reduce:transition-none',
           SIDE[side],

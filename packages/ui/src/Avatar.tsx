@@ -12,7 +12,7 @@ export interface AvatarProps {
 const SIZE: Record<AvatarSize, string> = {
   sm: 'size-7 text-[11px]',
   md: 'size-9 text-[13px]',
-  lg: 'size-12 text-[16px]',
+  lg: 'size-12 text-[15px]',
 }
 
 function initials(name: string): string {
@@ -26,7 +26,7 @@ export function Avatar({ name, src, size = 'md', className }: AvatarProps) {
   return (
     <span
       className={cn(
-        'inline-flex shrink-0 items-center justify-center overflow-hidden rounded-full border border-night-frame bg-night-wash font-medium text-ink-on-night-mid select-none',
+        'inline-flex shrink-0 items-center justify-center overflow-hidden border border-night-frame font-medium text-ink-on-night-mid select-none',
         SIZE[size],
         className,
       )}>
