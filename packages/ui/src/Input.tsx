@@ -22,7 +22,6 @@ export function Input({ label, hint, error, icon, className, fieldClassName, id,
       error={error}
       htmlFor={inputId}
       hintId={hintId}
-      errorId={hintId}
       required={rest.required}
       className={fieldClassName}>
       <div className="relative flex items-center">
@@ -38,7 +37,7 @@ export function Input({ label, hint, error, icon, className, fieldClassName, id,
           id={inputId}
           aria-invalid={error ? true : undefined}
           aria-describedby={hint || error ? hintId : undefined}
-          className={cn(CONTROL_SKIN, 'h-11 px-3 text-[14px]', icon && 'pl-9', className)}
+          className={cn(CONTROL_SKIN, 'min-h-11 px-3 text-[14px]', icon && 'ps-9', className)}
         />
       </div>
     </Field>

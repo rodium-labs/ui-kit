@@ -27,7 +27,7 @@ export function Switch({ label, hint, className, id, checked, defaultChecked, on
 
   return (
     <div className={cn('flex items-start gap-3', className)}>
-      <span className="relative flex h-6 w-10 shrink-0 items-center">
+      <span className="relative flex h-[18px] w-8 shrink-0 items-center">
         <input
           {...rest}
           id={switchId}
@@ -42,8 +42,8 @@ export function Switch({ label, hint, className, id, checked, defaultChecked, on
         <span
           aria-hidden="true"
           className={cn(
-            'h-6 w-10 rounded-[999px] border border-night-edge bg-night-wash',
-            'transition-[background-color,border-color] duration-(--motion-base) ease-rl',
+            'h-[18px] w-8 border border-night-edge',
+            'transition-colors duration-(--motion-fast)',
             'peer-hover:border-night-edge-lit',
             'peer-checked:border-brand-green peer-checked:bg-brand-green',
             'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-(--color-brand-green)',
@@ -54,9 +54,9 @@ export function Switch({ label, hint, className, id, checked, defaultChecked, on
         <span
           aria-hidden="true"
           className={cn(
-            'pointer-events-none absolute left-1 size-4 rounded-full bg-ink-on-night',
+            'pointer-events-none absolute start-[3px] size-3 bg-ink-on-night-dim',
             'transition-[translate,background-color] duration-(--motion-base) ease-rl',
-            'peer-checked:translate-x-4 peer-checked:bg-on-accent',
+            'peer-checked:translate-x-[14px] peer-checked:bg-night',
             'motion-reduce:transition-none',
           )}
         />
@@ -65,7 +65,7 @@ export function Switch({ label, hint, className, id, checked, defaultChecked, on
         <span className="flex flex-col gap-0.5">
           <label
             htmlFor={switchId}
-            className="cursor-pointer text-[14px] leading-6 text-ink-on-night">
+            className="cursor-pointer text-[14px] leading-[18px] text-ink-on-night">
             {label}
           </label>
           {hint ? <span className="text-[12px] text-ink-on-night-dim">{hint}</span> : null}

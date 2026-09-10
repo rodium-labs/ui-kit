@@ -1,7 +1,6 @@
 import { type ReactNode, type SelectHTMLAttributes, useId } from 'react'
 import { cn } from './cn'
 import { CONTROL_SKIN, Field } from './Field'
-import { ChevronDown } from './glyphs'
 
 export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: ReactNode
@@ -22,7 +21,6 @@ export function Select({ label, hint, error, className, fieldClassName, id, chil
       error={error}
       htmlFor={selectId}
       hintId={hintId}
-      errorId={hintId}
       required={rest.required}
       className={fieldClassName}>
       <div className="relative flex items-center">
@@ -31,13 +29,22 @@ export function Select({ label, hint, error, className, fieldClassName, id, chil
           id={selectId}
           aria-invalid={error ? true : undefined}
           aria-describedby={hint || error ? hintId : undefined}
-          className={cn(CONTROL_SKIN, 'h-11 appearance-none pr-9 pl-3 text-[14px]', className)}>
+          className={cn(CONTROL_SKIN, 'min-h-11 appearance-none pe-9 ps-3 text-[14px]', className)}>
           {children}
         </select>
-        <ChevronDown
-          size={14}
-          className="pointer-events-none absolute right-3 text-ink-on-night-dim"
-        />
+        <svg
+          width={12}
+          height={12}
+          viewBox="0 0 16 16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={1.8}
+          strokeLinecap="square"
+          aria-hidden="true"
+          focusable="false"
+          className="pointer-events-none absolute end-3 text-ink-on-night-dim">
+          <path d="M4 6.5 L8 10.5 L12 6.5" />
+        </svg>
       </div>
     </Field>
   )
