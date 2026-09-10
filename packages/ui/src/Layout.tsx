@@ -5,12 +5,29 @@ export function Wrap({ className, children, ...rest }: HTMLAttributes<HTMLDivEle
   return (
     <div
       {...rest}
-      className={cn('mx-auto w-full max-w-[1120px] px-(--gutter)', className)}>
+      className={cn('mx-auto w-full max-w-[1120px] px-6', className)}>
       {children}
     </div>
   )
 }
 
+// every page opens on the same box - one screen, less the bar. the grid layer
+// behind it is a screen tall too, so this is also what keeps the grid from
+// running on into whatever section comes next.
+export function Cover({ className, children, ...rest }: HTMLAttributes<HTMLElement>) {
+  return (
+    <section {...rest}>
+      <Wrap className={cn('flex min-h-[calc(100svh_-_var(--nav-h))] flex-col py-12', className)}>{children}</Wrap>
+    </section>
+  )
+}
+
+// the one two-column split the whole surface uses. 568 is the panel at 2x, so
+// the second column lands on the same edge on every page and nothing drifts.
+export const split =
+  'grid gap-10 min-[900px]:grid-cols-[minmax(0,568px)_1fr] min-[900px]:items-start min-[900px]:gap-14'
+
+// the slug above a heading. the trailing slash is the surface's own convention.
 export function Eyebrow({ className, children, ...rest }: HTMLAttributes<HTMLParagraphElement>) {
   return (
     <p
@@ -27,6 +44,46 @@ export function Rule({ className, ...rest }: HTMLAttributes<HTMLHRElement>) {
       {...rest}
       className={cn('border-0 border-t border-night-rule', className)}
     />
+  )
+}
+
+export function Display({ className, children, ...rest }: HTMLAttributes<HTMLHeadingElement>) {
+  return (
+    <h1
+      {...rest}
+      className={cn('text-display font-semibold text-pretty text-ink-on-night', className)}>
+      {children}
+    </h1>
+  )
+}
+
+export function Title({ className, children, ...rest }: HTMLAttributes<HTMLHeadingElement>) {
+  return (
+    <h2
+      {...rest}
+      className={cn('text-title font-semibold text-balance text-ink-on-night', className)}>
+      {children}
+    </h2>
+  )
+}
+
+export function Lede({ className, children, ...rest }: HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p
+      {...rest}
+      className={cn('max-w-[46ch] text-lede text-ink-on-night-mid', className)}>
+      {children}
+    </p>
+  )
+}
+
+export function Body({ className, children, ...rest }: HTMLAttributes<HTMLParagraphElement>) {
+  return (
+    <p
+      {...rest}
+      className={cn('max-w-[46ch] text-body text-ink-on-night-mid', className)}>
+      {children}
+    </p>
   )
 }
 
@@ -53,8 +110,3 @@ export function Facts({ rows, className }: FactsProps) {
     </dl>
   )
 }
-
-// the one two-column split the kit uses. 568 is a device panel at 2x, so the
-// second column lands on the same edge on every page and nothing drifts.
-export const split =
-  'grid gap-10 min-[900px]:grid-cols-[minmax(0,568px)_1fr] min-[900px]:items-start min-[900px]:gap-14'
