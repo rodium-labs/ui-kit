@@ -4,25 +4,15 @@ export const brand = {
   pink: '#ff95f8',
 } as const
 
-export const brandLit = {
-  green: '#84d1b8',
-  pink: '#ffbffb',
-} as const
+export const RULE_WIDTH_PX = 1
 
-export const radius = {
-  sm: 8,
-  md: 10,
-  lg: 12,
-  xl: 14,
-  pill: 999,
-} as const
+/* 284x76 of real device output, at 1x and 2x */
+export const PANEL_WIDTH_PX = 284
+export const PANEL_HEIGHT_PX = 76
 
 export const motion = {
   fast: 120,
   base: 240,
   slow: 480,
-  ease: 'cubic-bezier(0.2, 0, 0, 1)',
-  easeOut: 'cubic-bezier(0.16, 1, 0.3, 1)',
+  ease: 'cubic-bezier(0.16, 1, 0.3, 1)',
 } as const
-
-export type Radius = keyof typeof radius

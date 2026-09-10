@@ -1,67 +1,20 @@
+/* the surface the sites wear: a black ground with a grid on the first screen,
+   one entrance, one bar, one disclosure. */
+
 :root {
-  --glass-blur: blur(14px) saturate(1.4);
-  --glass-rim: 2px;
-  --glass-rim-inner:
-    inset 0 0 0 1px rgb(255 255 255 / 0.16), inset 0 1px 0 rgb(255 255 255 / 0.3), inset 0 -1px 0
-    rgb(255 255 255 / 0.06);
-  --glass-sheen: linear-gradient(
-    177deg,
-    rgb(255 255 255 / 0.22) 0%,
-    rgb(255 255 255 / 0.05) 26%,
-    rgb(255 255 255 / 0) 55%,
-    rgb(255 255 255 / 0.03) 100%
-  );
-  --glass-sweep: linear-gradient(
-    105deg,
-    rgb(255 255 255 / 0) 0%,
-    rgb(255 255 255 / 0.32) 50%,
-    rgb(255 255 255 / 0) 100%
-  );
-  --glass-specular:
-    inset 0 1px 0 rgb(255 255 255 / 0.55), inset 1px 0 0 rgb(255 255 255 / 0.22),
-    inset -1px 0 0 rgb(255 255 255 / 0.22), inset 0 -1px 0 rgb(255 255 255 / 0.1), 0 14px 34px rgb(0 0 0 / 0.3),
-    0 2px 6px rgb(0 0 0 / 0.16);
-  --glass-specular-hover:
-    inset 0 1px 0 rgb(255 255 255 / 0.8), inset 1px 0 0 rgb(255 255 255 / 0.34),
-    inset -1px 0 0 rgb(255 255 255 / 0.34), inset 0 -1px 0 rgb(255 255 255 / 0.16), 0 20px 44px rgb(0 0 0 / 0.36),
-    0 3px 8px rgb(0 0 0 / 0.2);
-  --glass-glow:
-    inset 0 0 2px 1px rgb(255 255 255 / 0.35), inset 0 0 10px 4px rgb(255 255 255 / 0.15), 0 8px 24px rgb(0 0 0 / 0.2);
-
-  --accent-base: var(--color-brand-green);
-  --accent-fill: color-mix(in oklab, var(--accent-base) 18%, transparent);
-  --accent-fill-hover: color-mix(in oklab, var(--accent-base) 30%, transparent);
-  --accent-neon:
-    inset 0 1px 0 rgb(255 255 255 / 0.3), inset 0 0 0 1px color-mix(in oklab, var(--accent-base) 70%, transparent),
-    inset 0 0 10px color-mix(in oklab, var(--accent-base) 28%, transparent),
-    0 0 14px color-mix(in oklab, var(--accent-base) 40%, transparent),
-    0 0 3px color-mix(in oklab, var(--accent-base) 55%, transparent);
-  --accent-neon-hover:
-    inset 0 1px 0 rgb(255 255 255 / 0.45), inset 0 0 0 1px color-mix(in oklab, var(--accent-base) 95%, transparent),
-    inset 0 0 12px color-mix(in oklab, var(--accent-base) 40%, transparent),
-    0 0 20px color-mix(in oklab, var(--accent-base) 55%, transparent),
-    0 0 4px color-mix(in oklab, var(--accent-base) 75%, transparent);
-
-  --chip: rgb(255 255 255 / 0.12);
-  --chip-hover: rgb(255 255 255 / 0.2);
-  --veil: rgb(0 0 0 / 0.55);
-  --sheet: color-mix(in oklab, var(--color-night) 82%, transparent);
-
-  --backdrop-still:
-    radial-gradient(120% 90% at 12% 18%, var(--color-brand-green) 0%, transparent 58%),
-    radial-gradient(100% 80% at 88% 78%, var(--color-brand-pink) 0%, transparent 55%),
-    linear-gradient(160deg, var(--color-brand-ink) 0%, #000000 100%);
-  --backdrop-scrim: linear-gradient(
-    100deg,
-    rgb(0 0 0 / 0.62) 0%,
-    rgb(0 0 0 / 0.5) 38%,
-    rgb(0 0 0 / 0.1) 72%,
-    rgb(0 0 0 / 0) 100%
-  );
+  /* the bar is a fixed height so a cover can fill the screen underneath it */
+  --nav-h: 65px;
 }
 
-/* the grid that belongs to a first screen: green near the top, pink below it.
-   two layers rather than one masked gradient, because a two-mask stack needs
+@media (min-width: 620px) {
+  :root {
+    --nav-h: 77px;
+  }
+}
+
+/* the ground is flat black all the way down. the grid belongs to the first
+   screen only and runs green at the top into pink lower down - two layers
+   rather than one masked gradient, because a two-mask stack needs
    mask-composite and where that is unsupported the mask drops entirely. */
 .grid-ground {
   position: relative;
@@ -82,9 +35,13 @@
     linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
   background-size: 64px 64px;
   background-position: center top;
-  animation: rl-ground 900ms var(--ease-out-rl) backwards;
+  animation: land-ground 900ms cubic-bezier(0.33, 1, 0.68, 1) backwards;
 }
 
+/* a neutral line on black is grey by definition, so each rule takes a trace of
+   a brand colour and reads as a tint rather than as dirt. both masks close
+   short of the layer's own edge - it is a screen tall, and a mask that runs all
+   the way leaves a straight cut across the page instead of a fade. */
 .grid-ground::before {
   --grid-line: color-mix(in oklab, var(--color-brand-green) 26%, transparent);
   mask-image: radial-gradient(62% 54% at 50% 2%, #000 0%, #000 26%, transparent 100%);
@@ -95,7 +52,7 @@
   mask-image: radial-gradient(56% 34% at 50% 42%, #000 0%, #000 14%, transparent 100%);
 }
 
-@keyframes rl-ground {
+@keyframes land-ground {
   from {
     opacity: 0;
   }
@@ -104,19 +61,36 @@
   }
 }
 
-/* one warm bloom behind a cover, so a first screen is not flat black */
-.grid-bloom {
-  background-image: radial-gradient(
-    58% 34% at 50% 0%,
-    color-mix(in oklab, var(--color-brand-green) 12%, transparent) 0%,
-    transparent 72%
-  );
+::selection {
+  background: var(--color-brand-green);
+  color: var(--color-on-accent);
 }
 
-/* the one authored entrance: things arrive out of focus and settle. backwards
-   rather than both, because a filled last frame reads back as blur(0px) and
-   keeps the text on a composited layer for good. */
-@keyframes rl-arrive {
+:root {
+  scrollbar-color: var(--color-night-rule) var(--color-night);
+}
+
+/* opacity only on the bar. it carries a backdrop filter, and moving that
+   re-rasterises the blur every frame. */
+.bar {
+  animation: land-bar 420ms ease-out backwards;
+}
+
+@keyframes land-bar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* one authored entrance for the whole surface: things arrive out of focus and
+   settle. the fill is backwards rather than both: a filled last frame reads
+   back as blur(0px), which keeps the text on a composited layer and off
+   subpixel antialiasing for good. backwards drops the effect once it lands,
+   and the resting style already is the landed state. */
+@keyframes land-arrive {
   from {
     opacity: 0;
     transform: translate3d(0, 12px, 0);
@@ -130,9 +104,10 @@
 }
 
 .rise {
-  animation: rl-arrive 700ms var(--ease-out-rl) backwards;
+  animation: land-arrive 700ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
 
+/* the headline leads: further out of focus, and it takes longer to land */
 .rise-lead {
   --rise-blur: 20px;
   animation-duration: 900ms;
@@ -156,12 +131,13 @@
 }
 
 /* everything past the cover arrives on the scroll that reveals it. the scroller
-   is the clock, so there is no script and nothing to hydrate. */
+   is the clock, so there is no script and nothing to hydrate; a browser without
+   view timelines never enters the block and the content is simply there. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
       --rise-blur: 6px;
-      animation: rl-arrive 1s linear backwards;
+      animation: land-arrive 1s linear backwards;
       animation-timeline: view();
       animation-range: entry 8px entry 140px;
     }
@@ -173,7 +149,7 @@
    group-focus-visible drops the media guard and the rule escapes it. */
 @media (prefers-reduced-motion: no-preference) {
   .nudge svg {
-    transition: translate var(--motion-base) var(--ease-out-rl);
+    transition: translate var(--motion-base) cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .nudge:focus-visible svg {
@@ -197,8 +173,201 @@
 
 @media (prefers-reduced-motion: reduce) {
   .rise,
+  .bar,
   .grid-ground::before,
   .grid-ground::after {
     animation: none;
   }
+}
+
+/* five words that fit a desktop column and not a phone one. where they fit
+   this is a plain list; where they do not, a copy of it slides past a box its
+   own width. the bed is the copy that sits in the flow and gives the box that
+   width, showing nothing while the track rides over it. */
+.strip {
+  container: strip / inline-size;
+}
+
+.ticker {
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.ticker-set {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 1.25rem;
+  padding-inline-end: 1.25rem;
+}
+
+.ticker-bed {
+  visibility: hidden;
+}
+
+.ticker-track {
+  position: absolute;
+  inset: 0 auto 0 0;
+  display: flex;
+  width: max-content;
+}
+
+.ticker-word {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  font-size: 13px;
+  white-space: nowrap;
+  color: var(--color-ink-on-night-dim);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ticker-track {
+    animation: land-ticker 24s linear infinite;
+  }
+
+  /* the one way to stop it, short of the motion preference itself */
+  .ticker:focus-within .ticker-track {
+    animation-play-state: paused;
+  }
+}
+
+/* hover is gated so a tap on a phone does not leave the words parked */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) {
+  .ticker:hover .ticker-track {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes land-ticker {
+  to {
+    transform: translate3d(-33.3333%, 0, 0);
+  }
+}
+
+/* the two ways it goes back to being a list: the column can hold a copy, or
+   motion is off. these have to come last, or the rules above win on order.
+   the query reads the column rather than the viewport, which a media query
+   cannot do without guessing at the scrollbar. */
+@container strip (min-width: 30rem) {
+  .ticker {
+    width: auto;
+    overflow: visible;
+  }
+
+  .ticker-track {
+    display: none;
+  }
+
+  .ticker-bed {
+    visibility: visible;
+    padding-inline-end: 0;
+  }
+
+  .ticker-bed > li:last-child > span {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker {
+    width: auto;
+    overflow: visible;
+  }
+
+  .ticker-track {
+    display: none;
+  }
+
+  .ticker-bed {
+    visibility: visible;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    padding-inline-end: 0;
+  }
+
+  .ticker-bed > li:last-child > span {
+    display: none;
+  }
+}
+
+/* the disclosure is the browser's own. these are the three parts it does not
+   draw: the bars, the sheet under the bar, and the turn of one into the other. */
+.menu > summary::-webkit-details-marker {
+  display: none;
+}
+
+.bars {
+  position: relative;
+  display: block;
+  width: 17px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.bars::before,
+.bars::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 17px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 1px;
+}
+
+.bars::before {
+  top: -6px;
+}
+
+.bars::after {
+  top: 6px;
+}
+
+/* one recipe, two surfaces. the bar wears it on a layer of its own rather than
+   on the header, because an element with a backdrop filter is a backdrop root
+   and anything inside one samples that element instead of the page - which is
+   what kept the sheet from carrying the same glass. */
+.glass,
+.menu > .sheet {
+  position: absolute;
+  border-bottom: 1px solid var(--color-night-rule);
+  background: color-mix(in oklab, #000 82%, transparent);
+  backdrop-filter: blur(24px) saturate(1.5);
+}
+
+.glass {
+  inset: 0;
+  z-index: -1;
+}
+
+/* the sheet hangs off the bar, so opening the menu never grows the header and
+   never moves the page under it */
+.menu > .sheet {
+  inset: 100% 0 auto 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .bars,
+  .bars::before,
+  .bars::after {
+    transition:
+      transform var(--motion-base) cubic-bezier(0.16, 1, 0.3, 1),
+      opacity var(--motion-fast) linear;
+  }
+}
+
+.menu[open] .bars {
+  background: transparent;
+}
+
+.menu[open] .bars::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.menu[open] .bars::after {
+  transform: translateY(-6px) rotate(-45deg);
 }

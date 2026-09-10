@@ -1,131 +1,70 @@
 @theme {
+  /* the ground is pure black. the ink and the lines that sit on it are one
+     white at a fixed set of strengths, so three levels stay apart without
+     introducing a second grey. */
   --color-night: #000000;
-  --color-night-raised: #0b0b0d;
-  --color-night-sunken: #050506;
 
+  /* ink. headings, links and values take the first; body copy the second;
+     labels, dates and captions the third. the fourth is decoration. */
   --color-ink-on-night: #ffffff;
   --color-ink-on-night-mid: rgb(255 255 255 / 0.6);
   --color-ink-on-night-dim: rgb(255 255 255 / 0.5);
   --color-ink-on-night-faint: rgb(255 255 255 / 0.15);
 
+  /* lines, named for what they separate */
   --color-night-rule: rgb(255 255 255 / 0.08);
   --color-night-frame: rgb(255 255 255 / 0.1);
   --color-night-edge: rgb(255 255 255 / 0.15);
   --color-night-edge-lit: rgb(255 255 255 / 0.35);
   --color-night-underline: rgb(255 255 255 / 0.25);
+
+  /* the one fill a bordered control takes on hover */
   --color-night-wash: rgb(255 255 255 / 0.05);
-
-  --color-paper: #f2f2f3;
-  --color-paper-raised: #fafafb;
-  --color-paper-sunken: #e3e3e5;
-
-  --color-rule: #d6d6d9;
-  --color-rule-strong: #b0b0b5;
-
-  --color-ink: #111113;
-  --color-ink-mid: #4b4b52;
-  --color-ink-dim: #63636b;
-  --color-ink-green: #0d7553;
-  --color-ink-green-on-night: #41b991;
 
   --color-brand-green: #12a776;
   --color-brand-ink: #3d2631;
   --color-brand-pink: #ff95f8;
-  --color-brand-green-lit: color-mix(in oklab, var(--color-brand-green) 65%, #ffffff);
-  --color-brand-pink-lit: color-mix(in oklab, var(--color-brand-pink) 65%, #ffffff);
+
+  /* the green that reads as text on black, rather than as a fill */
+  --color-ink-green-on-night: #41b991;
 
   --color-accent: var(--color-brand-green);
   --color-accent-warm: var(--color-brand-pink);
   --color-on-accent: #05221a;
 
-  --color-danger: #e5484d;
-  --color-danger-lit: #ff6369;
-  --color-warning: #f5a524;
-  --color-success: var(--color-brand-green);
+  --color-danger: #ff6369;
 
   --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: "Geist Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  --text-display-xl: 4rem;
-  --text-display-xl--line-height: 1.05;
-  --text-display-xl--letter-spacing: -0.02em;
-  --text-display-l: 2.5rem;
-  --text-display-l--line-height: 1.1;
-  --text-display-l--letter-spacing: -0.02em;
-  --text-display-m: 2.125rem;
-  --text-display-m--line-height: 1.25;
-  --text-display-m--letter-spacing: -0.02em;
-  --text-display-s: 1.75rem;
-  --text-display-s--line-height: 1.25;
-  --text-display-s--letter-spacing: -0.02em;
-  --text-lede: 1.125rem;
-  --text-lede--line-height: 1.5;
+  /* headings are fluid: they are set once here and never re-tuned per page */
+  --text-display: clamp(2.4rem, 5.6vw, 4.25rem);
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.035em;
+  --text-display-sm: clamp(2.4rem, 5.6vw, 3.75rem);
+  --text-display-sm--line-height: 1.02;
+  --text-display-sm--letter-spacing: -0.035em;
 
-  --font-weight-book: 450;
+  --text-title: clamp(1.7rem, 3.4vw, 2.5rem);
+  --text-title--line-height: 1.1;
+  --text-title--letter-spacing: -0.02em;
+  --text-title-sm: clamp(1.6rem, 3.2vw, 2.3rem);
+  --text-title-sm--line-height: 1.12;
+  --text-title-sm--letter-spacing: -0.02em;
 
-  --ease-rl: cubic-bezier(0.2, 0, 0, 1);
-  --ease-out-rl: cubic-bezier(0.16, 1, 0.3, 1);
+  --text-lede: 17px;
+  --text-lede--line-height: 1.6;
+  --text-body: 16px;
+  --text-body--line-height: 1.65;
 
-  --animate-rise: rl-rise 1.05s var(--ease-rl) both;
-  --animate-sheet: rl-sheet 0.45s var(--ease-rl) both;
-  --animate-fade: rl-fade 0.4s var(--ease-rl) both;
-  --animate-drop: rl-drop 0.9s var(--ease-rl) both;
+  --ease-rl: cubic-bezier(0.16, 1, 0.3, 1);
+
   --animate-spin-rl: rl-spin 0.7s linear infinite;
-  --animate-shimmer: rl-shimmer 1.6s var(--ease-rl) infinite;
-  --animate-pan: rl-pan var(--rl-pan-duration, 8s) linear infinite;
-
-  @keyframes rl-rise {
-    from {
-      opacity: 0;
-      translate: 0 18px;
-    }
-    to {
-      opacity: 1;
-      translate: 0 0;
-    }
-  }
-
-  @keyframes rl-drop {
-    from {
-      translate: 0 -26px;
-    }
-    to {
-      translate: 0 0;
-    }
-  }
-
-  @keyframes rl-sheet {
-    from {
-      translate: 0 -12px;
-      scale: 0.98;
-    }
-    to {
-      translate: 0 0;
-      scale: 1;
-    }
-  }
-
-  @keyframes rl-fade {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
+  --animate-shimmer: rl-shimmer 1.6s linear infinite;
 
   @keyframes rl-spin {
     to {
       rotate: 360deg;
-    }
-  }
-
-  @keyframes rl-pan {
-    from {
-      background-position: 0% 50%;
-    }
-    to {
-      background-position: 300% 50%;
     }
   }
 
@@ -141,17 +80,10 @@
 
 :root {
   --gutter: 24px;
-  --nav-h: 65px;
 
   --motion-fast: 120ms;
   --motion-base: 240ms;
   --motion-slow: 480ms;
-}
-
-@media (min-width: 620px) {
-  :root {
-    --nav-h: 77px;
-  }
 }
 
 @media (width <= 720px) {
