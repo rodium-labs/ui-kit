@@ -27,7 +27,7 @@ export function Forms() {
             label="Email"
             type="email"
             defaultValue="not-an-email"
-            error="That address is missing an @."
+            error="Enter an address that includes an @, like name@example.com."
             required
           />
           <Select
