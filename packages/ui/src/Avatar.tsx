@@ -25,6 +25,12 @@ function initials(name: string): string {
 export function Avatar({ name, src, size = 'md', className }: AvatarProps) {
   return (
     <span
+      {...(src
+        ? {}
+        : {
+            role: 'img',
+            'aria-label': name,
+          })}
       className={cn(
         'inline-flex shrink-0 items-center justify-center overflow-hidden border border-night-frame font-medium text-ink-on-night-mid select-none',
         SIZE[size],

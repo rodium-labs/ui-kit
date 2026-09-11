@@ -60,7 +60,7 @@ export function Dialog({ open, onClose, title, description, footer, children, cl
       onClose={onClose}
       className={cn(
         'm-auto w-[min(calc(100vw-2rem),34rem)] border border-night-edge bg-night p-0 text-ink-on-night',
-        'backdrop:bg-black/70 backdrop:backdrop-blur-[2px]',
+        'overscroll-contain backdrop:bg-black/70 backdrop:backdrop-blur-[2px]',
         className,
       )}>
       <div className="flex items-start justify-between gap-4 border-b border-night-rule px-6 py-5">

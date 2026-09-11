@@ -13,6 +13,7 @@ export interface TabItem {
 
 export interface TabsProps {
   items: readonly TabItem[]
+  label?: string
   value?: string
   defaultValue?: string
   onValueChange?: (value: string) => void
@@ -25,7 +26,15 @@ export interface TabsProps {
 const TAB =
   'relative flex min-h-9 shrink-0 cursor-pointer items-center px-3 text-[14px] whitespace-nowrap transition-colors duration-(--motion-fast) after:absolute after:inset-x-3 after:bottom-0 after:h-px after:origin-left after:bg-current after:transition-transform after:duration-(--motion-base) motion-reduce:transition-none motion-reduce:after:hidden'
 
-export function Tabs({ items, value, defaultValue, onValueChange, className, listClassName }: TabsProps) {
+export function Tabs({
+  items,
+  label = 'Sections',
+  value,
+  defaultValue,
+  onValueChange,
+  className,
+  listClassName,
+}: TabsProps) {
   const name = useId()
   const [internal, setInternal] = useState(defaultValue ?? items.at(0)?.value ?? '')
   const active = value ?? internal
@@ -67,6 +76,7 @@ export function Tabs({ items, value, defaultValue, onValueChange, className, lis
     <div className={cn('flex flex-col gap-6', className)}>
       <div
         role="tablist"
+        aria-label={label}
         onKeyDown={onKeyDown}
         className={cn('flex w-full items-center gap-1 overflow-x-auto border-b border-night-rule', listClassName)}>
         {items.map(item => (
