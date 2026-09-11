@@ -27,7 +27,7 @@ export function Progress({ value, max = 100, label, showValue = false, className
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label={label}
-        className="h-px w-full bg-night-edge">
+        className="h-px w-full bg-night-frame">
         <div
           className="h-full bg-brand-green transition-[width] duration-(--motion-slow) ease-rl motion-reduce:transition-none"
           style={{
