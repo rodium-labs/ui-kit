@@ -27,6 +27,14 @@ export function ChevronDown(props: IconProps) {
   )
 }
 
+export function ChevronLeft(props: IconProps) {
+  return (
+    <Glyph {...props}>
+      <path d="M10 3 L5 8 L10 13" />
+    </Glyph>
+  )
+}
+
 export function ChevronRight(props: IconProps) {
   return (
     <Glyph {...props}>
