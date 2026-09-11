@@ -29,7 +29,7 @@ export function Select({ label, hint, error, className, fieldClassName, id, chil
           id={selectId}
           aria-invalid={error ? true : undefined}
           aria-describedby={hint || error ? hintId : undefined}
-          className={cn(CONTROL_SKIN, 'min-h-11 appearance-none pe-9 ps-3 text-[14px]', className)}>
+          className={cn(CONTROL_SKIN, 'min-h-11 appearance-none pe-9 ps-3 text-[16px] sm:text-[14px]', className)}>
           {children}
         </select>
         <svg
@@ -38,7 +38,7 @@ export function Select({ label, hint, error, className, fieldClassName, id, chil
           viewBox="0 0 16 16"
           fill="none"
           stroke="currentColor"
-          strokeWidth={1.8}
+          strokeWidth={1.6}
           strokeLinecap="square"
           aria-hidden="true"
           focusable="false"
