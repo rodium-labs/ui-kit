@@ -54,8 +54,10 @@ export const CONTROL_SKIN = cn(
   'w-full border border-night-edge bg-transparent text-ink-on-night placeholder:text-ink-on-night-dim',
   'transition-colors duration-(--motion-fast)',
   'hover:border-night-edge-lit hover:bg-night-wash',
-  'focus:border-brand-green focus:bg-transparent focus:outline-2 focus:outline-offset-2 focus:outline-(--color-brand-green)',
+  'focus:border-brand-green focus:bg-transparent focus:outline-none',
+  'focus:shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-brand-green)_22%,transparent)]',
   'disabled:pointer-events-none disabled:opacity-45',
-  'aria-[invalid=true]:border-danger aria-[invalid=true]:focus:outline-(--color-danger)',
+  'aria-[invalid=true]:border-danger',
+  'aria-[invalid=true]:focus:shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-danger)_22%,transparent)]',
   'motion-reduce:transition-none',
 )
