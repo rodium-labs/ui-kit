@@ -350,6 +350,145 @@
   inset: 100% 0 auto 0;
 }
 
+/* a popup sheet arrives from just above its trigger. @starting-style is what
+   makes the enter run on every open: a css animation bound to [open] is never
+   torn down, because a closed details subtree skips style recalculation. */
+@media (prefers-reduced-motion: no-preference) {
+  .menu[open] > .sheet,
+  .menu[open] > nav.sheet {
+    opacity: 1;
+    translate: 0 0;
+    transition:
+      opacity var(--motion-fast) linear,
+      translate var(--motion-base) cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @starting-style {
+    .menu[open] > .sheet,
+    .menu[open] > nav.sheet {
+      opacity: 0;
+      translate: 0 -6px;
+    }
+  }
+}
+
+/* a dialog in the top layer cannot be animated with a keyframe that runs once:
+   it is display:none until it opens. @starting-style gives the enter a from
+   state, and allow-discrete keeps it displayed long enough to leave again. */
+@media (prefers-reduced-motion: no-preference) {
+  .sheet-in[open] {
+    opacity: 1;
+    scale: 1;
+    translate: 0 0;
+    transition:
+      opacity var(--motion-fast) linear,
+      scale var(--motion-base) cubic-bezier(0.16, 1, 0.3, 1),
+      translate var(--motion-base) cubic-bezier(0.16, 1, 0.3, 1),
+      overlay var(--motion-base) allow-discrete,
+      display var(--motion-base) allow-discrete;
+  }
+
+  .sheet-in {
+    opacity: 0;
+    scale: 0.97;
+    translate: 0 -8px;
+  }
+
+  @starting-style {
+    .sheet-in[open] {
+      opacity: 0;
+      scale: 0.97;
+      translate: 0 -8px;
+    }
+  }
+
+  .sheet-in[open]::backdrop {
+    opacity: 1;
+    transition:
+      opacity var(--motion-base) linear,
+      overlay var(--motion-base) allow-discrete,
+      display var(--motion-base) allow-discrete;
+  }
+
+  @starting-style {
+    .sheet-in[open]::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+/* a toast arrives from below and leaves the same way */
+@media (prefers-reduced-motion: no-preference) {
+  .toast-in {
+    animation: rl-toast-in 260ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  .toast-out {
+    animation: rl-toast-out 180ms ease-in forwards;
+  }
+}
+
+@keyframes rl-toast-in {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 12px, 0) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes rl-toast-out {
+  to {
+    opacity: 0;
+    transform: translate3d(0, 8px, 0) scale(0.98);
+  }
+}
+
+/* a popup that is mounted and unmounted rather than disclosed */
+@media (prefers-reduced-motion: no-preference) {
+  .sheet-pop {
+    animation: rl-pop 160ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+}
+
+@keyframes rl-pop {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -6px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* a fold opens to its own height. interpolate-size is what lets auto be a
+   transition endpoint at all; without it the block-size step is discrete. */
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    :root {
+      interpolate-size: allow-keywords;
+    }
+
+    .fold::details-content {
+      block-size: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition:
+        block-size var(--motion-base) cubic-bezier(0.16, 1, 0.3, 1),
+        opacity var(--motion-fast) linear,
+        content-visibility var(--motion-base) allow-discrete;
+    }
+
+    .fold[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .bars,
   .bars::before,

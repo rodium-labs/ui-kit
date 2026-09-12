@@ -62,10 +62,20 @@
   --animate-spin-rl: rl-spin 0.7s linear infinite;
   --animate-shimmer: rl-shimmer 1.6s linear infinite;
   --animate-pulse-rl: rl-pulse 1.4s ease-in-out infinite;
+  --animate-track: rl-track 1.4s cubic-bezier(0.65, 0, 0.35, 1) infinite;
 
   @keyframes rl-spin {
     to {
       rotate: 360deg;
+    }
+  }
+
+  @keyframes rl-track {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(400%);
     }
   }
 
