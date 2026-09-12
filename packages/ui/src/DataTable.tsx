@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode, useMemo, useState } from 'react'
+import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import { cn } from './cn'
 import { focus } from './focus'
 
@@ -58,6 +58,24 @@ export function DataTable<Row>({
     key: string
     direction: Direction
   } | null>(null)
+  const [scrolled, setScrolled] = useState(false)
+  const box = useRef<HTMLDivElement>(null)
+
+  // the bar lights up once the page has moved under it; the header does the
+  // same once rows have moved under it, which is the only depth cue a pure
+  // black ground can carry.
+  useEffect(() => {
+    const el = box.current
+    if (!el || !stickyHeader) return
+    const onScroll = () => setScrolled(el.scrollTop > 0)
+    onScroll()
+    el.addEventListener('scroll', onScroll, {
+      passive: true,
+    })
+    return () => el.removeEventListener('scroll', onScroll)
+  }, [
+    stickyHeader,
+  ])
 
   const ordered = useMemo(() => {
     if (!sort) return rows
@@ -101,6 +119,7 @@ export function DataTable<Row>({
 
   return (
     <div
+      ref={box}
       className={cn('overflow-auto border border-night-frame', className)}
       style={
         maxHeight
@@ -134,7 +153,10 @@ export function DataTable<Row>({
                   aria-sort={active ? (sort.direction === 'asc' ? 'ascending' : 'descending') : undefined}
                   className={cn(
                     'bg-night px-4 py-2.5 text-[11px] font-medium tracking-[0.14em] whitespace-nowrap text-ink-on-night-dim uppercase',
-                    'shadow-[inset_0_-1px_0_var(--color-night-edge)]',
+                    stickyHeader && scrolled
+                      ? 'shadow-[inset_0_-1px_0_var(--color-night-edge-lit)]'
+                      : 'shadow-[inset_0_-1px_0_var(--color-night-edge)]',
+                    'transition-shadow duration-(--motion-base) ease-rl motion-reduce:transition-none',
                     ALIGN[align],
                   )}>
                   {column.sortable ? (
