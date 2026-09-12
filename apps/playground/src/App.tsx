@@ -1,4 +1,17 @@
-import { Action, Arrow, Bar, CommandPalette, focus, Kbd, Mark, useMenuDismiss, Wrap } from '@rodium/ui'
+import {
+  Action,
+  Arrow,
+  Bar,
+  CommandPalette,
+  cn,
+  focus,
+  Kbd,
+  Mark,
+  Search,
+  SideNav,
+  useMenuDismiss,
+  Wrap,
+} from '@rodium/ui'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { DocsPage } from './docs/DocsPage'
 import { ALL_PAGES, findPage, neighbours, SECTIONS } from './docs/registry'
@@ -21,49 +34,23 @@ const BAR_LINKS = [
   },
 ]
 
-function Sidebar({ slug }: { slug: string }) {
-  return (
-    <nav aria-label="Components">
-      <div className="flex flex-col gap-7">
-        {SECTIONS.map(section => (
-          <div
-            key={section.title}
-            className="flex flex-col gap-1">
-            <h2 className="mb-1 text-[11px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">
-              {section.title}
-            </h2>
-            {section.pages.map(page => {
-              const here = page.slug === slug
-              return (
-                <a
-                  key={page.slug}
-                  href={href(page.slug)}
-                  {...(here
-                    ? {
-                        'aria-current': 'page' as const,
-                      }
-                    : {})}
-                  className={`-ms-px flex min-h-8 items-center border-s ps-4 text-[13px] transition-colors duration-(--motion-fast) rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--color-brand-green) motion-reduce:transition-none ${
-                    here
-                      ? 'border-brand-green font-medium text-ink-on-night'
-                      : 'border-night-rule text-ink-on-night-dim hover:border-night-edge-lit hover:text-ink-on-night'
-                  }`}>
-                  {page.nav ?? page.title}
-                </a>
-              )
-            })}
-          </div>
-        ))}
-      </div>
-    </nav>
-  )
-}
-
 export function App() {
   const index = useRef<HTMLDetailsElement>(null)
   useMenuDismiss(index)
   const slug = useRoute()
   const [searchOpen, setSearchOpen] = useState(false)
+
+  const navSections = useMemo(
+    () =>
+      SECTIONS.map(section => ({
+        title: section.title,
+        items: section.pages.map(entry => ({
+          label: entry.nav ?? entry.title,
+          href: href(entry.slug),
+        })),
+      })),
+    [],
+  )
 
   const commands = useMemo(
     () =>
@@ -107,6 +94,23 @@ export function App() {
         links={BAR_LINKS}
         actionLabel="GitHub"
         actionHref={REPO_URL}
+        actions={
+          <button
+            type="button"
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search the kit"
+            aria-keyshortcuts="Meta+K Control+K"
+            className={cn(
+              'flex min-h-9 shrink-0 items-center gap-2 border border-night-edge px-2.5 text-[13px] text-ink-on-night-dim',
+              'transition-colors duration-(--motion-fast) hover:border-night-edge-lit hover:text-ink-on-night',
+              'motion-reduce:transition-none',
+              focus,
+            )}>
+            <Search size={14} />
+            <span className="hidden min-[860px]:inline">Search</span>
+            <Kbd className="hidden min-[860px]:inline-flex">⌘K</Kbd>
+          </button>
+        }
       />
 
       <CommandPalette
@@ -119,15 +123,12 @@ export function App() {
 
       <Wrap className="flex w-full flex-1 gap-12 py-12 lg:gap-16">
         <aside className="hidden w-[200px] shrink-0 lg:block">
-          <div className="sticky top-[calc(var(--nav-h)+2rem)] flex max-h-[calc(100svh-var(--nav-h)-4rem)] flex-col gap-6 overflow-y-auto pe-2">
-            <button
-              type="button"
-              onClick={() => setSearchOpen(true)}
-              className={`flex min-h-9 w-full items-center gap-2 border border-night-edge px-3 text-[13px] text-ink-on-night-dim transition-colors duration-(--motion-fast) hover:border-night-edge-lit hover:text-ink-on-night motion-reduce:transition-none ${focus}`}>
-              Search
-              <Kbd className="ms-auto">⌘K</Kbd>
-            </button>
-            <Sidebar slug={slug} />
+          <div className="sticky top-[calc(var(--nav-h)+2rem)] max-h-[calc(100svh-var(--nav-h)-4rem)] overflow-y-auto pe-2">
+            <SideNav
+              sections={navSections}
+              current={href(slug)}
+              label="Components"
+            />
           </div>
         </aside>
 
@@ -157,7 +158,11 @@ export function App() {
               </svg>
             </summary>
             <div className="pt-6">
-              <Sidebar slug={slug} />
+              <SideNav
+                sections={navSections}
+                current={href(slug)}
+                label="Components"
+              />
             </div>
           </details>
 

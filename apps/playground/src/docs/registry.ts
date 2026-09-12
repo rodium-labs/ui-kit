@@ -17,6 +17,7 @@ import { page as pagination } from '../pages/pagination'
 import { page as radio } from '../pages/radio'
 import { page as commandPalette } from '../pages/search'
 import { page as select } from '../pages/select'
+import { page as sideNav } from '../pages/sidenav'
 import { page as slider } from '../pages/slider'
 import { page as switchPage } from '../pages/switch'
 import { page as textarea } from '../pages/textarea'
@@ -76,6 +77,7 @@ export const SECTIONS: readonly DocSection[] = [
       tabsPage,
       contentsPage,
       accordionPage,
+      sideNav,
       commandPalette,
     ],
   },
