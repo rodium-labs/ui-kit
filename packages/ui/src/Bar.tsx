@@ -1,8 +1,10 @@
-import type { ReactNode } from 'react'
+'use client'
+
+import { type ReactNode, useRef } from 'react'
 import { Arrow } from './Arrow'
 import { cn } from './cn'
 import { focus } from './focus'
-import { MENU_SCRIPT } from './menuScript'
+import { useMenuDismiss } from './useMenuDismiss'
 
 export interface BarLink {
   label: string
@@ -27,6 +29,9 @@ const outbound =
   'nudge press flex shrink-0 items-center gap-1.5 border border-night-edge font-medium text-ink-on-night transition-colors duration-(--motion-fast) hover:border-night-edge-lit hover:bg-night-wash motion-reduce:transition-none'
 
 export function Bar({ logo, name, home = '/', links = [], actionLabel, actionHref, className }: BarProps) {
+  const menu = useRef<HTMLDetailsElement>(null)
+  useMenuDismiss(menu)
+
   return (
     <header className={cn('bar sticky top-0 z-40 h-(--nav-h)', className)}>
       <div
@@ -70,7 +75,9 @@ export function Bar({ logo, name, home = '/', links = [], actionLabel, actionHre
         {/* narrow widths carry one row and a disclosure. the panel hangs off
             the bar rather than growing it, so the cover keeps its screen. */}
         {links.length > 0 ? (
-          <details className="menu ms-auto min-[620px]:hidden">
+          <details
+            ref={menu}
+            className="menu ms-auto min-[620px]:hidden">
             <summary
               aria-label="Menu"
               className={cn(
@@ -109,12 +116,6 @@ export function Bar({ logo, name, home = '/', links = [], actionLabel, actionHre
           </details>
         ) : null}
       </div>
-      <script
-        // biome-ignore lint/security/noDangerouslySetInnerHtml: the disclosure has to work before hydration, so this is a literal the kit owns
-        dangerouslySetInnerHTML={{
-          __html: MENU_SCRIPT,
-        }}
-      />
     </header>
   )
 }
