@@ -2,14 +2,23 @@ import { type ReactNode, type SelectHTMLAttributes, useId } from 'react'
 import { cn } from './cn'
 import { CONTROL_SKIN, Field } from './Field'
 
-export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+export interface NativeSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: ReactNode
   hint?: ReactNode
   error?: ReactNode
   fieldClassName?: string
 }
 
-export function Select({ label, hint, error, className, fieldClassName, id, children, ...rest }: SelectProps) {
+export function NativeSelect({
+  label,
+  hint,
+  error,
+  className,
+  fieldClassName,
+  id,
+  children,
+  ...rest
+}: NativeSelectProps) {
   const auto = useId()
   const selectId = id ?? auto
   const hintId = `${selectId}-hint`
