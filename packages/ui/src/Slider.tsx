@@ -23,11 +23,11 @@ const THUMB =
   '[&::-webkit-slider-thumb]:-mt-[7px] [&::-webkit-slider-thumb]:size-[15px] [&::-webkit-slider-thumb]:appearance-none ' +
   '[&::-webkit-slider-thumb]:bg-ink-on-night [&::-webkit-slider-thumb]:transition-[background-color,scale] ' +
   '[&::-webkit-slider-thumb]:duration-(--motion-fast) [&::-webkit-slider-thumb]:ease-rl ' +
-  'hover:[&::-webkit-slider-thumb]:bg-brand-green-lit active:[&::-webkit-slider-thumb]:scale-125 ' +
+  'hover:[&::-webkit-slider-thumb]:bg-ink-green-on-night active:[&::-webkit-slider-thumb]:scale-125 ' +
   'active:[&::-webkit-slider-thumb]:bg-brand-green ' +
   '[&::-moz-range-thumb]:size-[15px] [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-ink-on-night ' +
   '[&::-moz-range-thumb]:transition-colors [&::-moz-range-thumb]:duration-(--motion-fast) ' +
-  'hover:[&::-moz-range-thumb]:bg-brand-green-lit active:[&::-moz-range-thumb]:bg-brand-green ' +
+  'hover:[&::-moz-range-thumb]:bg-ink-green-on-night active:[&::-moz-range-thumb]:bg-brand-green ' +
   'motion-reduce:[&::-webkit-slider-thumb]:transition-none motion-reduce:[&::-moz-range-thumb]:transition-none'
 
 function ratio(value: number, min: number, max: number): string {

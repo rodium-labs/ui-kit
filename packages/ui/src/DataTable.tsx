@@ -111,12 +111,12 @@ export function DataTable<Row>({
       }>
       <table className="w-full border-collapse text-left">
         {caption ? (
-          <caption className="border-b border-night-rule px-4 py-3 text-start text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">
+          <caption className="bg-night px-4 py-3 text-start text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">
             {caption}
           </caption>
         ) : null}
         <thead className={cn(stickyHeader && 'sticky top-0 z-1')}>
-          <tr className="bg-night-raised">
+          <tr>
             {columns.map(column => {
               const active = sort?.key === column.key
               const align = column.align ?? 'start'
@@ -133,7 +133,8 @@ export function DataTable<Row>({
                   }
                   aria-sort={active ? (sort.direction === 'asc' ? 'ascending' : 'descending') : undefined}
                   className={cn(
-                    'border-b border-night-edge px-4 py-2.5 text-[11px] font-medium tracking-[0.14em] whitespace-nowrap text-ink-on-night-dim uppercase',
+                    'bg-night px-4 py-2.5 text-[11px] font-medium tracking-[0.14em] whitespace-nowrap text-ink-on-night-dim uppercase',
+                    'shadow-[inset_0_-1px_0_var(--color-night-edge)]',
                     ALIGN[align],
                   )}>
                   {column.sortable ? (
