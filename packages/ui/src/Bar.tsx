@@ -18,6 +18,8 @@ export interface BarProps {
   links?: readonly BarLink[]
   actionLabel?: string
   actionHref?: string
+  /** sits between the links and the outbound action, in the row and the sheet */
+  actions?: ReactNode
   className?: string
 }
 
@@ -28,7 +30,7 @@ const section =
 const outbound =
   'nudge press flex shrink-0 items-center gap-1.5 border border-night-edge font-medium text-ink-on-night transition-colors duration-(--motion-fast) hover:border-night-edge-lit hover:bg-night-wash motion-reduce:transition-none'
 
-export function Bar({ logo, name, home = '/', links = [], actionLabel, actionHref, className }: BarProps) {
+export function Bar({ logo, name, home = '/', links = [], actionLabel, actionHref, actions, className }: BarProps) {
   const menu = useRef<HTMLDetailsElement>(null)
   useMenuDismiss(menu)
 
@@ -61,60 +63,65 @@ export function Bar({ logo, name, home = '/', links = [], actionLabel, actionHre
           </nav>
         ) : null}
 
-        {actionHref && actionLabel ? (
-          <a
-            href={actionHref}
-            target="_blank"
-            rel="noreferrer"
-            className={cn(outbound, 'hidden min-h-9 px-3.5 text-[14px] min-[620px]:flex', focus)}>
-            {actionLabel}
-            <Arrow />
-          </a>
-        ) : null}
+        <div
+          className={cn('flex shrink-0 items-center gap-2', links.length > 0 ? 'ms-auto min-[620px]:ms-0' : 'ms-auto')}>
+          {actions}
 
-        {/* narrow widths carry one row and a disclosure. the panel hangs off
-            the bar rather than growing it, so the cover keeps its screen. */}
-        {links.length > 0 ? (
-          <details
-            ref={menu}
-            className="menu ms-auto min-[620px]:hidden">
-            <summary
-              aria-label="Menu"
-              className={cn(
-                'flex size-11 cursor-pointer list-none items-center justify-center text-ink-on-night [&::-webkit-details-marker]:hidden',
-                focus,
-              )}>
-              <span
-                aria-hidden="true"
-                className="bars"
-              />
-            </summary>
-            <nav
-              aria-label="Sections"
-              className="sheet">
-              <div className="mx-auto grid w-full max-w-[1120px] gap-1 px-6 py-4">
-                {links.map(link => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    className={cn(section, 'min-h-11 text-[16px] after:inset-x-0 after:bottom-2', focus)}>
-                    {link.label}
-                  </a>
-                ))}
-                {actionHref && actionLabel ? (
-                  <a
-                    href={actionHref}
-                    target="_blank"
-                    rel="noreferrer"
-                    className={cn(outbound, 'mt-3 min-h-11 justify-center px-4 text-[15px]', focus)}>
-                    {actionLabel}
-                    <Arrow />
-                  </a>
-                ) : null}
-              </div>
-            </nav>
-          </details>
-        ) : null}
+          {actionHref && actionLabel ? (
+            <a
+              href={actionHref}
+              target="_blank"
+              rel="noreferrer"
+              className={cn(outbound, 'hidden min-h-9 px-3.5 text-[14px] min-[620px]:flex', focus)}>
+              {actionLabel}
+              <Arrow />
+            </a>
+          ) : null}
+
+          {/* narrow widths carry one row and a disclosure. the panel hangs off
+              the bar rather than growing it, so the cover keeps its screen. */}
+          {links.length > 0 ? (
+            <details
+              ref={menu}
+              className="menu min-[620px]:hidden">
+              <summary
+                aria-label="Menu"
+                className={cn(
+                  'flex size-11 cursor-pointer list-none items-center justify-center text-ink-on-night [&::-webkit-details-marker]:hidden',
+                  focus,
+                )}>
+                <span
+                  aria-hidden="true"
+                  className="bars"
+                />
+              </summary>
+              <nav
+                aria-label="Sections"
+                className="sheet">
+                <div className="mx-auto grid w-full max-w-[1120px] gap-1 px-6 py-4">
+                  {links.map(link => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className={cn(section, 'min-h-11 text-[16px] after:inset-x-0 after:bottom-2', focus)}>
+                      {link.label}
+                    </a>
+                  ))}
+                  {actionHref && actionLabel ? (
+                    <a
+                      href={actionHref}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={cn(outbound, 'mt-3 min-h-11 justify-center px-4 text-[15px]', focus)}>
+                      {actionLabel}
+                      <Arrow />
+                    </a>
+                  ) : null}
+                </div>
+              </nav>
+            </details>
+          ) : null}
+        </div>
       </div>
     </header>
   )
