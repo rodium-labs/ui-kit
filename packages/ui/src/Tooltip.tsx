@@ -43,9 +43,11 @@ export function Tooltip({ label, side = 'top', className, children }: TooltipPro
         role="tooltip"
         className={cn(
           'pointer-events-none absolute z-50 w-max max-w-[min(14rem,calc(100vw-2rem))] border border-night-edge bg-night px-2.5 py-1.5 text-[12px] leading-snug text-ink-on-night',
-          'opacity-0 transition-opacity duration-(--motion-fast)',
-          'group-hover:opacity-100 group-focus-within:opacity-100',
-          'motion-reduce:transition-none',
+          'opacity-0 transition-[opacity,translate] duration-(--motion-fast) ease-rl',
+          side === 'top' ? 'translate-y-1' : '-translate-y-1',
+          'group-hover:translate-y-0 group-hover:opacity-100',
+          'group-focus-within:translate-y-0 group-focus-within:opacity-100',
+          'motion-reduce:translate-y-0 motion-reduce:transition-none',
           SIDE[side],
         )}>
         {label}

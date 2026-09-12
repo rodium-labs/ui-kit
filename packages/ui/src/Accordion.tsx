@@ -28,7 +28,7 @@ export function Accordion({ items, single = false, name, className }: AccordionP
                 name: name ?? 'accordion',
               }
             : {})}
-          className="group border-b border-night-rule">
+          className="fold group border-b border-night-rule">
           <summary
             className={cn(
               'flex cursor-pointer list-none items-center gap-4 py-4 text-[15px] font-medium text-ink-on-night [&::-webkit-details-marker]:hidden',

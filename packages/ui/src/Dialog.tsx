@@ -61,6 +61,7 @@ export function Dialog({ open, onClose, title, description, footer, children, cl
       className={cn(
         'm-auto w-[min(calc(100vw-2rem),34rem)] border border-night-edge bg-night p-0 text-ink-on-night',
         'overscroll-contain backdrop:bg-black/70 backdrop:backdrop-blur-[2px]',
+        'sheet-in',
         className,
       )}>
       <div className="flex items-start justify-between gap-4 border-b border-night-rule px-6 py-5">
