@@ -5,8 +5,8 @@ white at four strengths, square corners, and a single green kept for whatever ha
 
 ```
 packages/tokens    the @theme block, the ground, the entrance, the disclosure
-packages/ui        24 components and 12 glyphs
-apps/playground    every one of them on one page
+packages/ui        37 components and 13 glyphs
+apps/playground    the docs site, one page per component
 ```
 
 ## Getting started
@@ -16,12 +16,12 @@ bun install
 bun run dev
 ```
 
-The playground comes up on [localhost:5180](http://localhost:5180).
+The docs site comes up on [localhost:5180](http://localhost:5180), one page per component.
 
 | Script              | What it does                       |
 | ------------------- | ---------------------------------- |
-| `bun run dev`       | the playground, with hot reload    |
-| `bun run build`     | a static build of the playground   |
+| `bun run dev`       | the docs site, with hot reload     |
+| `bun run build`     | a static build of the docs site    |
 | `bun run check`     | Biome, read only                   |
 | `bun run fix`       | Biome, writing the safe fixes      |
 | `bun run typecheck` | `tsc --build` across every package |
@@ -64,16 +64,19 @@ export function Work() {
 
 ## What is in it
 
-**Chrome** — `Bar` (with `MENU_SCRIPT`), `Contents`, `Tabs`, `Dialog`, `Tooltip`
+**Actions** — `Action`, `Link`, `Menu`, `Pagination`, `Breadcrumb`, `Arrow`
 
-**Action** — `Action`, `Arrow`
+**Forms** — `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`,
+`Slider`
 
-**Editorial** — `Wrap`, `Cover`, `split`, `Display`, `Title`, `Lede`, `Body`, `Eyebrow`, `Rule`,
-`Facts`, `Table`, `Ticker`, `Status`, `Tag`, `Panel`, `Mark`, glyphs
+**Feedback** — `Alert`, `Toast`, `ToastRegion`, `Dialog`, `Tooltip`, `Progress`, `Spinner`,
+`Skeleton`, `EmptyState`
 
-**Form** — `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `Switch`
+**Navigation** — `Bar` (with `MENU_SCRIPT`), `Tabs`, `Contents`, `Accordion`
 
-**Waiting** — `Progress`, `Spinner`, `Skeleton`, `Avatar`
+**Content** — `Wrap`, `Cover`, `split`, `Display`, `Title`, `Lede`, `Body`, `Eyebrow`, `Rule`,
+`Facts`, `Table`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`, `Panel`, `Ticker`, `Avatar`,
+`Mark`, glyphs
 
 ## How it is built
 
