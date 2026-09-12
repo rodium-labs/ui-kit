@@ -72,8 +72,9 @@ export const page: DocPage = {
         carrying the same glass.
       </p>
       <p>
-        Ship <code className="text-ink-on-night">MENU_SCRIPT</code> with it. The disclosure works without it; the script
-        only adds closing on a pick, on escape and on a tap outside.
+        Closing on a pick, on escape and on a pointer outside comes from{' '}
+        <code className="text-ink-on-night">useMenuDismiss</code>, which the bar installs for itself. That behaviour
+        used to ship as an injected script, which React never executes on the client.
       </p>
     </>
   ),

@@ -1,5 +1,48 @@
 import { Avatar, Code, CodeBlock, Facts, Kbd, Mark, Panel, Stat, Status, Table, Tag, Ticker } from '@rodium/ui'
+import { useEffect, useState } from 'react'
 import type { DocPage } from '../docs/types'
+
+function LiveStats() {
+  const [deploys, setDeploys] = useState(128)
+  const [failures, setFailures] = useState(3)
+  const [median, setMedian] = useState(41)
+
+  useEffect(() => {
+    const tick = window.setInterval(() => {
+      setDeploys(n => n + Math.round(Math.random() * 6))
+      setFailures(n => Math.max(0, n + (Math.random() > 0.6 ? 1 : -1)))
+      setMedian(n => Math.max(18, Math.min(90, n + Math.round((Math.random() - 0.5) * 14))))
+    }, 2200)
+    return () => window.clearInterval(tick)
+  }, [])
+
+  return (
+    <div className="grid gap-8 sm:grid-cols-3">
+      <Stat
+        animate
+        label="Deploys"
+        value={deploys}
+        trend="up"
+        delta="live"
+      />
+      <Stat
+        animate
+        label="Failures"
+        value={failures}
+        trend="down"
+        delta="live"
+      />
+      <Stat
+        animate
+        label="Median build"
+        value={median}
+        unit="s"
+        trend="flat"
+        delta="live"
+      />
+    </div>
+  )
+}
 
 export const tablePage: DocPage = {
   slug: 'table',
@@ -132,8 +175,15 @@ export const factsPage: DocPage = {
 export const statPage: DocPage = {
   slug: 'stat',
   title: 'Stat',
-  summary: 'One number, large. The arrow and the hidden word carry the direction alongside the colour.',
+  summary:
+    'One number, large. It counts from the old value to the new one when the data moves, and the arrow and hidden word carry the direction alongside the colour.',
   examples: [
+    {
+      title: 'Counting',
+      note: 'the numbers change every couple of seconds',
+      code: `<Stat animate label="Deploys" value={deploys} trend="up" delta="live" />`,
+      render: () => <LiveStats />,
+    },
     {
       title: 'A row of them',
       code: `<Stat label="Deploys" value="128" trend="up" delta="12 this week" />`,

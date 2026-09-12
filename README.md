@@ -5,7 +5,7 @@ white at four strengths, square corners, and a single green kept for whatever ha
 
 ```
 packages/tokens    the @theme block, the ground, the entrance, the disclosure
-packages/ui        37 components and 13 glyphs
+packages/ui        40 components and 13 glyphs
 apps/playground    the docs site, one page per component
 ```
 
@@ -66,17 +66,17 @@ export function Work() {
 
 **Actions** — `Action`, `Link`, `Menu`, `Pagination`, `Breadcrumb`, `Arrow`
 
-**Forms** — `Field`, `Input`, `Textarea`, `Select`, `Checkbox`, `Radio`, `RadioGroup`, `Switch`,
-`Slider`
+**Forms** — `Field`, `Input`, `Textarea`, `Select`, `NativeSelect`, `Checkbox`, `Radio`,
+`RadioGroup`, `Switch`, `Slider`
 
 **Feedback** — `Alert`, `Toast`, `ToastRegion`, `Dialog`, `Tooltip`, `Progress`, `Spinner`,
 `Skeleton`, `EmptyState`
 
-**Navigation** — `Bar` (with `MENU_SCRIPT`), `Tabs`, `Contents`, `Accordion`
+**Navigation** — `Bar`, `Tabs`, `Contents`, `Accordion`, `CommandPalette`, `useMenuDismiss`
 
 **Content** — `Wrap`, `Cover`, `split`, `Display`, `Title`, `Lede`, `Body`, `Eyebrow`, `Rule`,
-`Facts`, `Table`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`, `Panel`, `Ticker`, `Avatar`,
-`Mark`, glyphs
+`Facts`, `Table`, `DataTable`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`, `Panel`,
+`Ticker`, `Avatar`, `Mark`, glyphs
 
 ## How it is built
 
@@ -88,10 +88,10 @@ is one white at four strengths — headings, body, labels, decoration — which 
 without ever introducing a second grey, and the lines are named for what they separate rather than
 for how dark they are.
 
-**The browser does the hard parts.** The menu is a native `<details>`; `MENU_SCRIPT` only adds what
-the element does not do — close on a link, on escape, on a tap outside — so the disclosure works
-before hydration and without React. `Dialog` is the native element, so the top layer, the focus trap
-and the inert page behind it are not ours.
+**The browser does the hard parts.** Menus and folds are native `<details>`; `useMenuDismiss` only
+adds what the element does not do — close on a pick, on escape, on a pointer outside. `Dialog` and
+`CommandPalette` are the native `<dialog>`, so the top layer, the focus trap and the inert page
+behind them are not ours.
 
 **Nothing animates on a timer that could animate on the scroll.** `.reveal` runs on
 `animation-timeline: view()`, so the scroller is the clock: no script, nothing to hydrate, and a

@@ -1,58 +1,138 @@
-import { Select } from '@rodium/ui'
+import { NativeSelect, Select } from '@rodium/ui'
+import { useState } from 'react'
 import type { DocPage } from '../docs/types'
+
+const REGIONS = [
+  {
+    value: 'fra',
+    label: 'Frankfurt',
+    hint: 'eu-central-1',
+  },
+  {
+    value: 'ist',
+    label: 'Istanbul',
+    hint: 'eu-south-3',
+  },
+  {
+    value: 'iad',
+    label: 'Virginia',
+    hint: 'us-east-1',
+  },
+  {
+    value: 'sfo',
+    label: 'San Francisco',
+    hint: 'us-west-2',
+  },
+  {
+    value: 'syd',
+    label: 'Sydney',
+    hint: 'ap-southeast-2 · at capacity',
+    disabled: true,
+  },
+]
+
+function Demo() {
+  const [region, setRegion] = useState('fra')
+  return (
+    <div className="grid max-w-lg gap-6">
+      <Select
+        label="Region"
+        options={REGIONS}
+        value={region}
+        onValueChange={setRegion}
+        hint="Where the next deploy lands."
+      />
+      <Select
+        label="Fallback"
+        options={REGIONS}
+        placeholder="None"
+      />
+      <Select
+        label="Locked"
+        options={REGIONS}
+        defaultValue="fra"
+        disabled
+      />
+    </div>
+  )
+}
 
 export const page: DocPage = {
   slug: 'select',
   title: 'Select',
   summary:
-    'The native select, restyled. Its options are drawn by the platform, which is what makes the list work on a phone and under a screen reader without a line of script.',
+    'A select built to the ARIA select-only combobox pattern: one tab stop on the trigger, and aria-activedescendant naming the active row while focus stays put.',
   examples: [
     {
-      title: 'Default',
-      code: `<Select label="Environment" defaultValue="staging">
-  <option value="dev">Development</option>
+      title: 'Options with hints',
+      note: 'arrows move, letters jump, enter picks, escape closes',
+      code: `<Select
+  label="Region"
+  options={[{ value: 'fra', label: 'Frankfurt', hint: 'eu-central-1' }]}
+  value={region}
+  onValueChange={setRegion}
+/>`,
+      render: () => <Demo />,
+    },
+    {
+      title: 'The native one',
+      note: 'still exported, for a form that wants the platform list',
+      code: `<NativeSelect label="Environment" defaultValue="staging">
   <option value="staging">Staging</option>
-</Select>`,
+</NativeSelect>`,
       render: () => (
-        <div className="grid max-w-lg gap-6">
-          <Select
+        <div className="max-w-lg">
+          <NativeSelect
             label="Environment"
             defaultValue="staging"
-            hint="Where the next deploy lands.">
+            hint="Renders the operating system's own list.">
             <option value="dev">Development</option>
             <option value="staging">Staging</option>
             <option value="prod">Production</option>
-          </Select>
-          <Select
-            label="Region"
-            disabled>
-            <option>Frankfurt</option>
-          </Select>
+          </NativeSelect>
         </div>
       ),
     },
   ],
   props: [
     [
-      'label',
-      'ReactNode',
-      'The visible label.',
+      'options',
+      'readonly SelectOption[]',
+      'Each takes a value, a label and an optional hint.',
     ],
     [
-      'hint',
-      'ReactNode',
-      'Sits under the field.',
+      'value / defaultValue',
+      'string',
+      'Controlled or uncontrolled selection.',
     ],
     [
-      'error',
-      'ReactNode',
-      'Replaces the hint and sets aria-invalid.',
+      'onValueChange',
+      '(value: string) => void',
+      'Called with the value picked.',
+    ],
+    [
+      'placeholder',
+      'string',
+      'Shown until something is picked. Default "Select…".',
+    ],
+    [
+      'name',
+      'string',
+      'Writes a hidden input, so the value posts with a plain form.',
     ],
   ],
   notes: (
-    <p>
-      The chevron is decoration with <code className="text-ink-on-night">pointer-events: none</code>, so a click that
-      lands on it still opens the list underneath.
-    </p>
+    <>
+      <p>
+        A custom select is a real cost: the native one already carries the keyboard, the touch sheet and the screen
+        reader, and none of that comes free in a rebuild. This one follows the ARIA pattern closely and{' '}
+        <code className="text-ink-on-night">NativeSelect</code> stays exported for anywhere the platform list is the
+        better answer — long lists and mobile-heavy forms especially.
+      </p>
+      <p>
+        Typeahead resets after half a second, so "fr" jumps to Frankfurt while two slow presses of f and r are two
+        separate jumps.
+      </p>
+    </>
   ),
 }

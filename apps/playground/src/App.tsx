@@ -1,7 +1,7 @@
-import { Action, Arrow, Bar, focus, Mark, Wrap } from '@rodium/ui'
-import { useEffect } from 'react'
+import { Action, Arrow, Bar, CommandPalette, focus, Kbd, Mark, useMenuDismiss, Wrap } from '@rodium/ui'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { DocsPage } from './docs/DocsPage'
-import { findPage, neighbours, SECTIONS } from './docs/registry'
+import { ALL_PAGES, findPage, neighbours, SECTIONS } from './docs/registry'
 import { href, useRoute } from './docs/router'
 
 const REPO_URL = 'https://github.com/rodium-labs'
@@ -60,7 +60,25 @@ function Sidebar({ slug }: { slug: string }) {
 }
 
 export function App() {
+  const index = useRef<HTMLDetailsElement>(null)
+  useMenuDismiss(index)
   const slug = useRoute()
+  const [searchOpen, setSearchOpen] = useState(false)
+
+  const commands = useMemo(
+    () =>
+      ALL_PAGES.map(entry => ({
+        id: entry.slug,
+        label: entry.nav ?? entry.title,
+        group: SECTIONS.find(section => section.pages.includes(entry))?.title,
+        hint: entry.slug,
+        keywords: entry.summary,
+        onSelect: () => {
+          window.location.hash = `/${entry.slug}`
+        },
+      })),
+    [],
+  )
   const page = findPage(slug)
   const { previous, next } = neighbours(slug)
 
@@ -91,9 +109,24 @@ export function App() {
         actionHref={REPO_URL}
       />
 
+      <CommandPalette
+        open={searchOpen}
+        onOpenChange={setSearchOpen}
+        items={commands}
+        placeholder="Search the kit…"
+        label="Search the kit"
+      />
+
       <Wrap className="flex w-full flex-1 gap-12 py-12 lg:gap-16">
         <aside className="hidden w-[200px] shrink-0 lg:block">
-          <div className="sticky top-[calc(var(--nav-h)+2rem)] max-h-[calc(100svh-var(--nav-h)-4rem)] overflow-y-auto pe-2">
+          <div className="sticky top-[calc(var(--nav-h)+2rem)] flex max-h-[calc(100svh-var(--nav-h)-4rem)] flex-col gap-6 overflow-y-auto pe-2">
+            <button
+              type="button"
+              onClick={() => setSearchOpen(true)}
+              className={`flex min-h-9 w-full items-center gap-2 border border-night-edge px-3 text-[13px] text-ink-on-night-dim transition-colors duration-(--motion-fast) hover:border-night-edge-lit hover:text-ink-on-night motion-reduce:transition-none ${focus}`}>
+              Search
+              <Kbd className="ms-auto">⌘K</Kbd>
+            </button>
             <Sidebar slug={slug} />
           </div>
         </aside>
@@ -103,7 +136,9 @@ export function App() {
           className="flex min-w-0 flex-1 flex-col gap-16">
           {/* the rail is hidden below lg, so the index has to come back as a
               disclosure or the whole kit is reachable only one page at a time */}
-          <details className="menu -mt-2 border-b border-night-rule pb-4 lg:hidden">
+          <details
+            ref={index}
+            className="menu group -mt-2 border-b border-night-rule pb-4 lg:hidden">
             <summary
               className={`flex min-h-11 cursor-pointer list-none items-center gap-2 text-[13px] font-medium tracking-[0.04em] text-ink-on-night uppercase [&::-webkit-details-marker]:hidden ${focus}`}>
               Browse components

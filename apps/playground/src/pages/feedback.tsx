@@ -1,5 +1,32 @@
 import { Action, EmptyState, Progress, Skeleton, Spinner } from '@rodium/ui'
+import { useEffect, useState } from 'react'
 import type { DocPage } from '../docs/types'
+
+function LiveProgress() {
+  const [pct, setPct] = useState(12)
+
+  useEffect(() => {
+    const tick = window.setInterval(() => {
+      setPct(current => (current >= 100 ? 0 : Math.min(100, current + Math.round(4 + Math.random() * 9))))
+    }, 700)
+    return () => window.clearInterval(tick)
+  }, [])
+
+  return (
+    <div className="flex max-w-md flex-col gap-8">
+      <Progress
+        value={pct}
+        label="Upload"
+        showValue
+      />
+      <Progress
+        value={Math.max(0, pct - 18)}
+        label="Verify"
+        showValue
+      />
+    </div>
+  )
+}
 
 export const progressPage: DocPage = {
   slug: 'progress',
@@ -7,7 +34,24 @@ export const progressPage: DocPage = {
   summary: 'How far along something is. A hairline track with the accent filling it.',
   examples: [
     {
-      title: 'With a label',
+      title: 'Live',
+      note: 'a real upload, not a still',
+      code: `<Progress value={percent} label="Upload" showValue />`,
+      render: () => <LiveProgress />,
+    },
+    {
+      title: 'Indeterminate',
+      note: 'no value: work with no known end',
+      code: `<Progress label="Reading the manifest" />`,
+      render: () => (
+        <div className="flex max-w-md flex-col gap-8">
+          <Progress label="Reading the manifest" />
+          <Progress />
+        </div>
+      ),
+    },
+    {
+      title: 'Fixed',
       code: `<Progress value={28} label="Bundle" showValue />`,
       render: () => (
         <div className="flex max-w-md flex-col gap-8">
@@ -17,11 +61,10 @@ export const progressPage: DocPage = {
             showValue
           />
           <Progress
-            value={76}
-            label="Upload"
+            value={100}
+            label="Done"
             showValue
           />
-          <Progress value={100} />
         </div>
       ),
     },

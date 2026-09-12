@@ -20,7 +20,7 @@ export const page: DocPage = {
           rows={[
             [
               'Components',
-              '37',
+              '40',
             ],
             [
               'Glyphs',

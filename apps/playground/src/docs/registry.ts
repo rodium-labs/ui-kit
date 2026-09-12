@@ -4,6 +4,7 @@ import { page as bar } from '../pages/bar'
 import { page as breadcrumb } from '../pages/breadcrumb'
 import { page as checkbox } from '../pages/checkbox'
 import { codePage, factsPage, panelPage, statPage, statusPage, tablePage } from '../pages/content'
+import { page as dataTable } from '../pages/datatable'
 import { page as dialog } from '../pages/dialog'
 import { emptyStatePage, progressPage, skeletonPage, spinnerPage } from '../pages/feedback'
 import { page as input } from '../pages/input'
@@ -14,6 +15,7 @@ import { page as menu } from '../pages/menu'
 import { accordionPage, contentsPage, tabsPage } from '../pages/navigation'
 import { page as pagination } from '../pages/pagination'
 import { page as radio } from '../pages/radio'
+import { page as commandPalette } from '../pages/search'
 import { page as select } from '../pages/select'
 import { page as slider } from '../pages/slider'
 import { page as switchPage } from '../pages/switch'
@@ -74,11 +76,13 @@ export const SECTIONS: readonly DocSection[] = [
       tabsPage,
       contentsPage,
       accordionPage,
+      commandPalette,
     ],
   },
   {
     title: 'Content',
     pages: [
+      dataTable,
       tablePage,
       factsPage,
       statPage,
