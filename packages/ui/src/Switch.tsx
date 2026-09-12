@@ -50,7 +50,7 @@ export function Switch({ label, hint, className, id, checked, defaultChecked, on
             className={cn(
               'h-[18px] w-8 border border-night-edge',
               'transition-colors duration-(--motion-fast)',
-              'peer-hover:border-night-edge-lit',
+              'peer-[:hover:not(:checked)]:border-night-edge-lit',
               'peer-checked:border-brand-green peer-checked:bg-brand-green',
               'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-(--color-brand-green)',
               'peer-disabled:opacity-45',

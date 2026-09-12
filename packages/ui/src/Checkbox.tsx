@@ -33,7 +33,7 @@ export function Checkbox({ label, hint, className, id, ...rest }: CheckboxProps)
             className={cn(
               'flex size-[18px] items-center justify-center border border-night-edge text-night',
               'transition-colors duration-(--motion-fast)',
-              'peer-hover:border-night-edge-lit peer-hover:bg-night-wash',
+              'peer-[:hover:not(:checked)]:border-night-edge-lit peer-[:hover:not(:checked)]:bg-night-wash',
               'peer-checked:border-brand-green peer-checked:bg-brand-green',
               'peer-checked:[&>svg]:opacity-100',
               'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-(--color-brand-green)',

@@ -33,7 +33,7 @@ export function Radio({ label, hint, className, id, ...rest }: RadioProps) {
             className={cn(
               'flex size-[18px] items-center justify-center rounded-full border border-night-edge',
               'transition-colors duration-(--motion-fast)',
-              'peer-hover:border-night-edge-lit peer-hover:bg-night-wash',
+              'peer-[:hover:not(:checked)]:border-night-edge-lit peer-[:hover:not(:checked)]:bg-night-wash',
               'peer-checked:border-brand-green',
               'peer-checked:[&>span]:scale-100 peer-checked:[&>span]:opacity-100',
               'peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-(--color-brand-green)',
