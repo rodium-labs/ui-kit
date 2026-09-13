@@ -12,14 +12,14 @@ export const page: DocPage = {
   examples: [
     {
       title: 'Sizes',
-      code: `<Avatar name="Yusuf Yildirim" size="md" />`,
+      code: `<Avatar name="Grace Hopper" size="md" />`,
       render: () => (
         <div className="flex flex-wrap items-center gap-4">
           <Avatar
             name="Ada Lovelace"
             size="sm"
           />
-          <Avatar name="Yusuf Yildirim" />
+          <Avatar name="Grace Hopper" />
           <Avatar
             name="Rodium Labs"
             size="lg"
@@ -55,9 +55,9 @@ export const page: DocPage = {
       title: 'Beside a name',
       render: () => (
         <div className="flex items-center gap-3">
-          <Avatar name="Yusuf Yildirim" />
+          <Avatar name="Grace Hopper" />
           <div className="flex flex-col">
-            <span className="text-[13px] text-ink-on-night">Yusuf Yildirim</span>
+            <span className="text-[13px] text-ink-on-night">Grace Hopper</span>
             <span className="text-[12px] text-ink-on-night-dim">pushed 3 commits</span>
           </div>
         </div>
