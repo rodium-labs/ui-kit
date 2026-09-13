@@ -6,10 +6,6 @@ export const brand = {
 
 export const RULE_WIDTH_PX = 1
 
-/* 284x76 of real device output, at 1x and 2x */
-export const PANEL_WIDTH_PX = 284
-export const PANEL_HEIGHT_PX = 76
-
 export const motion = {
   fast: 120,
   base: 240,
