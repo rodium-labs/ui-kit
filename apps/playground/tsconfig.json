@@ -4,6 +4,7 @@
     "rootDir": ".",
     "outDir": "dist/types",
     "types": [
+      "node",
       "vite/client"
     ]
   },

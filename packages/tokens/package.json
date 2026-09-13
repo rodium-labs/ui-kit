@@ -1,6 +1,6 @@
 {
   "name": "@rodium-labs/tokens",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "type": "module",
   "description": "Design tokens for the Rodium Labs surface: colour, type, motion and the ground.",
   "license": "MIT",
@@ -27,25 +27,13 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "development": "./src/index.ts",
       "import": "./dist/index.js"
     },
-    "./theme.css": {
-      "development": "./src/theme.css",
-      "default": "./dist/theme.css"
-    },
-    "./base.css": {
-      "development": "./src/base.css",
-      "default": "./dist/base.css"
-    },
-    "./surface.css": {
-      "development": "./src/surface.css",
-      "default": "./dist/surface.css"
-    },
-    "./index.css": {
-      "development": "./src/index.css",
-      "default": "./dist/index.css"
-    }
+    "./theme.css": "./dist/theme.css",
+    "./base.css": "./dist/base.css",
+    "./surface.css": "./dist/surface.css",
+    "./index.css": "./dist/index.css",
+    "./package.json": "./package.json"
   },
   "devDependencies": {
     "typescript": "^5.9.3"
