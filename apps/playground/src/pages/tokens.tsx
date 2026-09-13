@@ -202,7 +202,7 @@ export const page: DocPage = {
             ],
             [
               'Rounding',
-              'the focus ring only, 4px',
+              'none — the radio only, and that is a circle',
             ],
             [
               'Hairline',

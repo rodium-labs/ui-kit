@@ -80,8 +80,8 @@ export function Work() {
 
 ## How it is built
 
-**Square, everywhere.** The only rounding on the surface is 4px on the focus ring, and it belongs to
-the outline rather than to the control under it. Nothing else has a radius.
+**Square, everywhere.** Nothing on the surface carries a radius, the focus ring included. The one
+exception is the radio, which stays round because the shape is what says "choose one".
 
 **Colour never appears in a component.** Every value is a custom property in one `@theme` block. Ink
 is one white at four strengths — headings, body, labels, decoration — which keeps four levels apart
