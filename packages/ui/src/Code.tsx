@@ -16,11 +16,11 @@ export function Code({ className, children, ...rest }: CodeProps) {
 
 const TOKEN: Record<TokenType, string | undefined> = {
   comment: 'text-code-comment italic',
-  string: 'text-code-string',
-  constant: 'text-code-constant',
+  string: 'text-code-value',
+  constant: 'text-code-value',
   keyword: 'text-code-keyword',
-  entity: 'text-code-entity',
-  tag: 'text-code-tag',
+  entity: 'text-code-name',
+  tag: 'text-code-name',
   plain: undefined,
 }
 

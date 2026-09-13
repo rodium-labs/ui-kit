@@ -34,18 +34,16 @@
 
   --color-danger: #ff6369;
 
-  /* syntax: github dark's prettylights values. measured on this ground rather
-     than github's #0d1117, where they run 6.83 to 13.67 against black. the
-     keyword red sits 6 degrees from --color-danger, which is close enough to be
-     the same hue — they never share a surface, one is inside a code block and
-     the other is on a control. */
-  --color-code-comment: #8b949e;
-  --color-code-keyword: #ff7b72;
-  --color-code-string: #a5d6ff;
-  --color-code-constant: #79c0ff;
-  --color-code-entity: #d2a8ff;
-  --color-code-tag: #7ee787;
-  --color-code-plain: #c9d1d9;
+  /* syntax. the surface carries one white at four strengths and two hues, and
+     code is held to the same budget: pink is the language, green is a value,
+     white is a name, the greys are everything else. a borrowed palette puts six
+     competing hues on a page that otherwise has two, which is what made the
+     blocks shout. nothing here is a new value. */
+  --color-code-comment: var(--color-ink-on-night-dim);
+  --color-code-plain: var(--color-ink-on-night-mid);
+  --color-code-name: var(--color-ink-on-night);
+  --color-code-value: var(--color-ink-green-on-night);
+  --color-code-keyword: var(--color-brand-pink);
 
   --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
