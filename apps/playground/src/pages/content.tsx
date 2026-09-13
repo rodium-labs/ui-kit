@@ -305,7 +305,7 @@ export const codePage: DocPage = {
   nav: 'Code & Kbd',
   title: 'Code and Kbd',
   summary:
-    'Monospace in running text, in a block, and as a key. A block takes a language and colours itself; without one it renders plain.',
+    'Monospace in running text, in a block, and as a key. A block takes a language and colours itself in GitHub Dark’s palette; without one it renders plain.',
   examples: [
     {
       title: 'Inline',
@@ -385,6 +385,10 @@ bun run dev --port 5180`}</CodeBlock>
       <p>
         The block wraps rather than scrolls. A scrolling block hides the end of a long line and has to become a
         focusable region to give it back; wrapping costs a little beauty and hides nothing at any width.
+      </p>
+      <p>
+        The colours are GitHub Dark's own prettylights values, measured against this ground rather than GitHub's
+        #0d1117: they run 6.83:1 at the dimmest, so every role clears the text threshold on black.
       </p>
       <p>
         The colouring is a tokeniser, not a parser: it matches comments and strings first, because those swallow

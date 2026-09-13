@@ -81,9 +81,9 @@ export function Work() {
 ## How it is built
 
 **Code colours itself.** `CodeBlock` takes a `language` and tokenises what it is given — tsx, ts,
-js, jsx, css, json, bash, html. It is a tokeniser rather than a parser, which is what keeps the kit
-at two runtime dependencies; for grammar-accurate colour, highlight upstream and hand over the
-result.
+js, jsx, css, json, bash, html — in GitHub Dark's palette. It is a tokeniser rather than a parser,
+which is what keeps the kit at two runtime dependencies; for grammar-accurate colour, highlight
+upstream and hand over the result.
 
 **Square, everywhere.** Nothing on the surface carries a radius, the focus ring included. The one
 exception is the radio, which stays round because the shape is what says "choose one".
