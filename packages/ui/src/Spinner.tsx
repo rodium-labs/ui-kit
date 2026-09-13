@@ -1,4 +1,4 @@
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export interface SpinnerProps {
   size?: number

@@ -1,4 +1,4 @@
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export type AvatarSize = 'sm' | 'md' | 'lg'
 

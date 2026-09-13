@@ -1,8 +1,8 @@
 'use client'
 
 import { type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
-import { cn } from './cn'
-import { focus } from './focus'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
 
 export type Align = 'start' | 'end'
 

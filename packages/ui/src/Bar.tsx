@@ -1,10 +1,10 @@
 'use client'
 
 import { type ReactNode, useRef } from 'react'
-import { Arrow } from './Arrow'
-import { cn } from './cn'
-import { focus } from './focus'
-import { useMenuDismiss } from './useMenuDismiss'
+import { Arrow } from './Arrow.js'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
+import { useMenuDismiss } from './useMenuDismiss.js'
 
 export interface BarLink {
   label: string

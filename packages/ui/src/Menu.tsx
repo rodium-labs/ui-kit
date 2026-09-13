@@ -1,10 +1,10 @@
 'use client'
 
 import { type ReactNode, useRef } from 'react'
-import { cn } from './cn'
-import { focus } from './focus'
-import { ChevronDown } from './glyphs'
-import { useMenuDismiss } from './useMenuDismiss'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
+import { ChevronDown } from './glyphs.js'
+import { useMenuDismiss } from './useMenuDismiss.js'
 
 export interface MenuItem {
   label: string

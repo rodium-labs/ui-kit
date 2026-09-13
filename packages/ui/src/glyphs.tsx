@@ -1,5 +1,5 @@
-import type { IconProps } from './Icon'
-import { Glyph } from './Icon'
+import type { IconProps } from './Icon.js'
+import { Glyph } from './Icon.js'
 
 export function ArrowUpRight(props: IconProps) {
   return (

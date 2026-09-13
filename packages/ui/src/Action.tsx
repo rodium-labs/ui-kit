@@ -1,8 +1,8 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from 'react'
-import { Arrow } from './Arrow'
-import { cn } from './cn'
-import { focus } from './focus'
-import { Spinner } from './Spinner'
+import { Arrow } from './Arrow.js'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
+import { Spinner } from './Spinner.js'
 
 export type ActionTone = 'solid' | 'quiet' | 'ghost' | 'danger'
 export type ActionSize = 'sm' | 'md'

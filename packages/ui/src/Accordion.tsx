@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
-import { cn } from './cn'
-import { focus } from './focus'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
 
 export interface AccordionItem {
   value: string

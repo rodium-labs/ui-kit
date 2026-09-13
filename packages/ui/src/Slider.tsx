@@ -1,8 +1,8 @@
 'use client'
 
 import { type ChangeEvent, type CSSProperties, type InputHTMLAttributes, type ReactNode, useId, useState } from 'react'
-import { cn } from './cn'
-import { Field } from './Field'
+import { cn } from './cn.js'
+import { Field } from './Field.js'
 
 export interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: ReactNode

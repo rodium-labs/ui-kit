@@ -1,6 +1,6 @@
 import { type ReactNode, type TextareaHTMLAttributes, useId } from 'react'
-import { cn } from './cn'
-import { CONTROL_SKIN, Field } from './Field'
+import { cn } from './cn.js'
+import { CONTROL_SKIN, Field } from './Field.js'
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label?: ReactNode

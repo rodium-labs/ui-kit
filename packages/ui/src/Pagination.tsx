@@ -1,6 +1,6 @@
-import { cn } from './cn'
-import { focus } from './focus'
-import { ChevronLeft, ChevronRight } from './glyphs'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
+import { ChevronLeft, ChevronRight } from './glyphs.js'
 
 export interface PaginationProps {
   page: number

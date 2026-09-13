@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-import { cn } from './cn'
-import { type CodeLanguage, highlight, type TokenType } from './highlight'
+import { cn } from './cn.js'
+import { type CodeLanguage, highlight, type TokenType } from './highlight.js'
 
 export type CodeProps = HTMLAttributes<HTMLElement>
 

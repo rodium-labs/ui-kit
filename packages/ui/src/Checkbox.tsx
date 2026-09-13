@@ -1,5 +1,5 @@
 import { type InputHTMLAttributes, type ReactNode, useId } from 'react'
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   label?: ReactNode

@@ -1,7 +1,7 @@
 import type { AnchorHTMLAttributes } from 'react'
-import { Arrow } from './Arrow'
-import { cn } from './cn'
-import { focus } from './focus'
+import { Arrow } from './Arrow.js'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
 
 export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   external?: boolean

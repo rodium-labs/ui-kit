@@ -1,7 +1,7 @@
 'use client'
 
 import { type CSSProperties, type ReactNode, useEffect, useState } from 'react'
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export type StatTrend = 'up' | 'down' | 'flat'
 

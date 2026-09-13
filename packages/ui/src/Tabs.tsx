@@ -1,8 +1,8 @@
 'use client'
 
 import { type KeyboardEvent, type ReactNode, useCallback, useId, useRef, useState } from 'react'
-import { cn } from './cn'
-import { focus } from './focus'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
 
 export interface TabItem {
   value: string

@@ -1,6 +1,6 @@
 import { type ReactNode, type SelectHTMLAttributes, useId } from 'react'
-import { cn } from './cn'
-import { CONTROL_SKIN, Field } from './Field'
+import { cn } from './cn.js'
+import { CONTROL_SKIN, Field } from './Field.js'
 
 export interface NativeSelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   label?: ReactNode

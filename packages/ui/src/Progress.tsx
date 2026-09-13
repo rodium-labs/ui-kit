@@ -1,4 +1,4 @@
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export interface ProgressProps {
   /** omit for an indeterminate bar */

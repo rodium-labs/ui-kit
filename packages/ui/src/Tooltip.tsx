@@ -1,5 +1,5 @@
 import { cloneElement, isValidElement, type ReactElement, type ReactNode, useId } from 'react'
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export type TooltipSide = 'top' | 'bottom'
 

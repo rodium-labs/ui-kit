@@ -1,5 +1,5 @@
 import { type ChangeEvent, type InputHTMLAttributes, type ReactNode, useCallback, useId, useState } from 'react'
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export interface SwitchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type' | 'size'> {
   label?: ReactNode

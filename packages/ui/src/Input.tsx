@@ -1,6 +1,6 @@
 import { type InputHTMLAttributes, type ReactNode, useId } from 'react'
-import { cn } from './cn'
-import { CONTROL_SKIN, Field } from './Field'
+import { cn } from './cn.js'
+import { CONTROL_SKIN, Field } from './Field.js'
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: ReactNode

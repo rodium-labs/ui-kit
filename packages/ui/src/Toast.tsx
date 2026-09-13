@@ -1,10 +1,10 @@
 'use client'
 
 import { type ReactNode, useCallback, useEffect, useState } from 'react'
-import { Arrow } from './Arrow'
-import { cn } from './cn'
-import { focus } from './focus'
-import { Close } from './glyphs'
+import { Arrow } from './Arrow.js'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
+import { Close } from './glyphs.js'
 
 export interface ToastProps {
   title: ReactNode

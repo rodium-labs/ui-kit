@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-import { cn } from './cn'
-import { Check, Info, Warning } from './glyphs'
+import { cn } from './cn.js'
+import { Check, Info, Warning } from './glyphs.js'
 
 export type AlertTone = 'info' | 'success' | 'warning' | 'danger'
 

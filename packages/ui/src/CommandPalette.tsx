@@ -1,9 +1,9 @@
 'use client'
 
 import { type KeyboardEvent, type ReactNode, useCallback, useEffect, useId, useMemo, useRef, useState } from 'react'
-import { cn } from './cn'
-import { Search } from './glyphs'
-import { Kbd } from './Kbd'
+import { cn } from './cn.js'
+import { Search } from './glyphs.js'
+import { Kbd } from './Kbd.js'
 
 export interface CommandItem {
   id: string
