@@ -25,13 +25,13 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          # trusted publishing needs node 22.14 or later
-          node-version: '22.14'
+          node-version: '24'
           registry-url: https://registry.npmjs.org
 
-      # trusted publishing needs npm 11.5.1 or later, which node 22 does not ship
+      # trusted publishing needs npm 11.5.1 or later. pinned to the major rather
+      # than to latest, which moves onto node versions this runner does not have.
       - name: Use a current npm
-        run: npm install -g npm@latest
+        run: npm install -g npm@11
 
       - run: bun install --frozen-lockfile
 
