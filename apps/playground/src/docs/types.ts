@@ -1,9 +1,12 @@
+import type { CodeLanguage } from '@rodium/ui'
 import type { ReactNode } from 'react'
 
 export interface DocExample {
   title: string
   note?: string
   code?: string
+  /** defaults to tsx, which is what almost every example is */
+  language?: CodeLanguage
   render: () => ReactNode
 }
 

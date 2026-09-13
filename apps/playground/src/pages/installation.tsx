@@ -11,7 +11,9 @@ export const page: DocPage = {
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-5">
         <h2 className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">Add the packages</h2>
-        <CodeBlock caption="package.json">{`{
+        <CodeBlock
+          caption="package.json"
+          language="json">{`{
   "dependencies": {
     "@rodium/tokens": "workspace:*",
     "@rodium/ui": "workspace:*"
@@ -23,7 +25,9 @@ export const page: DocPage = {
 
       <div className="flex flex-col gap-5">
         <h2 className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">Import the styles</h2>
-        <CodeBlock caption="globals.css">{`@import 'tailwindcss';
+        <CodeBlock
+          caption="globals.css"
+          language="css">{`@import 'tailwindcss';
 @import '@fontsource-variable/geist/index.css';
 @import '@rodium/tokens/theme.css';
 @import '@rodium/tokens/base.css';
@@ -45,7 +49,9 @@ export const page: DocPage = {
         <p className="max-w-[58ch] text-[15px] leading-[1.65] text-ink-on-night-mid">
           The grid belongs to a first screen and stops one viewport down, so it never runs on into the section below it.
         </p>
-        <CodeBlock caption="layout.tsx">{`<div className="grid-ground flex min-h-svh flex-col">
+        <CodeBlock
+          caption="layout.tsx"
+          language="tsx">{`<div className="grid-ground flex min-h-svh flex-col">
   <Bar name="Rodium Labs" links={nav} />
   <main id="main" className="flex-1">{children}</main>
 </div>`}</CodeBlock>

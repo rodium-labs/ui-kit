@@ -73,7 +73,9 @@ export const page: DocPage = {
 
       <div className="flex flex-col gap-5">
         <h2 className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">A first component</h2>
-        <CodeBlock caption="app.tsx">{`import { Action, Eyebrow, Title, Wrap } from '@rodium/ui'
+        <CodeBlock
+          caption="app.tsx"
+          language="tsx">{`import { Action, Eyebrow, Title, Wrap } from '@rodium/ui'
 
 export function Work() {
   return (

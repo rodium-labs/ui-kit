@@ -1,4 +1,4 @@
-import { CodeBlock, Eyebrow, Rule, Table, Title } from '@rodium/ui'
+import { CodeBlock, type CodeLanguage, Eyebrow, Rule, Table, Title } from '@rodium/ui'
 import type { ReactNode } from 'react'
 import type { DocPage } from './types'
 
@@ -6,11 +6,13 @@ function Example({
   title,
   note,
   code,
+  language,
   children,
 }: {
   title: string
   note?: string
   code?: string
+  language?: CodeLanguage
   children: ReactNode
 }) {
   return (
@@ -20,7 +22,7 @@ function Example({
         {note ? <p className="text-[12px] text-ink-on-night-dim">{note}</p> : null}
       </div>
       <div className="border border-night-frame p-6">{children}</div>
-      {code ? <CodeBlock>{code}</CodeBlock> : null}
+      {code ? <CodeBlock language={language ?? 'tsx'}>{code}</CodeBlock> : null}
     </section>
   )
 }
@@ -45,7 +47,8 @@ export function DocsPage({ page }: { page: DocPage }) {
               key={example.title}
               title={example.title}
               note={example.note}
-              code={example.code}>
+              code={example.code}
+              language={example.language}>
               {example.render()}
             </Example>
           ))}

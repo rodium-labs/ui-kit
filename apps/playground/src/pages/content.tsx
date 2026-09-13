@@ -304,7 +304,8 @@ export const codePage: DocPage = {
   slug: 'code',
   nav: 'Code & Kbd',
   title: 'Code and Kbd',
-  summary: 'Monospace in running text, in a block, and as a key.',
+  summary:
+    'Monospace in running text, in a block, and as a key. A block takes a language and colours itself; without one it renders plain.',
   examples: [
     {
       title: 'Inline',
@@ -317,14 +318,49 @@ export const codePage: DocPage = {
       ),
     },
     {
-      title: 'A block',
-      note: 'it wraps rather than scrolls, so nothing is ever hidden',
+      title: 'The languages it knows',
+      note: 'tsx · ts · js · jsx · css · json · bash · html',
+      code: `<CodeBlock language="tsx" caption="app.tsx">{source}</CodeBlock>`,
       render: () => (
-        <CodeBlock caption="globals.css">{`@import 'tailwindcss';
-@import '@rodium/tokens/theme.css';
+        <div className="flex flex-col gap-5">
+          <CodeBlock
+            language="tsx"
+            caption="app.tsx">{`import { Action } from '@rodium/ui'
 
-@source '../../../packages/ui/src';`}</CodeBlock>
+// a link carries the arrow
+export function Cta() {
+  const count = 128
+  return <Action href="/work">See the work</Action>
+}`}</CodeBlock>
+
+          <CodeBlock
+            language="css"
+            caption="globals.css">{`@import 'tailwindcss';
+
+.grid-ground {
+  --grid-line: color-mix(in oklab, var(--color-brand-green) 26%, transparent);
+  background-size: 64px 64px;
+}`}</CodeBlock>
+
+          <CodeBlock
+            language="json"
+            caption="package.json">{`{
+  "name": "@rodium/ui",
+  "private": true,
+  "dependencies": { "clsx": "^2.1.1" }
+}`}</CodeBlock>
+
+          <CodeBlock
+            language="bash"
+            caption="terminal">{`# start the docs
+bun run dev --port 5180`}</CodeBlock>
+        </div>
       ),
+    },
+    {
+      title: 'Without a language',
+      note: 'plain, and nothing is guessed',
+      render: () => <CodeBlock>{`GET /deploys/128\n204 No Content`}</CodeBlock>,
     },
   ],
   props: [
@@ -333,12 +369,33 @@ export const codePage: DocPage = {
       'string',
       'CodeBlock only. Sits above the block as a filename.',
     ],
+    [
+      'language',
+      'CodeLanguage',
+      'tsx, ts, js, jsx, css, json, bash or html. Omit for plain.',
+    ],
+    [
+      'children',
+      'string',
+      'CodeBlock takes a string, not nodes, because it tokenises what it is given.',
+    ],
   ],
   notes: (
-    <p>
-      The block wraps rather than scrolls. A scrolling block hides the end of a long line and has to become a focusable
-      region to give it back; wrapping costs a little beauty and hides nothing at any width.
-    </p>
+    <>
+      <p>
+        The block wraps rather than scrolls. A scrolling block hides the end of a long line and has to become a
+        focusable region to give it back; wrapping costs a little beauty and hides nothing at any width.
+      </p>
+      <p>
+        The colouring is a tokeniser, not a parser: it matches comments and strings first, because those swallow
+        anything that looks like syntax inside them, and the rest is word matching. That keeps the kit at two runtime
+        dependencies, and it is why a capitalised word in JSX text is coloured like a component.
+      </p>
+      <p>
+        For grammar-accurate colour — a language this does not know, or code you did not write — highlight it upstream
+        and hand the result to a plain <code className="text-ink-on-night">&lt;pre&gt;</code>.
+      </p>
+    </>
   ),
 }
 
