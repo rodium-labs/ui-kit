@@ -212,28 +212,6 @@ export function App() {
           ) : null}
         </main>
       </Wrap>
-
-      <footer className="mt-auto border-t border-night-rule">
-        <Wrap className="flex flex-col gap-6 py-10 min-[720px]:flex-row min-[720px]:items-end min-[720px]:justify-between">
-          <div className="flex max-w-[42ch] flex-col gap-2.5">
-            <span className="flex min-h-6 w-fit items-center gap-2.5 text-ink-on-night">
-              <Mark size={16} />
-              <span className="text-[14px] font-semibold">Rodium Labs</span>
-            </span>
-            <p className="text-[13px] leading-[1.6] text-ink-on-night-dim">
-              The kit is private and versioned with the sites that wear it.
-            </p>
-          </div>
-          <a
-            href={REPO_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="nudge flex min-h-6 w-fit items-center gap-1.5 rounded-[4px] text-[13px] text-ink-on-night-mid transition-colors duration-(--motion-fast) hover:text-ink-on-night focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-brand-green) motion-reduce:transition-none">
-            github.com/rodium-labs
-            <Arrow size={12} />
-          </a>
-        </Wrap>
-      </footer>
     </div>
   )
 }
