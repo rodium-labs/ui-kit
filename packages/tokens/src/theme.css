@@ -34,6 +34,13 @@
 
   --color-danger: #ff6369;
 
+  /* syntax. measured on the block's ground: 5.32, 10.91, 8.57, 10.29, 21 */
+  --color-code-comment: var(--color-ink-on-night-dim);
+  --color-code-keyword: var(--color-brand-pink);
+  --color-code-string: var(--color-ink-green-on-night);
+  --color-code-number: #f5a524;
+  --color-code-name: var(--color-ink-on-night);
+
   --font-sans: "Geist Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 
