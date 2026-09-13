@@ -1,4 +1,4 @@
-import { NativeSelect, Select } from '@rodium/ui'
+import { Select } from '@rodium/ui'
 import { useState } from 'react'
 import type { DocPage } from '../docs/types'
 
@@ -74,25 +74,6 @@ export const page: DocPage = {
 />`,
       render: () => <Demo />,
     },
-    {
-      title: 'The native one',
-      note: 'still exported, for a form that wants the platform list',
-      code: `<NativeSelect label="Environment" defaultValue="staging">
-  <option value="staging">Staging</option>
-</NativeSelect>`,
-      render: () => (
-        <div className="max-w-lg">
-          <NativeSelect
-            label="Environment"
-            defaultValue="staging"
-            hint="Renders the operating system's own list.">
-            <option value="dev">Development</option>
-            <option value="staging">Staging</option>
-            <option value="prod">Production</option>
-          </NativeSelect>
-        </div>
-      ),
-    },
   ],
   props: [
     [
@@ -125,9 +106,9 @@ export const page: DocPage = {
     <>
       <p>
         A custom select is a real cost: the native one already carries the keyboard, the touch sheet and the screen
-        reader, and none of that comes free in a rebuild. This one follows the ARIA pattern closely and{' '}
-        <code className="text-ink-on-night">NativeSelect</code> stays exported for anywhere the platform list is the
-        better answer — long lists and mobile-heavy forms especially.
+        reader, and none of that comes free in a rebuild. This one follows the ARIA pattern closely, and{' '}
+        <code className="text-ink-on-night">NativeSelect</code> has a page of its own for anywhere the platform list is
+        the better answer.
       </p>
       <p>
         Typeahead resets after half a second, so "fr" jumps to Frankfurt while two slow presses of f and r are two
