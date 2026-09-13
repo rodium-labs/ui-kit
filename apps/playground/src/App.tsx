@@ -122,8 +122,11 @@ export function App() {
       />
 
       <Wrap className="flex w-full flex-1 gap-12 py-12 lg:gap-16">
+        {/* the rail follows the column's py-12: it starts one padding below the
+            bar and is two paddings shorter than the screen. a taller rail than
+            that makes it the tallest column and scrolls every short page. */}
         <aside className="hidden w-[200px] shrink-0 lg:block">
-          <div className="sticky top-[calc(var(--nav-h)+2rem)] max-h-[calc(100svh-var(--nav-h)-4rem)] overflow-y-auto pe-2">
+          <div className="sticky top-[calc(var(--nav-h)+3rem)] max-h-[calc(100svh-var(--nav-h)-6rem)] overflow-y-auto pe-2">
             <SideNav
               sections={navSections}
               current={href(slug)}
@@ -134,7 +137,7 @@ export function App() {
 
         <main
           id="main"
-          className="flex min-w-0 flex-1 flex-col gap-16">
+          className="flex min-w-0 flex-1 flex-col gap-10">
           {/* the rail is hidden below lg, so the index has to come back as a
               disclosure or the whole kit is reachable only one page at a time */}
           <details
