@@ -1,5 +1,5 @@
 import type { HTMLAttributes, ReactNode } from 'react'
-import { cn } from './cn'
+import { cn } from './cn.js'
 
 export function Wrap({ className, children, ...rest }: HTMLAttributes<HTMLDivElement>) {
   return (
@@ -47,23 +47,28 @@ export function Rule({ className, ...rest }: HTMLAttributes<HTMLHRElement>) {
   )
 }
 
-export function Display({ className, children, ...rest }: HTMLAttributes<HTMLHeadingElement>) {
+export interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
+  /** the level this heading occupies in the outline; the size does not follow it */
+  as?: 'h1' | 'h2' | 'h3' | 'h4'
+}
+
+export function Display({ as: Tag = 'h1', className, children, ...rest }: HeadingProps) {
   return (
-    <h1
+    <Tag
       {...rest}
       className={cn('text-display font-semibold text-pretty text-ink-on-night', className)}>
       {children}
-    </h1>
+    </Tag>
   )
 }
 
-export function Title({ className, children, ...rest }: HTMLAttributes<HTMLHeadingElement>) {
+export function Title({ as: Tag = 'h2', className, children, ...rest }: HeadingProps) {
   return (
-    <h2
+    <Tag
       {...rest}
       className={cn('text-title font-semibold text-balance text-ink-on-night', className)}>
       {children}
-    </h2>
+    </Tag>
   )
 }
 

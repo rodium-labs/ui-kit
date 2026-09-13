@@ -18,7 +18,7 @@ function Example({
   return (
     <section className="flex flex-col gap-3">
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-        <h3 className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">{title}</h3>
+        <h2 className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">{title}</h2>
         {note ? <p className="text-[12px] text-ink-on-night-dim">{note}</p> : null}
       </div>
       <div className="border border-night-frame p-6">{children}</div>
@@ -34,7 +34,11 @@ export function DocsPage({ page }: { page: DocPage }) {
     <article className="flex flex-col gap-12">
       <header className="flex flex-col gap-4">
         <Eyebrow>{page.slug}/</Eyebrow>
-        <Title className="max-w-[22ch]">{page.title}</Title>
+        <Title
+          as="h1"
+          className="max-w-[22ch]">
+          {page.title}
+        </Title>
         <p className="max-w-[58ch] text-body text-ink-on-night-mid">{page.summary}</p>
       </header>
 

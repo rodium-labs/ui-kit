@@ -1,5 +1,5 @@
-import { cn } from './cn'
-import { focus } from './focus'
+import { cn } from './cn.js'
+import { focus } from './focus.js'
 
 export interface SideNavItem {
   label: string
@@ -31,9 +31,9 @@ export function SideNav({ sections, current, label = 'Sections', className }: Si
         <div
           key={section.title}
           className="flex flex-col">
-          <h2 className="mb-2 text-[11px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">
+          <p className="mb-2 text-[11px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">
             {section.title}
-          </h2>
+          </p>
           <div className="flex flex-col border-s border-night-rule">
             {section.items.map(item => {
               const here = item.href === current
