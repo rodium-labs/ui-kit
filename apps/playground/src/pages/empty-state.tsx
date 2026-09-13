@@ -1,4 +1,4 @@
-import { Action, EmptyState } from '@rodium/ui'
+import { Action, EmptyState } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

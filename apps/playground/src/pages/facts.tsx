@@ -1,4 +1,4 @@
-import { Facts } from '@rodium/ui'
+import { Facts } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

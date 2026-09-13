@@ -1,4 +1,4 @@
-import { Status } from '@rodium/ui'
+import { Status } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

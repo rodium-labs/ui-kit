@@ -1,4 +1,4 @@
-import { Facts, Rule, Table } from '@rodium/ui'
+import { Facts, Rule, Table } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 interface Swatch {

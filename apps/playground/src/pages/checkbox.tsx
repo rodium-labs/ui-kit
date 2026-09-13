@@ -1,4 +1,4 @@
-import { Checkbox } from '@rodium/ui'
+import { Checkbox } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

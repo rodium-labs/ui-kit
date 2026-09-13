@@ -1,4 +1,4 @@
-import { Tag } from '@rodium/ui'
+import { Tag } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

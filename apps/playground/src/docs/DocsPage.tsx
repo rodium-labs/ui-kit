@@ -1,4 +1,4 @@
-import { CodeBlock, type CodeLanguage, Eyebrow, Rule, Table, Title } from '@rodium/ui'
+import { CodeBlock, type CodeLanguage, Eyebrow, Rule, Table, Title } from '@rodium-labs/ui'
 import type { ReactNode } from 'react'
 import type { DocPage } from './types'
 

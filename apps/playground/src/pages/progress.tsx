@@ -1,4 +1,4 @@
-import { Progress } from '@rodium/ui'
+import { Progress } from '@rodium-labs/ui'
 import { useEffect, useState } from 'react'
 import type { DocPage } from '../docs/types'
 

@@ -1,4 +1,4 @@
-import { Action, Search } from '@rodium/ui'
+import { Action, Search } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

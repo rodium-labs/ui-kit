@@ -1,4 +1,4 @@
-import { Pagination } from '@rodium/ui'
+import { Pagination } from '@rodium-labs/ui'
 import { useState } from 'react'
 import type { DocPage } from '../docs/types'
 

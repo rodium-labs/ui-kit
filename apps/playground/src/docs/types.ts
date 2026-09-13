@@ -1,4 +1,4 @@
-import type { CodeLanguage } from '@rodium/ui'
+import type { CodeLanguage } from '@rodium-labs/ui'
 import type { ReactNode } from 'react'
 
 export interface DocExample {

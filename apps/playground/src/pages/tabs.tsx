@@ -1,4 +1,4 @@
-import { Facts, Tabs } from '@rodium/ui'
+import { Facts, Tabs } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 const ITEMS = [

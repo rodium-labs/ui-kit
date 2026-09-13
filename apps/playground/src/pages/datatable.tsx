@@ -1,4 +1,4 @@
-import { DataTable, Status, Tag } from '@rodium/ui'
+import { DataTable, Status, Tag } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 interface Deploy {

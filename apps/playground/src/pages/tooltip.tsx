@@ -1,4 +1,4 @@
-import { Action, Info, Tooltip } from '@rodium/ui'
+import { Action, Info, Tooltip } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

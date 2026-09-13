@@ -1,4 +1,4 @@
-import { Action, Toast, ToastRegion } from '@rodium/ui'
+import { Action, Toast, ToastRegion } from '@rodium-labs/ui'
 import { useRef, useState } from 'react'
 import type { DocPage } from '../docs/types'
 

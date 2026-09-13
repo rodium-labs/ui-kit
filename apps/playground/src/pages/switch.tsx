@@ -1,4 +1,4 @@
-import { Switch } from '@rodium/ui'
+import { Switch } from '@rodium-labs/ui'
 import { useState } from 'react'
 import type { DocPage } from '../docs/types'
 

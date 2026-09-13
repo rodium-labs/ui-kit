@@ -1,4 +1,4 @@
-import { Menu } from '@rodium/ui'
+import { Menu } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 const GROUPS = [

@@ -1,4 +1,4 @@
-import { RadioGroup } from '@rodium/ui'
+import { RadioGroup } from '@rodium-labs/ui'
 import { useState } from 'react'
 import type { DocPage } from '../docs/types'
 

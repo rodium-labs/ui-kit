@@ -1,4 +1,4 @@
-import { Stat } from '@rodium/ui'
+import { Stat } from '@rodium-labs/ui'
 import { useEffect, useState } from 'react'
 import type { DocPage } from '../docs/types'
 

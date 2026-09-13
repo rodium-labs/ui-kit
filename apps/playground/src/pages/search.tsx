@@ -1,4 +1,4 @@
-import { Action, CommandPalette, Kbd } from '@rodium/ui'
+import { Action, CommandPalette, Kbd } from '@rodium-labs/ui'
 import { useState } from 'react'
 import type { DocPage } from '../docs/types'
 

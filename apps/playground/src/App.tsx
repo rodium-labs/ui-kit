@@ -1,4 +1,16 @@
-import { Action, Arrow, Bar, CommandPalette, cn, focus, Kbd, Search, SideNav, useMenuDismiss, Wrap } from '@rodium/ui'
+import {
+  Action,
+  Arrow,
+  Bar,
+  CommandPalette,
+  cn,
+  focus,
+  Kbd,
+  Search,
+  SideNav,
+  useMenuDismiss,
+  Wrap,
+} from '@rodium-labs/ui'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { DocsPage } from './docs/DocsPage'
 import { ALL_PAGES, findPage, neighbours, SECTIONS } from './docs/registry'

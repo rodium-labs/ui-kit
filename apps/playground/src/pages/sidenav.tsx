@@ -1,4 +1,4 @@
-import { SideNav } from '@rodium/ui'
+import { SideNav } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 const SECTIONS = [

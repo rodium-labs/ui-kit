@@ -1,8 +1,8 @@
 @import "tailwindcss";
 @import "@fontsource-variable/geist/index.css";
-@import "@rodium/tokens/theme.css";
-@import "@rodium/tokens/base.css";
-@import "@rodium/tokens/surface.css";
+@import "@rodium-labs/tokens/theme.css";
+@import "@rodium-labs/tokens/base.css";
+@import "@rodium-labs/tokens/surface.css";
 
 @source "../src";
 @source "../../../packages/ui/src";

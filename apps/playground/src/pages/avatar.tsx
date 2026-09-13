@@ -1,4 +1,4 @@
-import { Avatar } from '@rodium/ui'
+import { Avatar } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 const FACE =

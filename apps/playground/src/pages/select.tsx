@@ -1,4 +1,4 @@
-import { Select } from '@rodium/ui'
+import { Select } from '@rodium-labs/ui'
 import { useState } from 'react'
 import type { DocPage } from '../docs/types'
 

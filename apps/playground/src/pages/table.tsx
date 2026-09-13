@@ -1,4 +1,4 @@
-import { Table } from '@rodium/ui'
+import { Table } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

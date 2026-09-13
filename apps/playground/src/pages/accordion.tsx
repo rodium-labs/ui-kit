@@ -1,4 +1,4 @@
-import { Accordion } from '@rodium/ui'
+import { Accordion } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 const ITEMS = [

@@ -1,4 +1,4 @@
-import { Textarea } from '@rodium/ui'
+import { Textarea } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

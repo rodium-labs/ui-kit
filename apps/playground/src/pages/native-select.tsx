@@ -1,4 +1,4 @@
-import { NativeSelect } from '@rodium/ui'
+import { NativeSelect } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

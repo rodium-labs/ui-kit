@@ -1,4 +1,4 @@
-import { Action, CodeBlock, Facts, Rule } from '@rodium/ui'
+import { Action, CodeBlock, Facts, Rule } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {
@@ -12,9 +12,9 @@ export const page: DocPage = {
       <div className="flex flex-col gap-5">
         <h2 className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">What it is</h2>
         <p className="max-w-[58ch] text-[15px] leading-[1.65] text-ink-on-night-mid">
-          Two packages and a docs app. <code className="text-ink-on-night">@rodium/tokens</code> holds the theme block,
-          the ground and the entrance; <code className="text-ink-on-night">@rodium/ui</code> holds the components. The
-          kit carries two runtime dependencies and no component library underneath it.
+          Two packages and a docs app. <code className="text-ink-on-night">@rodium-labs/tokens</code> holds the theme
+          block, the ground and the entrance; <code className="text-ink-on-night">@rodium-labs/ui</code> holds the
+          components. The kit carries two runtime dependencies and no component library underneath it.
         </p>
         <Facts
           rows={[
@@ -75,7 +75,7 @@ export const page: DocPage = {
         <h2 className="text-[12px] font-medium tracking-[0.16em] text-ink-on-night-dim uppercase">A first component</h2>
         <CodeBlock
           caption="app.tsx"
-          language="tsx">{`import { Action, Eyebrow, Title, Wrap } from '@rodium/ui'
+          language="tsx">{`import { Action, Eyebrow, Title, Wrap } from '@rodium-labs/ui'
 
 export function Work() {
   return (

@@ -32,9 +32,9 @@ An app imports the stylesheets once and the components from there on.
 
 ```css
 @import 'tailwindcss';
-@import '@rodium/tokens/theme.css';
-@import '@rodium/tokens/base.css';
-@import '@rodium/tokens/surface.css';
+@import '@rodium-labs/tokens/theme.css';
+@import '@rodium-labs/tokens/base.css';
+@import '@rodium-labs/tokens/surface.css';
 
 @source '../../../packages/ui/src';
 ```
@@ -43,7 +43,7 @@ The `@source` line matters: Tailwind v4 scans for class names, and the kit's cla
 the app that renders them.
 
 ```tsx
-import { Action, Eyebrow, Facts, Title, Wrap } from '@rodium/ui'
+import { Action, Eyebrow, Facts, Title, Wrap } from '@rodium-labs/ui'
 
 export function Work() {
   return (

@@ -1,4 +1,4 @@
-import { Alert, CodeBlock, Rule } from '@rodium/ui'
+import { Alert, CodeBlock, Rule } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {
@@ -15,8 +15,8 @@ export const page: DocPage = {
           caption="package.json"
           language="json">{`{
   "dependencies": {
-    "@rodium/tokens": "workspace:*",
-    "@rodium/ui": "workspace:*"
+    "@rodium-labs/tokens": "workspace:*",
+    "@rodium-labs/ui": "workspace:*"
   }
 }`}</CodeBlock>
       </div>
@@ -29,9 +29,9 @@ export const page: DocPage = {
           caption="globals.css"
           language="css">{`@import 'tailwindcss';
 @import '@fontsource-variable/geist/index.css';
-@import '@rodium/tokens/theme.css';
-@import '@rodium/tokens/base.css';
-@import '@rodium/tokens/surface.css';
+@import '@rodium-labs/tokens/theme.css';
+@import '@rodium-labs/tokens/base.css';
+@import '@rodium-labs/tokens/surface.css';
 
 @source '../../../packages/ui/src';`}</CodeBlock>
         <Alert

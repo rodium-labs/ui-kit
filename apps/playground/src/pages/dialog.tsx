@@ -1,4 +1,4 @@
-import { Action, Dialog } from '@rodium/ui'
+import { Action, Dialog } from '@rodium-labs/ui'
 import { useState } from 'react'
 import type { DocPage } from '../docs/types'
 

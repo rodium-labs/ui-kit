@@ -9,12 +9,12 @@
       },
     },
     "apps/playground": {
-      "name": "@rodium/playground",
+      "name": "@rodium-labs/playground",
       "version": "0.0.0",
       "dependencies": {
         "@fontsource-variable/geist": "^5.2.8",
-        "@rodium/tokens": "workspace:*",
-        "@rodium/ui": "workspace:*",
+        "@rodium-labs/tokens": "workspace:*",
+        "@rodium-labs/ui": "workspace:*",
         "react": "^19.2.0",
         "react-dom": "^19.2.0",
       },
@@ -29,17 +29,17 @@
       },
     },
     "packages/tokens": {
-      "name": "@rodium/tokens",
+      "name": "@rodium-labs/tokens",
       "version": "0.0.0",
       "devDependencies": {
         "typescript": "^5.9.3",
       },
     },
     "packages/ui": {
-      "name": "@rodium/ui",
+      "name": "@rodium-labs/ui",
       "version": "0.0.0",
       "dependencies": {
-        "@rodium/tokens": "workspace:*",
+        "@rodium-labs/tokens": "workspace:*",
         "clsx": "^2.1.1",
         "tailwind-merge": "^3.3.1",
       },
@@ -179,11 +179,11 @@
 
     "@napi-rs/lzma-linux-x64-gnu": ["@napi-rs/lzma-linux-x64-gnu@1.5.1", "", { "os": "linux", "cpu": "x64" }, "sha512-oTXEIha4SsuXdTA4Iyskj0kpdx2yVXdhd75c2v3xGrHFfVMsbhTPZU/nMPL4sWKo4pBHm3aucLaqGlF696dTyQ=="],
 
-    "@rodium/playground": ["@rodium/playground@workspace:apps/playground"],
+    "@rodium-labs/playground": ["@rodium-labs/playground@workspace:apps/playground"],
 
-    "@rodium/tokens": ["@rodium/tokens@workspace:packages/tokens"],
+    "@rodium-labs/tokens": ["@rodium-labs/tokens@workspace:packages/tokens"],
 
-    "@rodium/ui": ["@rodium/ui@workspace:packages/ui"],
+    "@rodium-labs/ui": ["@rodium-labs/ui@workspace:packages/ui"],
 
     "@rolldown/pluginutils": ["@rolldown/pluginutils@1.0.0-rc.3", "", {}, "sha512-eybk3TjzzzV97Dlj5c+XrBFW57eTNhzod66y9HrBlzJ6NsCrWCp/2kaPS3K9wJmurBC0Tdw4yPjXKZqlznim3Q=="],
 

@@ -1,4 +1,4 @@
-import { Code, CodeBlock } from '@rodium/ui'
+import { Code, CodeBlock } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {
@@ -24,7 +24,7 @@ export const page: DocPage = {
         <div className="flex flex-col gap-5">
           <CodeBlock
             language="tsx"
-            caption="app.tsx">{`import { Action } from '@rodium/ui'
+            caption="app.tsx">{`import { Action } from '@rodium-labs/ui'
 
 // a link carries the arrow
 export function Cta() {
@@ -44,7 +44,7 @@ export function Cta() {
           <CodeBlock
             language="json"
             caption="package.json">{`{
-  "name": "@rodium/ui",
+  "name": "@rodium-labs/ui",
   "private": true,
   "dependencies": { "clsx": "^2.1.1" }
 }`}</CodeBlock>

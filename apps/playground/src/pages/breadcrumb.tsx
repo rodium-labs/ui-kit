@@ -1,4 +1,4 @@
-import { Breadcrumb } from '@rodium/ui'
+import { Breadcrumb } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

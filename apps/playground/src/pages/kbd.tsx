@@ -1,4 +1,4 @@
-import { Kbd } from '@rodium/ui'
+import { Kbd } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {

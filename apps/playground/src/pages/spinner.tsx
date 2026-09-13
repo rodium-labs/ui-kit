@@ -1,4 +1,4 @@
-import { Spinner } from '@rodium/ui'
+import { Spinner } from '@rodium-labs/ui'
 import type { DocPage } from '../docs/types'
 
 export const page: DocPage = {
