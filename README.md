@@ -5,7 +5,7 @@ white at four strengths, square corners, and a single green kept for whatever ha
 
 ```
 packages/tokens    the @theme block, the ground, the entrance, the disclosure
-packages/ui        40 components and 13 glyphs
+packages/ui        41 components and 13 glyphs
 apps/playground    the docs site, one page per component
 ```
 
