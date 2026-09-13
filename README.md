@@ -5,7 +5,7 @@ white at four strengths, square corners, and a single green kept for whatever ha
 
 ```
 packages/tokens    the @theme block, the ground, the entrance, the disclosure
-packages/ui        41 components and 13 glyphs
+packages/ui        39 components and 13 glyphs
 apps/playground    the docs site, one page per component
 ```
 
@@ -75,8 +75,8 @@ export function Work() {
 **Navigation** — `Bar`, `Tabs`, `Contents`, `Accordion`, `CommandPalette`, `useMenuDismiss`
 
 **Content** — `Wrap`, `Cover`, `split`, `Display`, `Title`, `Lede`, `Body`, `Eyebrow`, `Rule`,
-`Facts`, `Table`, `DataTable`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`, `Panel`,
-`Ticker`, `Avatar`, `Mark`, glyphs
+`Facts`, `Table`, `DataTable`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`, `Ticker`,
+`Avatar`, glyphs
 
 ## How it is built
 
