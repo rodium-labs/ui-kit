@@ -16,11 +16,9 @@ import { page as installation } from '../pages/installation'
 import { page as introduction } from '../pages/introduction'
 import { page as kbd } from '../pages/kbd'
 import { page as link } from '../pages/link'
-import { page as mark } from '../pages/mark'
 import { page as menu } from '../pages/menu'
 import { page as nativeSelect } from '../pages/native-select'
 import { page as pagination } from '../pages/pagination'
-import { page as panel } from '../pages/panel'
 import { page as progress } from '../pages/progress'
 import { page as radio } from '../pages/radio'
 import { page as commandPalette } from '../pages/search'
@@ -111,10 +109,8 @@ export const SECTIONS: readonly DocSection[] = [
       tag,
       code,
       kbd,
-      panel,
       ticker,
       avatar,
-      mark,
     ],
   },
 ]
