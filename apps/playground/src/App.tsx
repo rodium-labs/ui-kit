@@ -191,7 +191,7 @@ export function App() {
               {previous ? (
                 <a
                   href={href(previous.slug)}
-                  className="group flex max-w-[48%] flex-col gap-1 rounded-[4px] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-brand-green)">
+                  className="group flex max-w-[48%] flex-col gap-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-brand-green)">
                   <span className="text-[12px] tracking-[0.12em] text-ink-on-night-dim uppercase">Previous</span>
                   <span className="text-[15px] font-medium text-ink-on-night-mid transition-colors duration-(--motion-fast) group-hover:text-ink-on-night motion-reduce:transition-none">
                     {previous.title}
@@ -203,7 +203,7 @@ export function App() {
               {next ? (
                 <a
                   href={href(next.slug)}
-                  className="group flex max-w-[48%] flex-col items-end gap-1 rounded-[4px] text-end focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-brand-green)">
+                  className="group flex max-w-[48%] flex-col items-end gap-1 text-end focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-(--color-brand-green)">
                   <span className="text-[12px] tracking-[0.12em] text-ink-on-night-dim uppercase">Next</span>
                   <span className="flex items-center gap-1.5 text-[15px] font-medium text-ink-on-night-mid transition-colors duration-(--motion-fast) group-hover:text-ink-on-night motion-reduce:transition-none">
                     {next.title}
