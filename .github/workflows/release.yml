@@ -26,10 +26,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          # trusted publishing needs node 22.14 or later
+          node-version: '22.14'
           registry-url: https://registry.npmjs.org
 
-      # trusted publishing needs a newer npm than the one bundled with node 22
+      # trusted publishing needs npm 11.5.1 or later, which node 22 does not ship
       - name: Use a current npm
         run: npm install -g npm@latest
 
@@ -60,12 +61,10 @@ jobs:
         run: bun run build:packages
 
       # tokens first: the components declare it as a peer
+      # no NODE_AUTH_TOKEN: the registry credential is exchanged from the
+      # workflow's OIDC token, which is what id-token: write above grants
       - name: Publish @rodium-labs/tokens
         run: npm publish -w @rodium-labs/tokens --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish @rodium-labs/ui
         run: npm publish -w @rodium-labs/ui --provenance --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
