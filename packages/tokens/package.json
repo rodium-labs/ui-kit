@@ -1,7 +1,6 @@
 {
   "name": "@rodium-labs/tokens",
-  "version": "0.0.0",
-  "private": true,
+  "version": "0.1.0",
   "type": "module",
   "description": "Design tokens for the Rodium Labs surface: colour, type, motion and the ground.",
   "license": "MIT",
@@ -26,13 +25,38 @@
     "*.css"
   ],
   "exports": {
-    ".": "./src/index.ts",
-    "./theme.css": "./src/theme.css",
-    "./base.css": "./src/base.css",
-    "./surface.css": "./src/surface.css",
-    "./index.css": "./src/index.css"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "development": "./src/index.ts",
+      "import": "./dist/index.js"
+    },
+    "./theme.css": {
+      "development": "./src/theme.css",
+      "default": "./dist/theme.css"
+    },
+    "./base.css": {
+      "development": "./src/base.css",
+      "default": "./dist/base.css"
+    },
+    "./surface.css": {
+      "development": "./src/surface.css",
+      "default": "./dist/surface.css"
+    },
+    "./index.css": {
+      "development": "./src/index.css",
+      "default": "./dist/index.css"
+    }
   },
   "devDependencies": {
     "typescript": "^5.9.3"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json"
   }
 }

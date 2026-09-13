@@ -30,16 +30,15 @@
     },
     "packages/tokens": {
       "name": "@rodium-labs/tokens",
-      "version": "0.0.0",
+      "version": "0.1.0",
       "devDependencies": {
         "typescript": "^5.9.3",
       },
     },
     "packages/ui": {
       "name": "@rodium-labs/ui",
-      "version": "0.0.0",
+      "version": "0.1.0",
       "dependencies": {
-        "@rodium-labs/tokens": "workspace:*",
         "clsx": "^2.1.1",
         "tailwind-merge": "^3.3.1",
       },
@@ -51,6 +50,7 @@
         "typescript": "^5.9.3",
       },
       "peerDependencies": {
+        "@rodium-labs/tokens": "^0.1.0",
         "react": "^19.0.0",
         "react-dom": "^19.0.0",
       },
