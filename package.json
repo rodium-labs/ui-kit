@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "The design system behind rodiumlabs.org: tokens, components and a docs site.",
+  "description": "A React component library and design token set for dark interfaces.",
   "license": "MIT",
   "author": "Rodium Labs",
   "repository": {
@@ -21,13 +21,15 @@
   ],
   "scripts": {
     "dev": "bun run --cwd apps/playground dev",
-    "build": "bun run --cwd apps/playground build",
+    "build": "bun run build:packages && bun run --cwd apps/playground build",
     "preview": "bun run --cwd apps/playground preview",
     "check": "biome check . && node tools/check-tokens.mjs",
     "fix": "biome check --write .",
     "format": "biome format --write .",
     "typecheck": "tsc --build --force",
-    "check:tokens": "node tools/check-tokens.mjs"
+    "check:tokens": "node tools/check-tokens.mjs",
+    "build:packages": "node tools/build-packages.mjs",
+    "prepublishOnly": "bun run check && bun run typecheck && bun run build:packages"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.2",

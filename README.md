@@ -1,34 +1,28 @@
-# Rodium UI Kit
+# Rodium Labs UI Kit
 
-The surface [rodiumlabs.org](https://rodiumlabs.org) already wears, taken apart: a black ground, one
-white at four strengths, square corners, and a single green kept for whatever has focus.
+A React component library and design token set for dark interfaces.
 
-```
-packages/tokens    the @theme block, the ground, the entrance, the disclosure
-packages/ui        39 components and 13 glyphs
-apps/playground    the docs site, one page per component
-```
+The kit provides 39 components, 13 icons and a set of CSS custom properties. It is built on Tailwind
+CSS v4 and has two runtime dependencies: `clsx` and `tailwind-merge`.
 
-## Getting started
+## Packages
+
+| Package | Contents |
+| --- | --- |
+| `@rodium-labs/tokens` | CSS custom properties for colour, typography and motion |
+| `@rodium-labs/ui` | React components |
+
+## Installation
 
 ```bash
-bun install
-bun run dev
+npm install @rodium-labs/ui @rodium-labs/tokens
 ```
 
-The docs site comes up on [localhost:5180](http://localhost:5180), one page per component.
+React 19 and Tailwind CSS v4 are peer dependencies.
 
-| Script              | What it does                       |
-| ------------------- | ---------------------------------- |
-| `bun run dev`       | the docs site, with hot reload     |
-| `bun run build`     | a static build of the docs site    |
-| `bun run check`     | Biome, read only                   |
-| `bun run fix`       | Biome, writing the safe fixes      |
-| `bun run typecheck` | `tsc --build` across every package |
+## Setup
 
-## Using the kit
-
-An app imports the stylesheets once and the components from there on.
+Import the stylesheets once, in the entry stylesheet of your application:
 
 ```css
 @import 'tailwindcss';
@@ -36,33 +30,32 @@ An app imports the stylesheets once and the components from there on.
 @import '@rodium-labs/tokens/base.css';
 @import '@rodium-labs/tokens/surface.css';
 
-@source '../../../packages/ui/src';
+@source '../node_modules/@rodium-labs/ui/dist';
 ```
 
-The `@source` line matters: Tailwind v4 scans for class names, and the kit's classes live outside
-the app that renders them.
+The `@source` directive is required. Tailwind v4 generates CSS by scanning files for class names, and
+the component classes live inside the installed package rather than in your own source.
+
+The kit also expects the Geist typeface. Install `@fontsource-variable/geist` and import it, or
+provide your own font stack by overriding `--font-sans`.
+
+## Usage
 
 ```tsx
-import { Action, Eyebrow, Facts, Title, Wrap } from '@rodium-labs/ui'
+import { Action, Eyebrow, Title, Wrap } from '@rodium-labs/ui'
 
-export function Work() {
+export function Example() {
   return (
     <Wrap className="py-20">
       <Eyebrow>work/</Eyebrow>
       <Title className="mt-4">One project at a time.</Title>
-      <Facts
-        rows={[
-          ['Panel', '284x76'],
-          ['MCU', 'STM32F401'],
-        ]}
-      />
       <Action href="/waltz">Read the build</Action>
     </Wrap>
   )
 }
 ```
 
-## What is in it
+## Components
 
 **Actions** — `Action`, `Link`, `Menu`, `Pagination`, `Breadcrumb`, `Arrow`
 
@@ -72,54 +65,61 @@ export function Work() {
 **Feedback** — `Alert`, `Toast`, `ToastRegion`, `Dialog`, `Tooltip`, `Progress`, `Spinner`,
 `Skeleton`, `EmptyState`
 
-**Navigation** — `Bar`, `Tabs`, `Contents`, `Accordion`, `CommandPalette`, `useMenuDismiss`
+**Navigation** — `Bar`, `SideNav`, `Tabs`, `Contents`, `Accordion`, `CommandPalette`,
+`useMenuDismiss`
 
 **Content** — `Wrap`, `Cover`, `split`, `Display`, `Title`, `Lede`, `Body`, `Eyebrow`, `Rule`,
 `Facts`, `Table`, `DataTable`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`, `Ticker`,
-`Avatar`, glyphs
+`Avatar`, and 13 icons
 
-## How it is built
+## Design decisions
 
-**Code colours itself.** `CodeBlock` takes a `language` and tokenises what it is given — tsx, ts,
-js, jsx, css, json, bash, html — out of the surface's own palette, so a block never introduces a
-hue the page does not already carry. It is a tokeniser rather than a parser, which is what keeps the
-kit at two runtime dependencies; for grammar-accurate colour, highlight upstream and hand over the
-result.
+**No border radius.** Controls, panels and dialogs are square. The only exception is the radio
+button, which stays circular so it is not mistaken for a checkbox.
 
-**Square, everywhere.** Nothing on the surface carries a radius, the focus ring included. The one
-exception is the radio, which stays round because the shape is what says "choose one".
+**Colour lives in tokens.** Components reference CSS custom properties and never contain a hex
+value. Text on the background uses a single white at four opacities, which separates headings, body
+copy, labels and decoration without introducing a second grey.
 
-**Colour never appears in a component.** Every value is a custom property in one `@theme` block. Ink
-is one white at four strengths — headings, body, labels, decoration — which keeps four levels apart
-without ever introducing a second grey, and the lines are named for what they separate rather than
-for how dark they are.
+**Native elements where they exist.** Menus and accordions use `<details>`. Dialogs and the command
+palette use `<dialog>`, which provides the top layer, focus trapping and Escape handling. Selects
+are available in both a custom and a native implementation.
 
-**The browser does the hard parts.** Menus and folds are native `<details>`; `useMenuDismiss` only
-adds what the element does not do — close on a pick, on escape, on a pointer outside. `Dialog` and
-`CommandPalette` are the native `<dialog>`, so the top layer, the focus trap and the inert page
-behind them are not ours.
+**Motion is optional.** Every transition and animation has a `prefers-reduced-motion` fallback. No
+state is communicated by motion or colour alone.
 
-**Nothing animates on a timer that could animate on the scroll.** `.reveal` runs on
-`animation-timeline: view()`, so the scroller is the clock: no script, nothing to hydrate, and a
-browser without view timelines simply shows the content.
+**Accessibility.** All interactive elements have accessible names. Contrast ratios were measured
+against the rendered background; text pairs meet WCAG AA and control boundaries meet 3:1. Touch
+targets are at least 24×24 CSS pixels.
 
-**Motion is opt-out everywhere.** Every transition carries a `motion-reduce` escape, and the CSS
-entrances sit behind `prefers-reduced-motion: no-preference`.
+## Development
 
-## Conventions
+```bash
+bun install
+bun run dev
+```
 
-Biome owns formatting and linting; there is no Prettier and no ESLint. The config turns on the
-`react` and `project` domains, so hook dependencies, ARIA correctness and nested-component
-definitions are errors rather than opinions.
+The documentation site runs at `localhost:5180` and has one page per component.
 
-The formatter is not the default: no semicolons, single quotes in TypeScript and double in JSX,
-arrow parentheses only when needed, a 120 column line, and JSX attributes one per line with the
-closing bracket on the last of them.
+| Script | Purpose |
+| --- | --- |
+| `bun run dev` | Documentation site with hot reload |
+| `bun run build` | Static build of the documentation site |
+| `bun run check` | Biome and the token check |
+| `bun run fix` | Biome with safe fixes applied |
+| `bun run typecheck` | `tsc --build` across all packages |
 
-`cn()` extends `tailwind-merge` with the kit's own font sizes. Without that it reads `text-display`
-as a colour and the next `text-*` class on the element silently wins.
+Biome handles formatting and linting; there is no Prettier or ESLint. The configuration enables the
+`react` and `project` domains, so hook dependencies, ARIA correctness and nested component
+definitions are errors.
 
-Comments explain a decision that is not visible in the code, and nothing else.
+The formatter is not configured with defaults: no semicolons, single quotes in TypeScript and double
+quotes in JSX, arrow parentheses only where required, a 120 character line width, and JSX attributes
+on separate lines.
+
+`tools/check-tokens.mjs` verifies that every colour utility in the source refers to a token declared
+in the theme. Tailwind emits nothing for an unresolvable colour, so this check catches a class that
+would otherwise fail silently.
 
 ## Licence
 
