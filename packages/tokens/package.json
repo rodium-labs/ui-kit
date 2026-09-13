@@ -3,6 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "description": "Design tokens for the Rodium Labs surface: colour, type, motion and the ground.",
+  "license": "MIT",
+  "author": "Rodium Labs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodium-labs/ui-kit.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://github.com/rodium-labs/ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/rodium-labs/ui-kit/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "css",
+    "tailwind",
+    "tailwindcss",
+    "theme"
+  ],
   "sideEffects": [
     "*.css"
   ],

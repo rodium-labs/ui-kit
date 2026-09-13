@@ -120,3 +120,7 @@ closing bracket on the last of them.
 as a colour and the next `text-*` class on the element silently wins.
 
 Comments explain a decision that is not visible in the code, and nothing else.
+
+## Licence
+
+MIT. See [LICENSE](LICENSE).

@@ -3,6 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
+  "description": "Components for the Rodium Labs surface: square, hairline, built on the platform.",
+  "license": "MIT",
+  "author": "Rodium Labs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodium-labs/ui-kit.git",
+    "directory": "packages/ui"
+  },
+  "homepage": "https://github.com/rodium-labs/ui-kit#readme",
+  "bugs": {
+    "url": "https://github.com/rodium-labs/ui-kit/issues"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "design-system",
+    "tailwind",
+    "tailwindcss"
+  ],
   "sideEffects": false,
   "exports": {
     ".": "./src/index.ts"
