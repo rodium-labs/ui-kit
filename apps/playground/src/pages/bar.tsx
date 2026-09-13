@@ -1,5 +1,5 @@
-import { Mark } from '@rodium/ui'
 import type { DocPage } from '../docs/types'
+import { RodiumMark } from '../ui/RodiumMark'
 
 export const page: DocPage = {
   slug: 'bar',
@@ -12,7 +12,7 @@ export const page: DocPage = {
       note: 'the live one is above — this is the same component',
       code: `<Bar
   name="Rodium Labs"
-  logo={<Mark size={18} />}
+  logo={<RodiumMark size={18} />}
   links={[{ label: 'Work', href: '#work' }]}
   actionLabel="GitHub"
   actionHref={ORG_URL}
@@ -21,7 +21,7 @@ export const page: DocPage = {
         <div className="relative h-[77px] overflow-hidden border border-night-frame">
           <div className="pointer-events-none absolute inset-0 flex items-center gap-8 px-6">
             <span className="flex items-center gap-2.5 text-ink-on-night">
-              <Mark size={18} />
+              <RodiumMark size={18} />
               <span className="text-[15px] font-semibold tracking-[-0.01em]">Rodium Labs</span>
             </span>
             <span className="ms-auto hidden items-center gap-4 text-[14px] text-ink-on-night-mid min-[620px]:flex">
@@ -46,7 +46,7 @@ export const page: DocPage = {
     [
       'logo',
       'ReactNode',
-      'Usually the Mark.',
+      'Whatever mark the site wears. The kit ships none.',
     ],
     [
       'home',

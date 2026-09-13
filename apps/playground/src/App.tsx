@@ -1,21 +1,9 @@
-import {
-  Action,
-  Arrow,
-  Bar,
-  CommandPalette,
-  cn,
-  focus,
-  Kbd,
-  Mark,
-  Search,
-  SideNav,
-  useMenuDismiss,
-  Wrap,
-} from '@rodium/ui'
+import { Action, Arrow, Bar, CommandPalette, cn, focus, Kbd, Search, SideNav, useMenuDismiss, Wrap } from '@rodium/ui'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { DocsPage } from './docs/DocsPage'
 import { ALL_PAGES, findPage, neighbours, SECTIONS } from './docs/registry'
 import { href, useRoute } from './docs/router'
+import { RodiumMark } from './ui/RodiumMark'
 
 const REPO_URL = 'https://github.com/rodium-labs'
 
@@ -90,7 +78,7 @@ export function App() {
       <Bar
         home={href('introduction')}
         name="Rodium UI"
-        logo={<Mark size={18} />}
+        logo={<RodiumMark size={18} />}
         links={BAR_LINKS}
         actionLabel="GitHub"
         actionHref={REPO_URL}
