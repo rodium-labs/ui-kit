@@ -17,9 +17,10 @@ export function Code({ className, children, ...rest }: CodeProps) {
 const TOKEN: Record<TokenType, string | undefined> = {
   comment: 'text-code-comment italic',
   string: 'text-code-string',
-  number: 'text-code-number',
+  constant: 'text-code-constant',
   keyword: 'text-code-keyword',
-  name: 'text-code-name',
+  entity: 'text-code-entity',
+  tag: 'text-code-tag',
   plain: undefined,
 }
 
@@ -46,7 +47,7 @@ export function CodeBlock({ caption, language, className, children, ...rest }: C
       <pre
         {...rest}
         className={cn(
-          'border border-night-frame p-4 font-mono text-[13px] leading-[1.7] whitespace-pre-wrap text-ink-on-night-mid',
+          'border border-night-frame p-4 font-mono text-[13px] leading-[1.7] whitespace-pre-wrap text-code-plain',
           '[overflow-wrap:anywhere]',
           className,
         )}>
