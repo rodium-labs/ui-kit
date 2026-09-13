@@ -305,7 +305,7 @@ export const codePage: DocPage = {
   nav: 'Code & Kbd',
   title: 'Code and Kbd',
   summary:
-    'Monospace in running text, in a block, and as a key. A block takes a language and colours itself in GitHub Dark’s palette; without one it renders plain.',
+    'Monospace in running text, in a block, and as a key. A block takes a language and colours itself out of the surface’s own palette; without one it renders plain.',
   examples: [
     {
       title: 'Inline',
@@ -387,8 +387,10 @@ bun run dev --port 5180`}</CodeBlock>
         focusable region to give it back; wrapping costs a little beauty and hides nothing at any width.
       </p>
       <p>
-        The colours are GitHub Dark's own prettylights values, measured against this ground rather than GitHub's
-        #0d1117: they run 6.83:1 at the dimmest, so every role clears the text threshold on black.
+        A block is held to the same colour budget as the page around it: pink is the language, green is a value, white
+        is a name, and the greys carry everything else. Two hues and three strengths of one white — no value here that
+        the surface did not already have. A borrowed editor palette puts six competing hues on a page that otherwise has
+        two, which is what made the blocks shout.
       </p>
       <p>
         The colouring is a tokeniser, not a parser: it matches comments and strings first, because those swallow
