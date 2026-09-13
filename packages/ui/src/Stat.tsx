@@ -1,6 +1,6 @@
 'use client'
 
-import { type ReactNode, useEffect, useRef, useState } from 'react'
+import { type CSSProperties, type ReactNode, useEffect, useState } from 'react'
 import { cn } from './cn'
 
 export type StatTrend = 'up' | 'down' | 'flat'
@@ -11,7 +11,7 @@ export interface StatProps {
   unit?: string
   trend?: StatTrend
   delta?: string
-  /** count to the number instead of snapping to it */
+  /** roll each digit to its new value instead of snapping */
   animate?: boolean
   className?: string
 }
@@ -43,76 +43,99 @@ const TREND: Record<
   },
 }
 
-const COUNT_MS = 650
+const DIGITS = [
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+]
 
-function decimals(text: string): number {
-  const dot = text.indexOf('.')
-  return dot < 0 ? 0 : text.length - dot - 1
+/**
+ * One column of 0-9, shifted so the wanted digit sits in the window. Only the
+ * columns whose digit actually changed move, because the others are already
+ * where they need to be.
+ */
+function Digit({ digit }: { digit: number }) {
+  return (
+    <span className="relative inline-block h-[1em] overflow-hidden align-baseline tabular-nums">
+      <span
+        className="flex flex-col transition-transform duration-(--motion-slow) ease-rl motion-reduce:transition-none"
+        style={
+          {
+            transform: `translateY(-${digit * 10}%)`,
+          } as CSSProperties
+        }>
+        {DIGITS.map(d => (
+          <span
+            key={d}
+            className="flex h-[1em] items-center justify-center">
+            {d}
+          </span>
+        ))}
+      </span>
+    </span>
+  )
 }
 
 /**
- * Counts from the previous number to the next one. Anything that is not a plain
- * number is handed back untouched, and a reduced-motion preference skips
- * straight to the value rather than animating to it.
+ * The whole number is announced once, from a visually hidden copy. The rolling
+ * digits are hidden from the accessibility tree: a screen reader walking ten
+ * digits per column would read a wall of numbers instead of the value.
  */
-function useCounted(value: ReactNode, enabled: boolean): ReactNode {
-  const text = typeof value === 'number' || typeof value === 'string' ? String(value) : null
-  const target = text !== null && text.trim() !== '' && Number.isFinite(Number(text)) ? Number(text) : null
-
-  const [shown, setShown] = useState(target)
-  const from = useRef(target)
-  const frame = useRef(0)
+function Odometer({ value }: { value: string }) {
+  // the first paint sits on the final digits, so the column only rolls on a
+  // change rather than counting up from zero when the page loads
+  const [shown, setShown] = useState(value)
 
   useEffect(() => {
-    if (target === null) return
-
-    const calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (!enabled || calm) {
-      from.current = target
-      setShown(target)
-      return
-    }
-
-    const start = from.current ?? target
-    if (start === target) {
-      setShown(target)
-      return
-    }
-
-    const began = performance.now()
-    const step = (now: number) => {
-      const t = Math.min(1, (now - began) / COUNT_MS)
-      // ease-out cubic: fast first, settling into the number
-      const eased = 1 - (1 - t) ** 3
-      setShown(start + (target - start) * eased)
-      if (t < 1) {
-        frame.current = requestAnimationFrame(step)
-        return
-      }
-      from.current = target
-    }
-
-    frame.current = requestAnimationFrame(step)
-    return () => cancelAnimationFrame(frame.current)
+    const frame = requestAnimationFrame(() => setShown(value))
+    return () => cancelAnimationFrame(frame)
   }, [
-    target,
-    enabled,
+    value,
   ])
 
-  if (target === null || shown === null) return value
-  return shown.toFixed(decimals(text ?? ''))
+  return (
+    <>
+      <span className="sr-only">{value}</span>
+      <span
+        aria-hidden="true"
+        className="inline-flex items-baseline leading-none">
+        {[
+          ...shown,
+        ].map((char, index) => {
+          const digit = Number(char)
+          const key = `${index}-${char.match(/\d/) ? 'd' : char}`
+          return Number.isNaN(digit) || char === ' ' ? (
+            <span key={key}>{char}</span>
+          ) : (
+            <Digit
+              key={key}
+              digit={digit}
+            />
+          )
+        })}
+      </span>
+    </>
+  )
 }
 
 export function Stat({ label, value, unit, trend, delta, animate = false, className }: StatProps) {
   const direction = trend ? TREND[trend] : null
-  const shown = useCounted(value, animate)
+  const text = typeof value === 'number' || typeof value === 'string' ? String(value) : null
+  const rolls = animate && text !== null
 
   return (
     <div className={cn('flex flex-col gap-2 border-t border-night-rule pt-4', className)}>
       <span className="text-[12px] font-medium tracking-[0.12em] text-ink-on-night-dim uppercase">{label}</span>
       <span className="flex items-baseline gap-1.5">
         <span className="text-[28px] leading-none font-semibold tracking-[-0.02em] text-ink-on-night tabular-nums">
-          {shown}
+          {rolls && text !== null ? <Odometer value={text} /> : value}
         </span>
         {unit ? <span className="text-[14px] text-ink-on-night-dim">{unit}</span> : null}
       </span>
