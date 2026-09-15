@@ -22,6 +22,7 @@ import { page as divergingBar } from '../pages/diverging-bar'
 import { page as dumbbell } from '../pages/dumbbell'
 import { page as emptyState } from '../pages/empty-state'
 import { page as facts } from '../pages/facts'
+import { page as fileDrop } from '../pages/file-drop'
 import { page as heatmap } from '../pages/heatmap'
 import { page as input } from '../pages/input'
 import { page as installation } from '../pages/installation'
@@ -110,6 +111,7 @@ export const SECTIONS: readonly DocSection[] = [
       passwordInput,
       rating,
       tagInput,
+      fileDrop,
     ],
   },
   {
