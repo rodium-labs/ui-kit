@@ -61,6 +61,28 @@
   }
 }
 
+/* a label on a control is not prose. double-clicking a button to press it twice
+   should not leave the word highlighted, and dragging across a row of options
+   should not paint them blue - selection there is never something anyone meant.
+   this is the one place the kit takes it away, and it is deliberately narrow:
+   content stays selectable everywhere, including inside a control that holds
+   some, which is why the rule names the control and not a wrapper around it. */
+button,
+summary,
+label,
+[role="option"],
+[role="tab"] {
+  user-select: none;
+}
+
+/* except where the text is the point. a snippet exists to be taken away, and
+   selecting it is the fallback for a clipboard the browser refused. */
+code,
+pre,
+[data-selectable] {
+  user-select: text;
+}
+
 ::selection {
   background: var(--color-brand-green);
   color: var(--color-on-accent);
