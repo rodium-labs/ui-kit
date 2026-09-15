@@ -64,9 +64,9 @@ export interface OdometerProps {
  * value. Where the surrounding control already announces the number - a
  * spinbutton does - pass `silent` so it is not read twice.
  */
-// how close together two changes have to be before the roll is shortened. it
-// is the long duration: a change that lands before the previous roll ended is
-// exactly the case where the reading would start trailing the value.
+// how close together two changes have to be before the roll gives up. it is the
+// long duration: a change that lands before the previous roll ended is exactly
+// the case where a roll cannot finish before the next one starts.
 const RUSH = 720
 
 export function Odometer({ value, silent = false, className }: OdometerProps) {
@@ -103,7 +103,7 @@ export function Odometer({ value, silent = false, className }: OdometerProps) {
         style={
           rushed
             ? ({
-                '--odometer-motion': 'var(--motion-fast)',
+                '--odometer-motion': '0ms',
               } as CSSProperties)
             : undefined
         }

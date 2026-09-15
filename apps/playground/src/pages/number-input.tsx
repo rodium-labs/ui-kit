@@ -73,9 +73,10 @@ export const page: DocPage = {
         focus — the real text and the caret come back for as long as you are typing.
       </p>
       <p>
-        One press gets the whole roll. Presses that arrive faster than it shorten it, because a held arrow key repeats
-        about thirty times a second and a roll that outlasts the next one would leave the field showing a number it no
-        longer holds. It goes back to the long roll as soon as they stop.
+        One press gets the whole roll. While they come faster than a roll can finish — a held arrow key repeats about
+        thirty times a second — the digits stop rolling and simply follow the value, and the roll returns the moment you
+        let go. Running it faster instead would read as something going wrong, and holding the number back until you
+        stop would hide the one thing you are watching to know when to stop.
       </p>
     </>
   ),
