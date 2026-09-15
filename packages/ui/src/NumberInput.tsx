@@ -97,7 +97,9 @@ export function NumberInput({
             }}
             className={cn(
               CONTROL_SKIN,
-              'peer min-h-11 w-full px-3 text-center text-[16px] tabular-nums sm:text-[14px]',
+              // larger than the other controls on purpose: this field holds one short
+              // value read at a glance, not a line of text
+              'peer min-h-11 w-full px-3 text-center text-[17px] tabular-nums',
               'text-transparent focus:text-ink-on-night',
               // the browser's own spinner is a target nobody can hit; the two
               // buttons beside it are the ones that are meant to be used
@@ -108,11 +110,8 @@ export function NumberInput({
           <span
             aria-hidden="true"
             className={cn(
-              // fast, because this is a press: the roll has to finish before the
-              // next one starts or the number on screen falls behind the value
-              '[--odometer-motion:var(--motion-fast)]',
               'pointer-events-none absolute inset-0 flex items-center justify-center',
-              'text-[16px] text-ink-on-night tabular-nums sm:text-[14px]',
+              'text-[17px] text-ink-on-night tabular-nums',
               'transition-opacity duration-(--motion-fast) peer-focus:opacity-0 motion-reduce:transition-none',
               disabled && 'opacity-45',
             )}>

@@ -72,6 +72,11 @@ export const page: DocPage = {
         inside a native input cannot be animated, so the roll sits over the field and steps aside the moment it takes
         focus — the real text and the caret come back for as long as you are typing.
       </p>
+      <p>
+        One press gets the whole roll. Presses that arrive faster than it shorten it, because a held arrow key repeats
+        about thirty times a second and a roll that outlasts the next one would leave the field showing a number it no
+        longer holds. It goes back to the long roll as soon as they stop.
+      </p>
     </>
   ),
 }
