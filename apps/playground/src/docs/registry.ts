@@ -1,9 +1,12 @@
 import { page as accordion } from '../pages/accordion'
 import { page as action } from '../pages/action'
 import { page as alert } from '../pages/alert'
+import { page as areaChart } from '../pages/area-chart'
 import { page as aspectRatio } from '../pages/aspect-ratio'
 import { page as avatar } from '../pages/avatar'
 import { page as bar } from '../pages/bar'
+import { page as barChart } from '../pages/bar-chart'
+import { page as barList } from '../pages/bar-list'
 import { page as breadcrumb } from '../pages/breadcrumb'
 import { page as card } from '../pages/card'
 import { page as carousel } from '../pages/carousel'
@@ -13,27 +16,35 @@ import { page as confirm } from '../pages/confirm'
 import { page as contents } from '../pages/contents'
 import { page as dataTable } from '../pages/datatable'
 import { page as dialog } from '../pages/dialog'
+import { page as divergingBar } from '../pages/diverging-bar'
+import { page as dumbbell } from '../pages/dumbbell'
 import { page as emptyState } from '../pages/empty-state'
 import { page as facts } from '../pages/facts'
+import { page as heatmap } from '../pages/heatmap'
 import { page as input } from '../pages/input'
 import { page as installation } from '../pages/installation'
 import { page as introduction } from '../pages/introduction'
 import { page as kbd } from '../pages/kbd'
+import { page as lineChart } from '../pages/line-chart'
 import { page as link } from '../pages/link'
 import { page as menu } from '../pages/menu'
+import { page as meter } from '../pages/meter'
 import { page as nativeSelect } from '../pages/native-select'
 import { page as otpInput } from '../pages/otp-input'
 import { page as pagination } from '../pages/pagination'
 import { page as popover } from '../pages/popover'
 import { page as progress } from '../pages/progress'
 import { page as radio } from '../pages/radio'
+import { page as scatterChart } from '../pages/scatter-chart'
 import { page as commandPalette } from '../pages/search'
 import { page as select } from '../pages/select'
 import { page as sheet } from '../pages/sheet'
 import { page as sideNav } from '../pages/sidenav'
 import { page as skeleton } from '../pages/skeleton'
 import { page as slider } from '../pages/slider'
+import { page as sparkline } from '../pages/sparkline'
 import { page as spinner } from '../pages/spinner'
+import { page as stackedBar } from '../pages/stacked-bar'
 import { page as stat } from '../pages/stat'
 import { page as status } from '../pages/status'
 import { page as switchPage } from '../pages/switch'
@@ -131,6 +142,22 @@ export const SECTIONS: readonly DocSection[] = [
       timeline,
       carousel,
       aspectRatio,
+    ],
+  },
+  {
+    title: 'Charts',
+    pages: [
+      sparkline,
+      lineChart,
+      areaChart,
+      barChart,
+      barList,
+      stackedBar,
+      divergingBar,
+      dumbbell,
+      heatmap,
+      scatterChart,
+      meter,
     ],
   },
 ]

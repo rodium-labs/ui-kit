@@ -37,6 +37,28 @@
   --color-accent-warm: var(--color-brand-pink);
   --color-on-accent: #05221a;
 
+  /* series colours, which are not the brand colours. a mark on a chart has to
+     clear the surface, sit inside a lightness band and stay apart from its
+     neighbour for a colourblind reader, and the brand pink is too light to do
+     any of that. validated: adjacent deltaE 9.3 under deuteranopia, 27.2 with
+     normal vision, both over 3:1 on this ground. two is the ceiling here, so a
+     chart that needs more folds the tail into one series or becomes a table. */
+  --color-series-1: #12a776;
+  --color-series-2: #bf70ba;
+
+  /* one hue, dim to bright, for magnitude. it runs the other way from a ramp on
+     paper: on a black ground more has to mean brighter. the dim end stops at
+     2.41:1 so the lowest step is still a mark and not the background. */
+  --color-scale-1: #09563d;
+  --color-scale-2: #0b6a4b;
+  --color-scale-3: #0e7e59;
+  --color-scale-4: #2eaa80;
+  --color-scale-5: #5fd0a8;
+
+  /* what a chart draws that is not data: the baseline and the grid */
+  --color-chart-grid: rgb(255 255 255 / 0.07);
+  --color-chart-axis: rgb(255 255 255 / 0.22);
+
   --color-danger: #ff6369;
 
   /* syntax. the surface carries one white at four strengths and two hues, and
