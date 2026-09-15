@@ -1,6 +1,6 @@
 {
   "name": "@rodium-labs/ui",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "type": "module",
   "description": "Components for the Rodium Labs surface: square, hairline, built on the platform.",
   "license": "MIT",
