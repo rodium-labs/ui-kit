@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react'
+import type { ReactNode } from 'react'
 import { cn } from './cn.js'
 import { Check } from './glyphs.js'
 
@@ -37,28 +37,13 @@ export function Steps({ steps, current, className }: StepsProps) {
             <span
               aria-hidden="true"
               className={cn(
-                'relative z-10 flex size-6 shrink-0 items-center justify-center overflow-hidden border text-[11px] tabular-nums',
+                'relative z-10 flex size-6 shrink-0 items-center justify-center border text-[11px] tabular-nums',
                 'transition-colors duration-(--motion-base) ease-through motion-reduce:transition-none',
                 done && 'border-brand-green bg-brand-green text-on-accent',
                 here && 'border-brand-green bg-night text-ink-on-night',
                 !done && !here && 'border-night-edge bg-night text-ink-on-night-dim',
               )}>
-              {/* the same roll the stat's digits take: the mark it is moving to
-                  slides up into the window rather than swapping in place. one
-                  duration and one curve for both, so a page carrying a stat and
-                  a stepper does not look like two kits. */}
-              <span
-                className="flex flex-col transition-transform duration-(--motion-slower) ease-through motion-reduce:transition-none"
-                style={
-                  {
-                    transform: `translateY(-${done ? 50 : 0}%)`,
-                  } as CSSProperties
-                }>
-                <span className="flex h-6 shrink-0 items-center justify-center">{i + 1}</span>
-                <span className="flex h-6 shrink-0 items-center justify-center">
-                  <Check size={11} />
-                </span>
-              </span>
+              {done ? <Check size={11} /> : i + 1}
             </span>
             <div className="flex min-w-0 flex-col gap-1 pt-0.5">
               <p className={cn('text-[14px]', here ? 'font-medium text-ink-on-night' : 'text-ink-on-night-mid')}>
