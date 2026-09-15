@@ -1,0 +1,22 @@
+#!/bin/sh
+# One line. A commit message is a subject and nothing else.
+msg="$1"
+
+# strip comments and trailing blank lines
+body=$(grep -v '^#' "$msg" | sed -e :a -e '/^[[:space:]]*$/{$d;N;ba' -e '}' | tail -n +2)
+
+if [ -n "$(printf '%s' "$body" | tr -d '[:space:]')" ]; then
+  echo "commit-msg: this repo takes a subject line and nothing else." >&2
+  echo "            drop everything after the first line." >&2
+  exit 1
+fi
+
+if grep -qiE '^(co-authored-by|signed-off-by|generated with)' "$msg"; then
+  echo "commit-msg: no trailers. no co-author." >&2
+  exit 1
+fi
+
+if head -n 1 "$msg" | grep -q '\.$'; then
+  echo "commit-msg: no trailing period on the subject." >&2
+  exit 1
+fi
