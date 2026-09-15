@@ -59,6 +59,7 @@ import { page as switchPage } from '../pages/switch'
 import { page as table } from '../pages/table'
 import { page as tabs } from '../pages/tabs'
 import { page as tag } from '../pages/tag'
+import { page as tagInput } from '../pages/tag-input'
 import { page as textarea } from '../pages/textarea'
 import { page as ticker } from '../pages/ticker'
 import { page as timeline } from '../pages/timeline'
@@ -108,6 +109,7 @@ export const SECTIONS: readonly DocSection[] = [
       numberInput,
       passwordInput,
       rating,
+      tagInput,
     ],
   },
   {
