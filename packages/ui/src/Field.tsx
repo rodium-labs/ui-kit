@@ -52,7 +52,7 @@ export function Field({ label, hint, error, htmlFor, hintId, required = false, c
 // surface; the ring sits closer than the page's own because a form packs them.
 export const CONTROL_SKIN = cn(
   'w-full border border-night-edge bg-transparent text-ink-on-night placeholder:text-ink-on-night-dim',
-  'transition-colors duration-(--motion-fast)',
+  'transition-[color,background-color,border-color,box-shadow] duration-(--motion-fast) ease-rl',
   'hover:border-night-edge-lit hover:bg-night-wash',
   'focus:border-brand-green focus:bg-transparent focus:outline-none',
   'focus:shadow-[0_0_0_3px_color-mix(in_oklab,var(--color-brand-green)_22%,transparent)]',

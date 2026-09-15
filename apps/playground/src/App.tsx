@@ -170,7 +170,13 @@ export function App() {
           </details>
 
           {page ? (
-            <DocsPage page={page} />
+            // keyed on the route: the page's entrance is a css animation, and a
+            // reused element never replays one. remounting is what makes the
+            // stagger run again on every navigation.
+            <DocsPage
+              key={page.slug}
+              page={page}
+            />
           ) : (
             <div className="flex flex-col gap-5">
               <h1 className="text-title font-semibold text-ink-on-night">No page at that address.</h1>

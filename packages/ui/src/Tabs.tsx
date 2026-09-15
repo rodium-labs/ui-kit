@@ -24,7 +24,7 @@ export interface TabsProps {
 // the selected tab draws the same underline the bar's links draw on hover, so
 // the two read as one idea rather than as a tab strip bolted on.
 const TAB =
-  'relative flex min-h-9 shrink-0 cursor-pointer items-center px-3 text-[14px] whitespace-nowrap transition-colors duration-(--motion-fast) after:absolute after:inset-x-3 after:bottom-0 after:h-px after:origin-left after:bg-current after:transition-transform after:duration-(--motion-base) motion-reduce:transition-none motion-reduce:after:hidden'
+  'relative flex min-h-9 shrink-0 cursor-pointer items-center px-3 text-[14px] whitespace-nowrap transition-colors duration-(--motion-fast) after:absolute after:inset-x-3 after:bottom-0 after:h-px after:origin-left after:bg-current after:transition-transform after:duration-(--motion-base) after:ease-through motion-reduce:transition-none motion-reduce:after:hidden'
 
 export function Tabs({
   items,

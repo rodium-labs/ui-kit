@@ -61,7 +61,7 @@ export function Switch({ label, hint, className, id, checked, defaultChecked, on
             aria-hidden="true"
             className={cn(
               'pointer-events-none absolute start-[3px] size-3 bg-ink-on-night-dim',
-              'transition-[translate,background-color] duration-(--motion-base) ease-rl',
+              'transition-[translate,background-color] duration-(--motion-base) ease-through',
               'peer-checked:translate-x-[14px] peer-checked:bg-night',
               'peer-disabled:opacity-45',
               'motion-reduce:transition-none',

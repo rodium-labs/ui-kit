@@ -117,7 +117,7 @@ export function Menu({ label, items, groups, align = 'start', className }: MenuP
         {label}
         <ChevronDown
           size={12}
-          className="text-ink-on-night-dim transition-transform duration-(--motion-base) ease-rl group-open:-rotate-180 motion-reduce:transition-none"
+          className="text-ink-on-night-dim transition-transform duration-(--motion-base) ease-through group-open:-rotate-180 motion-reduce:transition-none"
         />
       </summary>
 

@@ -45,7 +45,7 @@ export function Accordion({ items, single = false, name, className }: AccordionP
               strokeLinecap="square"
               aria-hidden="true"
               focusable="false"
-              className="ms-auto shrink-0 text-ink-on-night-dim transition-transform duration-(--motion-base) ease-rl group-open:-rotate-180 motion-reduce:transition-none">
+              className="ms-auto shrink-0 text-ink-on-night-dim transition-transform duration-(--motion-base) ease-through group-open:-rotate-180 motion-reduce:transition-none">
               <path d="M4 6.5 L8 10.5 L12 6.5" />
             </svg>
           </summary>

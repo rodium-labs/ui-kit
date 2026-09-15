@@ -44,7 +44,7 @@ export function Table({ caption, head, rows, className }: TableProps) {
             <tr
               // the first cell names the row, so it is what identifies it
               key={String(row.at(0) ?? index)}
-              className="border-t border-night-rule">
+              className="border-t border-night-rule transition-colors duration-(--motion-fast) hover:bg-night-wash motion-reduce:transition-none">
               {row.map((cell, column) => {
                 const tint = CELL.at(Math.min(column, CELL.length - 1))
                 return column === 0 ? (

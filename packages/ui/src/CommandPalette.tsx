@@ -228,6 +228,10 @@ export function CommandPalette({
                   onClick={() => pick(item)}
                   className={cn(
                     'flex w-full cursor-pointer items-baseline gap-3 px-4 py-2.5 text-start text-[14px]',
+                    // the highlight moves on every arrow key, so it stays inside
+                    // the fast step: long enough to follow, short enough that
+                    // holding the key down does not lag behind the selection
+                    'transition-colors duration-(--motion-fast) ease-rl motion-reduce:transition-none',
                     isActive ? 'bg-night-wash text-ink-on-night' : 'text-ink-on-night-mid',
                   )}>
                   <span className="min-w-0 flex-1 truncate">{item.label}</span>

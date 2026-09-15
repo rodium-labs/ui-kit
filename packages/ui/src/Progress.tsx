@@ -42,7 +42,7 @@ export function Progress({ value, max = 100, label, showValue = false, className
           <div className="animate-track h-full w-1/3 bg-brand-green motion-reduce:w-full motion-reduce:animate-none motion-reduce:opacity-60" />
         ) : (
           <div
-            className="h-full bg-brand-green transition-[width] duration-(--motion-slow) ease-rl motion-reduce:transition-none"
+            className="h-full bg-brand-green transition-[width] duration-(--motion-slow) ease-through motion-reduce:transition-none"
             style={{
               width: `${pct}%`,
             }}

@@ -251,7 +251,7 @@ export function Select({
           <ChevronDown
             size={12}
             className={cn(
-              'shrink-0 text-ink-on-night-dim transition-transform duration-(--motion-base) ease-rl motion-reduce:transition-none',
+              'shrink-0 text-ink-on-night-dim transition-transform duration-(--motion-base) ease-through motion-reduce:transition-none',
               open && '-rotate-180',
             )}
           />
