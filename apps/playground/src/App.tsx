@@ -126,7 +126,12 @@ export function App() {
             bar and is two paddings shorter than the screen. a taller rail than
             that makes it the tallest column and scrolls every short page. */}
         <aside className="hidden w-[200px] shrink-0 lg:block">
-          <div className="sticky top-[calc(var(--nav-h)+3rem)] max-h-[calc(100svh-var(--nav-h)-6rem)] overflow-y-auto pe-2">
+          {/* overflow-y on its own is enough to clip the other axis too: a box with
+              one axis scrolling computes the other to auto. the rail sits on the
+              leading edge, so that clip took the outer side off every focus ring
+              in here. the padding gives the ring room inside the scroller and the
+              negative margin puts the content back where it was. */}
+          <div className="sticky top-[calc(var(--nav-h)+3rem)] -ms-2 max-h-[calc(100svh-var(--nav-h)-6rem)] overflow-y-auto pe-2 ps-2">
             <SideNav
               sections={navSections}
               current={href(slug)}

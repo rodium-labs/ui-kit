@@ -1,6 +1,14 @@
 'use client'
 
-import { type CSSProperties, type ReactNode, type SyntheticEvent, useCallback, useEffect, useRef } from 'react'
+import {
+  type CSSProperties,
+  type ReactNode,
+  type SyntheticEvent,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react'
 import { cn } from './cn.js'
 import { focus } from './focus.js'
 import { Close } from './glyphs.js'
@@ -26,10 +34,27 @@ const SIDE: Record<SheetSide, string> = {
   bottom: 'mt-auto mb-0 h-auto max-h-[85dvh] w-full max-w-none border-t',
 }
 
-const FROM: Record<SheetSide, string> = {
-  start: '-100%',
-  end: '100%',
-  bottom: '0',
+// where it rests when it is shut, per axis. the bottom one travels on y: an
+// offset written only on x left it fading in place rather than rising.
+const FROM: Record<
+  SheetSide,
+  {
+    x: string
+    y: string
+  }
+> = {
+  start: {
+    x: '-100%',
+    y: '0',
+  },
+  end: {
+    x: '100%',
+    y: '0',
+  },
+  bottom: {
+    x: '0',
+    y: '100%',
+  },
 }
 
 // the same browser dialog the modal uses, parked against an edge: top layer,
@@ -37,6 +62,19 @@ const FROM: Record<SheetSide, string> = {
 // the phone shape, which is why every side is reachable from one prop.
 export function Sheet({ open, onClose, title, description, side = 'end', footer, children, className }: SheetProps) {
   const ref = useRef<HTMLDialogElement>(null)
+
+  // the edge it opened from, held until it has finished leaving. a caller that
+  // derives the side from the same state it closes with hands us a new edge in
+  // the same render as open={false}, and the panel would jump across the screen
+  // halfway through its exit.
+  const [edge, setEdge] = useState(side)
+  useEffect(() => {
+    if (open) setEdge(side)
+  }, [
+    open,
+    side,
+  ])
+  const shown = open ? side : edge
 
   useEffect(() => {
     const el = ref.current
@@ -76,7 +114,8 @@ export function Sheet({ open, onClose, title, description, side = 'end', footer,
       onClose={onClose}
       style={
         {
-          '--sheet-from': FROM[side],
+          '--sheet-x': FROM[shown].x,
+          '--sheet-y': FROM[shown].y,
         } as CSSProperties
       }
       className={cn(
@@ -86,8 +125,7 @@ export function Sheet({ open, onClose, title, description, side = 'end', footer,
         // and every page carrying one grows a clipped region nobody can reach.
         'sheet-side max-w-none flex-col border-night-edge bg-night p-0 text-ink-on-night open:flex',
         'overscroll-contain backdrop:bg-black/70 backdrop:backdrop-blur-[2px]',
-        side === 'bottom' ? 'translate-y-[8%]' : '',
-        SIDE[side],
+        SIDE[shown],
         className,
       )}>
       <div className="flex shrink-0 items-start justify-between gap-4 border-b border-night-rule px-5 py-4">
