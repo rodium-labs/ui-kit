@@ -2,7 +2,7 @@
 
 A React component library and design token set for dark interfaces.
 
-The kit provides 39 components, 13 icons and a set of CSS custom properties. It is built on Tailwind
+The kit provides 70 components, 13 icons and a set of CSS custom properties. It is built on Tailwind
 CSS v4 and has two runtime dependencies: `clsx` and `tailwind-merge`.
 
 ## Packages
@@ -60,17 +60,22 @@ export function Example() {
 **Actions** — `Action`, `Link`, `Menu`, `Pagination`, `Breadcrumb`, `Arrow`
 
 **Forms** — `Field`, `Input`, `Textarea`, `Select`, `NativeSelect`, `Checkbox`, `Radio`,
-`RadioGroup`, `Switch`, `Slider`
+`RadioGroup`, `Switch`, `Slider`, `Toggle`, `ToggleGroup`, `OtpInput`, `NumberInput`,
+`PasswordInput`, `Rating`, `TagInput`, `FileDrop`, `Combobox`
 
-**Feedback** — `Alert`, `Toast`, `ToastRegion`, `Dialog`, `Tooltip`, `Progress`, `Spinner`,
-`Skeleton`, `EmptyState`
+**Feedback** — `Alert`, `Banner`, `Toast`, `ToastRegion`, `Dialog`, `Sheet`, `Confirm`, `Popover`,
+`Tooltip`, `Progress`, `Spinner`, `Skeleton`, `EmptyState`
 
-**Navigation** — `Bar`, `SideNav`, `Tabs`, `Contents`, `Accordion`, `CommandPalette`,
-`useMenuDismiss`
+**Navigation** — `Bar`, `SideNav`, `Tabs`, `Contents`, `Accordion`, `CommandPalette`, `Steps`,
+`Tree`, `useMenuDismiss`
 
 **Content** — `Wrap`, `Cover`, `split`, `Display`, `Title`, `Lede`, `Body`, `Eyebrow`, `Rule`,
-`Facts`, `Table`, `DataTable`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`, `Ticker`,
-`Avatar`, and 13 icons
+`Card`, `Facts`, `Table`, `DataTable`, `Stat`, `Status`, `Tag`, `Code`, `CodeBlock`, `Kbd`,
+`Ticker`, `Avatar`, `AvatarGroup`, `Snippet`, `Prose`, `Timeline`, `Carousel`, `AspectRatio`,
+and 13 icons
+
+**Charts** — `Sparkline`, `LineChart`, `AreaChart`, `BarChart`, `BarList`, `StackedBar`,
+`DivergingBar`, `Dumbbell`, `Heatmap`, `ScatterChart`, `Meter`
 
 ## Design decisions
 
