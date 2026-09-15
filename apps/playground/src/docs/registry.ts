@@ -14,6 +14,7 @@ import { page as card } from '../pages/card'
 import { page as carousel } from '../pages/carousel'
 import { page as checkbox } from '../pages/checkbox'
 import { page as code } from '../pages/code'
+import { page as combobox } from '../pages/combobox'
 import { page as confirm } from '../pages/confirm'
 import { page as contents } from '../pages/contents'
 import { page as dataTable } from '../pages/datatable'
@@ -112,6 +113,7 @@ export const SECTIONS: readonly DocSection[] = [
       rating,
       tagInput,
       fileDrop,
+      combobox,
     ],
   },
   {
