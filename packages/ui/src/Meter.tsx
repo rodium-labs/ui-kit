@@ -1,6 +1,5 @@
 import { ChartFrame } from './ChartFrame.js'
 import { format } from './chart.js'
-import { cn } from './cn.js'
 
 export interface MeterProps {
   title: string
@@ -34,24 +33,27 @@ export function Meter({ title, caption, value, limit, unit, className }: MeterPr
             {unit ? ` ${unit}` : ''}
           </span>
         </p>
-        {/* the browser's own meter, styled through its parts. it is the element
-            for a measurement inside a known range, so the value, the bounds and
-            the spoken text come from the platform rather than from aria written
-            by hand. the same trick the slider uses on its track. */}
-        <meter
-          value={value}
-          min={0}
-          max={limit}
-          aria-label={`${title}: ${format(value)} of ${format(limit)}${unit ? ` ${unit}` : ''}`}
-          className={cn(
-            'h-1.5 w-full appearance-none bg-night-frame',
-            '[&::-webkit-meter-bar]:h-1.5 [&::-webkit-meter-bar]:border-0 [&::-webkit-meter-bar]:bg-night-frame',
-            '[&::-webkit-meter-optimum-value]:bg-[var(--color-series-1)]',
-            '[&::-webkit-meter-suboptimum-value]:bg-[var(--color-series-1)]',
-            '[&::-webkit-meter-even-less-good-value]:bg-[var(--color-series-1)]',
-            '[&::-moz-meter-bar]:bg-[var(--color-series-1)]',
-          )}
-        />
+        {/* <meter> is the element for this and it is not usable here: with or
+            without appearance:none, chrome ignores ::-webkit-meter-bar and
+            ::-webkit-meter-optimum-value and paints its own lime green, which
+            belongs to no part of this surface. the role is the exact mapping of
+            the element it replaces, and every bound it announces is written out
+            below, so nothing is lost but the styling problem. */}
+        {/* biome-ignore lint/a11y/useSemanticElements: <meter> cannot be repainted in chrome; see above */}
+        <div
+          role="meter"
+          aria-valuenow={value}
+          aria-valuemin={0}
+          aria-valuemax={limit}
+          aria-valuetext={`${format(value)} of ${format(limit)}${unit ? ` ${unit}` : ''}, ${pct} percent`}
+          className="h-1.5 w-full bg-night-frame">
+          <div
+            className="h-full bg-series-1 transition-[width] duration-(--motion-slow) ease-through motion-reduce:transition-none"
+            style={{
+              width: `${share * 100}%`,
+            }}
+          />
+        </div>
         <p className="text-[12px] text-ink-on-night-dim tabular-nums">{pct}% used</p>
       </div>
     </ChartFrame>

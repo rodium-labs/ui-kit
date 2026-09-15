@@ -4,7 +4,7 @@ import type { DocPage } from '../docs/types'
 export const page: DocPage = {
   slug: 'meter',
   title: 'Meter',
-  summary: 'One ratio against a limit. The browser’s own element, styled through its parts.',
+  summary: 'One ratio against a limit, with the numbers written out rather than estimated from a wedge.',
   examples: [
     {
       title: 'A quota',
@@ -48,8 +48,9 @@ export const page: DocPage = {
   notes: (
     <>
       <p>
-        Underneath it is <code className="text-ink-on-night">&lt;meter&gt;</code>, so the value, the bounds and the
-        spoken text come from the platform rather than from ARIA written by hand.
+        It announces itself as a meter, with its value and both bounds. The element of that name would have been the
+        better answer and is not usable here: Chrome ignores its parts and paints a lime green that belongs to no part
+        of this surface, with or without <code className="text-ink-on-night">appearance: none</code>.
       </p>
       <p>
         This is the answer to a ratio, not a pie of two slices. Reach for{' '}
