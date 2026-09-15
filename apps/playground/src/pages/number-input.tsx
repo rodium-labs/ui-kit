@@ -62,9 +62,16 @@ export const page: DocPage = {
     ],
   ],
   notes: (
-    <p>
-      It sits on the native number input rather than replacing it, so the arrow keys and the phone keypad come from the
-      platform. The browser’s own spinner is hidden: it is a four pixel target nobody can hit.
-    </p>
+    <>
+      <p>
+        It sits on the native number input rather than replacing it, so the arrow keys and the phone keypad come from
+        the platform. The browser’s own spinner is hidden: it is a four pixel target nobody can hit.
+      </p>
+      <p>
+        The value rolls to its new reading the way <code className="text-ink-on-night">Stat</code> rolls a digit. Text
+        inside a native input cannot be animated, so the roll sits over the field and steps aside the moment it takes
+        focus — the real text and the caret come back for as long as you are typing.
+      </p>
+    </>
   ),
 }

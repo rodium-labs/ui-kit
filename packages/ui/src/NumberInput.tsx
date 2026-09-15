@@ -4,6 +4,7 @@ import { type InputHTMLAttributes, type ReactNode, useId } from 'react'
 import { cn } from './cn.js'
 import { CONTROL_SKIN, Field } from './Field.js'
 import { focus } from './focus.js'
+import { Odometer } from './Odometer.js'
 
 export interface NumberInputProps
   extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange' | 'value' | 'type' | 'size'> {
@@ -72,31 +73,53 @@ export function NumberInput({
           className={cn(button, 'border border-e-0 border-night-edge')}>
           −
         </button>
-        <input
-          {...rest}
-          id={inputId}
-          type="number"
-          inputMode="decimal"
-          value={value}
-          min={min === Number.NEGATIVE_INFINITY ? undefined : min}
-          max={max === Number.POSITIVE_INFINITY ? undefined : max}
-          step={step}
-          disabled={disabled}
-          aria-invalid={error ? true : undefined}
-          aria-describedby={hint || error ? hintId : undefined}
-          onChange={event => {
-            const next = Number(event.currentTarget.value)
-            if (!Number.isNaN(next)) onValueChange(clamp(next))
-          }}
-          className={cn(
-            CONTROL_SKIN,
-            'min-h-11 min-w-0 flex-1 px-3 text-center text-[16px] tabular-nums sm:text-[14px]',
-            // the browser's own spinner is a target nobody can hit; the two
-            // buttons beside it are the ones that are meant to be used
-            '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
-            className,
-          )}
-        />
+        {/* the value rolls to its new reading rather than swapping to it, the
+            same way the stat does. text inside a native input cannot be
+            animated, so the odometer sits over it and the input's own text is
+            transparent - until it takes focus, when the real text and the
+            caret come back and the roll gets out of the way. */}
+        <span className="relative flex min-w-0 flex-1">
+          <input
+            {...rest}
+            id={inputId}
+            type="number"
+            inputMode="decimal"
+            value={value}
+            min={min === Number.NEGATIVE_INFINITY ? undefined : min}
+            max={max === Number.POSITIVE_INFINITY ? undefined : max}
+            step={step}
+            disabled={disabled}
+            aria-invalid={error ? true : undefined}
+            aria-describedby={hint || error ? hintId : undefined}
+            onChange={event => {
+              const next = Number(event.currentTarget.value)
+              if (!Number.isNaN(next)) onValueChange(clamp(next))
+            }}
+            className={cn(
+              CONTROL_SKIN,
+              'peer min-h-11 w-full px-3 text-center text-[16px] tabular-nums sm:text-[14px]',
+              'text-transparent focus:text-ink-on-night',
+              // the browser's own spinner is a target nobody can hit; the two
+              // buttons beside it are the ones that are meant to be used
+              '[appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none',
+              className,
+            )}
+          />
+          <span
+            aria-hidden="true"
+            className={cn(
+              'pointer-events-none absolute inset-0 flex items-center justify-center',
+              'text-[16px] text-ink-on-night tabular-nums sm:text-[14px]',
+              'transition-opacity duration-(--motion-fast) peer-focus:opacity-0 motion-reduce:transition-none',
+              disabled && 'opacity-45',
+            )}>
+            {/* the input is a spinbutton and announces the value itself */}
+            <Odometer
+              value={String(value)}
+              silent
+            />
+          </span>
+        </span>
         <button
           type="button"
           onClick={() => nudge(step)}
