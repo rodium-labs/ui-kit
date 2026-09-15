@@ -48,7 +48,10 @@ export function Breadcrumb({ items, className }: BreadcrumbProps) {
               {last ? null : (
                 <span
                   aria-hidden="true"
-                  className="text-ink-on-night-faint">
+                  // the separator family rather than the decoration one: at 0.15
+                  // the slash was invisible and the trail read as a run of words.
+                  // this clears the 3:1 floor and still sits under the crumbs.
+                  className="text-night-edge">
                   /
                 </span>
               )}

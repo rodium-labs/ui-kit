@@ -41,7 +41,10 @@ const ITEM =
 const TONE = {
   normal: 'text-ink-on-night-mid hover:bg-night-wash hover:text-ink-on-night',
   danger: 'text-danger hover:bg-[color-mix(in_oklab,var(--color-danger)_14%,transparent)]',
-  off: 'pointer-events-none text-ink-on-night-faint',
+  // the same treatment the other controls wear, rather than the decoration
+  // token: at 0.15 the label of an unavailable command cannot be read at all,
+  // so nobody can tell what it is they cannot do
+  off: 'pointer-events-none opacity-45',
 }
 
 function tone(item: MenuItem): string {
@@ -63,7 +66,7 @@ function Row({ item }: { item: MenuItem }) {
       {item.shortcut ? (
         <span
           aria-hidden="true"
-          className="shrink-0 font-mono text-[11px] text-ink-on-night-faint transition-colors duration-(--motion-fast) group-hover/item:text-ink-on-night-dim motion-reduce:transition-none">
+          className="shrink-0 font-mono text-[11px] text-ink-on-night-dim transition-colors duration-(--motion-fast) group-hover/item:text-ink-on-night motion-reduce:transition-none">
           {item.shortcut}
         </span>
       ) : null}

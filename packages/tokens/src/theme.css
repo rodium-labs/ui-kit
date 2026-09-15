@@ -5,7 +5,12 @@
   --color-night: #000000;
 
   /* ink. headings, links and values take the first; body copy the second;
-     labels, dates and captions the third. the fourth is decoration. */
+     labels, dates and captions the third.
+
+     the fourth is not ink. at 0.15 it measures 1.39:1 on this ground, so
+     anything set in it cannot be read, by anyone, in any light. it is here for
+     a wash or a placeholder shape. a separator glyph belongs to the line
+     family below, a disabled control to opacity-45, and a caption to dim. */
   --color-ink-on-night: #ffffff;
   --color-ink-on-night-mid: rgb(255 255 255 / 0.6);
   --color-ink-on-night-dim: rgb(255 255 255 / 0.5);

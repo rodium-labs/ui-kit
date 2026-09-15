@@ -172,7 +172,11 @@ export function DataTable<Row>({
                       {column.header}
                       <span
                         aria-hidden="true"
-                        className={cn('text-[10px]', active ? 'text-brand-green' : 'text-ink-on-night-faint')}>
+                        // no colour of its own when it is idle: it inherits the
+                        // button's, which is readable and brightens on hover.
+                        // its own kept it at 1.39:1 and deaf to the hover, so
+                        // nothing told you which columns could be sorted.
+                        className={cn('text-[10px]', active && 'text-brand-green')}>
                         {active ? (sort.direction === 'asc' ? '▲' : '▼') : '↕'}
                       </span>
                     </button>

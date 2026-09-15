@@ -29,7 +29,7 @@ export function Ticker({ words, className }: TickerProps) {
               {word}
               <span
                 aria-hidden="true"
-                className="text-ink-on-night-faint">
+                className="text-night-edge">
                 /
               </span>
             </li>
@@ -52,7 +52,7 @@ export function Ticker({ words, className }: TickerProps) {
                   {word}
                   <span
                     aria-hidden="true"
-                    className="text-ink-on-night-faint">
+                    className="text-night-edge">
                     /
                   </span>
                 </li>

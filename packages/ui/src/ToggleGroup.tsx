@@ -39,7 +39,7 @@ export function ToggleGroup({ label, options, value, onValueChange, className }:
               // be drawn over the neighbouring segment. this one is inset.
               'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[-2px] has-[:focus-visible]:outline-(--color-brand-green)',
               option.disabled
-                ? 'pointer-events-none text-ink-on-night-faint'
+                ? 'pointer-events-none text-ink-on-night-mid opacity-45'
                 : active
                   ? 'bg-night-wash text-ink-on-night'
                   : 'text-ink-on-night-mid hover:bg-night-wash hover:text-ink-on-night',

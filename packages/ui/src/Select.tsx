@@ -289,7 +289,7 @@ export function Select({
                 }}
                 className={cn(
                   'flex w-full cursor-pointer items-start gap-2.5 px-3 py-2 text-start text-[14px]',
-                  option.disabled && 'pointer-events-none text-ink-on-night-faint',
+                  option.disabled && 'pointer-events-none opacity-45',
                   !option.disabled && isActive && 'bg-night-wash text-ink-on-night',
                   !option.disabled && !isActive && 'text-ink-on-night-mid',
                 )}>
