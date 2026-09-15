@@ -4,6 +4,7 @@ import { type ReactNode, useRef } from 'react'
 import { cn } from './cn.js'
 import { focus } from './focus.js'
 import { ChevronDown } from './glyphs.js'
+import { useEdgeShift } from './useEdgeShift.js'
 import { useMenuDismiss } from './useMenuDismiss.js'
 
 export interface MenuItem {
@@ -95,6 +96,7 @@ function Row({ item }: { item: MenuItem }) {
 export function Menu({ label, items, groups, align = 'start', className }: MenuProps) {
   const ref = useRef<HTMLDetailsElement>(null)
   useMenuDismiss(ref)
+  useEdgeShift(ref)
 
   const sections: readonly MenuGroup[] = groups ?? [
     {

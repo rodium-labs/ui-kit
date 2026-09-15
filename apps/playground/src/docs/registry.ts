@@ -1,11 +1,15 @@
 import { page as accordion } from '../pages/accordion'
 import { page as action } from '../pages/action'
 import { page as alert } from '../pages/alert'
+import { page as aspectRatio } from '../pages/aspect-ratio'
 import { page as avatar } from '../pages/avatar'
 import { page as bar } from '../pages/bar'
 import { page as breadcrumb } from '../pages/breadcrumb'
+import { page as card } from '../pages/card'
+import { page as carousel } from '../pages/carousel'
 import { page as checkbox } from '../pages/checkbox'
 import { page as code } from '../pages/code'
+import { page as confirm } from '../pages/confirm'
 import { page as contents } from '../pages/contents'
 import { page as dataTable } from '../pages/datatable'
 import { page as dialog } from '../pages/dialog'
@@ -18,11 +22,14 @@ import { page as kbd } from '../pages/kbd'
 import { page as link } from '../pages/link'
 import { page as menu } from '../pages/menu'
 import { page as nativeSelect } from '../pages/native-select'
+import { page as otpInput } from '../pages/otp-input'
 import { page as pagination } from '../pages/pagination'
+import { page as popover } from '../pages/popover'
 import { page as progress } from '../pages/progress'
 import { page as radio } from '../pages/radio'
 import { page as commandPalette } from '../pages/search'
 import { page as select } from '../pages/select'
+import { page as sheet } from '../pages/sheet'
 import { page as sideNav } from '../pages/sidenav'
 import { page as skeleton } from '../pages/skeleton'
 import { page as slider } from '../pages/slider'
@@ -35,7 +42,10 @@ import { page as tabs } from '../pages/tabs'
 import { page as tag } from '../pages/tag'
 import { page as textarea } from '../pages/textarea'
 import { page as ticker } from '../pages/ticker'
+import { page as timeline } from '../pages/timeline'
 import { page as toast } from '../pages/toast'
+import { page as toggle } from '../pages/toggle'
+import { page as toggleGroup } from '../pages/toggle-group'
 import { page as tokens } from '../pages/tokens'
 import { page as tooltip } from '../pages/tooltip'
 import type { DocPage, DocSection } from './types'
@@ -72,6 +82,9 @@ export const SECTIONS: readonly DocSection[] = [
       radio,
       switchPage,
       slider,
+      toggle,
+      toggleGroup,
+      otpInput,
     ],
   },
   {
@@ -80,6 +93,9 @@ export const SECTIONS: readonly DocSection[] = [
       alert,
       toast,
       dialog,
+      sheet,
+      confirm,
+      popover,
       tooltip,
       progress,
       spinner,
@@ -101,6 +117,7 @@ export const SECTIONS: readonly DocSection[] = [
   {
     title: 'Content',
     pages: [
+      card,
       dataTable,
       table,
       facts,
@@ -111,6 +128,9 @@ export const SECTIONS: readonly DocSection[] = [
       kbd,
       ticker,
       avatar,
+      timeline,
+      carousel,
+      aspectRatio,
     ],
   },
 ]

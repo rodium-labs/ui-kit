@@ -28,7 +28,10 @@ export function Pagination({ page, pages, onPageChange, className }: PaginationP
   return (
     <nav
       aria-label="Pagination"
-      className={cn('flex items-center gap-1.5', className)}>
+      // wraps rather than running off the edge: the row is shrink-0 buttons, and
+      // the page clips its overflow, so an unwrapped row puts the next-page
+      // control somewhere no pointer and no scroll can reach on a narrow screen.
+      className={cn('flex flex-wrap items-center gap-1.5', className)}>
       <button
         type="button"
         onClick={() => onPageChange(page - 1)}

@@ -17,10 +17,13 @@ const SIDE: Record<TooltipSide, string> = {
 
 // the width is clamped to the viewport because html clips rather than scrolls:
 // an unclamped tooltip near the trailing edge loses its text to the clip.
-// hover and focus both show it, and it is described rather than labelled, so a
-// screen reader still reads the control's own name first. the description has
-// to land on the control itself: on a wrapper it names an element nothing ever
-// focuses, and the text never reaches assistive technology.
+// it is described rather than labelled, so a screen reader still reads the
+// control's own name first, and the description has to land on the control
+// itself: on a wrapper it names an element nothing ever focuses, and the text
+// never reaches assistive technology.
+// keyboard focus shows it, a click does not. :focus-within matches the focus a
+// click leaves behind, which parked the tooltip over the page until something
+// else took focus; :focus-visible is the one that means someone is navigating.
 export function Tooltip({ label, side = 'top', className, children }: TooltipProps) {
   const id = useId()
 
@@ -46,7 +49,7 @@ export function Tooltip({ label, side = 'top', className, children }: TooltipPro
           'opacity-0 transition-[opacity,translate] duration-(--motion-fast) ease-rl',
           side === 'top' ? 'translate-y-1' : '-translate-y-1',
           'group-hover:translate-y-0 group-hover:opacity-100',
-          'group-focus-within:translate-y-0 group-focus-within:opacity-100',
+          'group-has-[:focus-visible]:translate-y-0 group-has-[:focus-visible]:opacity-100',
           'motion-reduce:translate-y-0 motion-reduce:transition-none',
           SIDE[side],
         )}>
