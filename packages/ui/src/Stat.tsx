@@ -1,7 +1,8 @@
 'use client'
 
-import { type CSSProperties, type ReactNode, useEffect, useState } from 'react'
+import type { ReactNode } from 'react'
 import { cn } from './cn.js'
+import { Odometer } from './Odometer.js'
 
 export type StatTrend = 'up' | 'down' | 'flat'
 
@@ -41,88 +42,6 @@ const TREND: Record<
     mark: '→',
     word: 'level',
   },
-}
-
-const DIGITS = [
-  '0',
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-]
-
-/**
- * One column of 0-9, shifted so the wanted digit sits in the window. Only the
- * columns whose digit actually changed move, because the others are already
- * where they need to be.
- */
-function Digit({ digit }: { digit: number }) {
-  return (
-    <span className="relative inline-block h-[1em] overflow-hidden align-baseline tabular-nums">
-      <span
-        className="flex flex-col transition-transform duration-(--motion-slower) ease-through motion-reduce:transition-none"
-        style={
-          {
-            transform: `translateY(-${digit * 10}%)`,
-          } as CSSProperties
-        }>
-        {DIGITS.map(d => (
-          <span
-            key={d}
-            className="flex h-[1em] items-center justify-center">
-            {d}
-          </span>
-        ))}
-      </span>
-    </span>
-  )
-}
-
-/**
- * The whole number is announced once, from a visually hidden copy. The rolling
- * digits are hidden from the accessibility tree: a screen reader walking ten
- * digits per column would read a wall of numbers instead of the value.
- */
-function Odometer({ value }: { value: string }) {
-  // the first paint sits on the final digits, so the column only rolls on a
-  // change rather than counting up from zero when the page loads
-  const [shown, setShown] = useState(value)
-
-  useEffect(() => {
-    const frame = requestAnimationFrame(() => setShown(value))
-    return () => cancelAnimationFrame(frame)
-  }, [
-    value,
-  ])
-
-  return (
-    <>
-      <span className="sr-only">{value}</span>
-      <span
-        aria-hidden="true"
-        className="inline-flex items-baseline leading-none">
-        {[
-          ...shown,
-        ].map((char, index) => {
-          const digit = Number(char)
-          const key = `${index}-${char.match(/\d/) ? 'd' : char}`
-          return Number.isNaN(digit) || char === ' ' ? (
-            <span key={key}>{char}</span>
-          ) : (
-            <Digit
-              key={key}
-              digit={digit}
-            />
-          )
-        })}
-      </span>
-    </>
-  )
 }
 
 export function Stat({ label, value, unit, trend, delta, animate = false, className }: StatProps) {
