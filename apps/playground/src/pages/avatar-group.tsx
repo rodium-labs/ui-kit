@@ -26,7 +26,7 @@ export const page: DocPage = {
   slug: 'avatar-group',
   title: 'Avatar group',
   nav: 'Avatar group',
-  summary: 'A stack of people, with the ones past the limit counted rather than dropped.',
+  summary: 'A row of people, with the ones past the limit counted rather than dropped.',
   examples: [
     {
       title: 'Six people, four drawn',
@@ -60,9 +60,16 @@ export const page: DocPage = {
     ],
   ],
   notes: (
-    <p>
-      The group carries one accessible name listing everyone, including the ones not drawn. Five separate images in a
-      row is not what anyone wants read out.
-    </p>
+    <>
+      <p>
+        The group carries one accessible name listing everyone, including the ones not drawn. Five separate images in a
+        row is not what anyone wants read out.
+      </p>
+      <p>
+        They do not overlap. Stacking is an idiom for round avatars, where the curve of the one in front says which is
+        in front; these are square like everything else here, and overlapping squares read as boxes wedged into each
+        other.
+      </p>
+    </>
   ),
 }
