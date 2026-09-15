@@ -1,6 +1,6 @@
 'use client'
 
-import { type CSSProperties, useEffect, useState } from 'react'
+import { type CSSProperties, useEffect, useRef, useState } from 'react'
 import { cn } from './cn.js'
 
 const DIGITS = [
@@ -64,14 +64,33 @@ export interface OdometerProps {
  * value. Where the surrounding control already announces the number - a
  * spinbutton does - pass `silent` so it is not read twice.
  */
+// how close together two changes have to be before the roll is shortened. it
+// is the long duration: a change that lands before the previous roll ended is
+// exactly the case where the reading would start trailing the value.
+const RUSH = 720
+
 export function Odometer({ value, silent = false, className }: OdometerProps) {
   // the first paint sits on the final digits, so a column only rolls on a
   // change rather than counting up from zero when the page loads
   const [shown, setShown] = useState(value)
+  // a long roll is the point of this component, and it is also what makes a
+  // held arrow key display a number the control no longer holds. so the pace
+  // is not fixed: one change at a time gets the full roll, and changes that
+  // arrive faster than it shorten until they stop.
+  const [rushed, setRushed] = useState(false)
+  const last = useRef(0)
 
   useEffect(() => {
+    const now = performance.now()
+    const gap = now - last.current
+    last.current = now
+    if (gap < RUSH) setRushed(true)
+    const settle = setTimeout(() => setRushed(false), RUSH)
     const frame = requestAnimationFrame(() => setShown(value))
-    return () => cancelAnimationFrame(frame)
+    return () => {
+      clearTimeout(settle)
+      cancelAnimationFrame(frame)
+    }
   }, [
     value,
   ])
@@ -81,6 +100,13 @@ export function Odometer({ value, silent = false, className }: OdometerProps) {
       {silent ? null : <span className="sr-only">{value}</span>}
       <span
         aria-hidden="true"
+        style={
+          rushed
+            ? ({
+                '--odometer-motion': 'var(--motion-fast)',
+              } as CSSProperties)
+            : undefined
+        }
         className={cn('inline-flex items-baseline leading-none', className)}>
         {[
           ...shown,
