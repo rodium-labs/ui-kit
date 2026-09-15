@@ -142,7 +142,7 @@ export function App() {
               disclosure or the whole kit is reachable only one page at a time */}
           <details
             ref={index}
-            className="menu group -mt-2 border-b border-night-rule pb-4 lg:hidden">
+            className="menu fold group -mt-2 border-b border-night-rule pb-4 [--fold-motion:var(--motion-slower)] lg:hidden">
             <summary
               className={`flex min-h-11 cursor-pointer list-none items-center gap-2 text-[13px] font-medium tracking-[0.04em] text-ink-on-night uppercase [&::-webkit-details-marker]:hidden ${focus}`}>
               Browse components

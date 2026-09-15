@@ -257,55 +257,58 @@ export function Select({
           />
         </button>
 
-        {open ? (
-          <div
-            ref={list}
-            id={listId}
-            role="listbox"
-            aria-labelledby={selectId}
-            className="sheet-pop absolute inset-x-0 top-[calc(100%+6px)] z-40 max-h-60 overflow-y-auto border border-night-edge bg-night py-1 shadow-[0_18px_44px_rgb(0_0_0/0.7)]">
-            {options.map(option => {
-              const at = usable.indexOf(option)
-              const isActive = at >= 0 && at === active
-              return (
-                <button
-                  key={option.value}
-                  type="button"
-                  id={`${selectId}-o-${option.value}`}
-                  role="option"
-                  aria-selected={option.value === chosen}
-                  data-active={isActive}
-                  tabIndex={-1}
-                  disabled={option.disabled}
-                  onPointerEnter={() => {
-                    if (at >= 0) setActive(at)
-                  }}
-                  onClick={() => {
-                    if (!option.disabled) commit(option)
-                  }}
-                  className={cn(
-                    'flex w-full cursor-pointer items-start gap-2.5 px-3 py-2 text-start text-[14px]',
-                    option.disabled && 'pointer-events-none text-ink-on-night-faint',
-                    !option.disabled && isActive && 'bg-night-wash text-ink-on-night',
-                    !option.disabled && !isActive && 'text-ink-on-night-mid',
-                  )}>
-                  <span className="flex w-3.5 shrink-0 justify-center pt-0.5">
-                    {option.value === chosen ? (
-                      <Check
-                        size={11}
-                        className="text-brand-green"
-                      />
-                    ) : null}
-                  </span>
-                  <span className="flex min-w-0 flex-col gap-0.5">
-                    <span className="truncate">{option.label}</span>
-                    {option.hint ? <span className="text-[12px] text-ink-on-night-dim">{option.hint}</span> : null}
-                  </span>
-                </button>
-              )
-            })}
-          </div>
-        ) : null}
+        {/* kept mounted and marked instead of unmounted: an element removed on
+            close has nowhere to animate back to. the stylesheet owns the display
+            switch, so the options stay out of the accessibility tree while it is
+            shut, with or without motion. */}
+        <div
+          ref={list}
+          id={listId}
+          role="listbox"
+          data-open={open || undefined}
+          aria-labelledby={selectId}
+          className="sheet-pop absolute inset-x-0 top-[calc(100%+6px)] z-40 max-h-60 overflow-y-auto border border-night-edge bg-night py-1 shadow-[0_18px_44px_rgb(0_0_0/0.7)]">
+          {options.map(option => {
+            const at = usable.indexOf(option)
+            const isActive = at >= 0 && at === active
+            return (
+              <button
+                key={option.value}
+                type="button"
+                id={`${selectId}-o-${option.value}`}
+                role="option"
+                aria-selected={option.value === chosen}
+                data-active={isActive}
+                tabIndex={-1}
+                disabled={option.disabled}
+                onPointerEnter={() => {
+                  if (at >= 0) setActive(at)
+                }}
+                onClick={() => {
+                  if (!option.disabled) commit(option)
+                }}
+                className={cn(
+                  'flex w-full cursor-pointer items-start gap-2.5 px-3 py-2 text-start text-[14px]',
+                  option.disabled && 'pointer-events-none text-ink-on-night-faint',
+                  !option.disabled && isActive && 'bg-night-wash text-ink-on-night',
+                  !option.disabled && !isActive && 'text-ink-on-night-mid',
+                )}>
+                <span className="flex w-3.5 shrink-0 justify-center pt-0.5">
+                  {option.value === chosen ? (
+                    <Check
+                      size={11}
+                      className="text-brand-green"
+                    />
+                  ) : null}
+                </span>
+                <span className="flex min-w-0 flex-col gap-0.5">
+                  <span className="truncate">{option.label}</span>
+                  {option.hint ? <span className="text-[12px] text-ink-on-night-dim">{option.hint}</span> : null}
+                </span>
+              </button>
+            )
+          })}
+        </div>
       </div>
     </Field>
   )
