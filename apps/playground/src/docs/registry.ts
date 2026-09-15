@@ -67,6 +67,7 @@ import { page as toggle } from '../pages/toggle'
 import { page as toggleGroup } from '../pages/toggle-group'
 import { page as tokens } from '../pages/tokens'
 import { page as tooltip } from '../pages/tooltip'
+import { page as tree } from '../pages/tree'
 import type { DocPage, DocSection } from './types'
 
 // one component, one page. a page that documents two of them hides the second
@@ -136,6 +137,7 @@ export const SECTIONS: readonly DocSection[] = [
       accordion,
       commandPalette,
       steps,
+      tree,
     ],
   },
   {
