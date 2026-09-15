@@ -1,5 +1,7 @@
 node_modules
 dist
+packages/*/README.md
+packages/*/LICENSE
 .next
 out
 *.tsbuildinfo

@@ -1,6 +1,11 @@
 /**
  * Builds both packages with tsc and copies the token stylesheets next to the
  * emitted JavaScript, so a published package ships one directory.
+ *
+ * The readme and the licence are copied in too. npm publishes both from the
+ * package root whatever `files` says, and without them the registry page for
+ * each package is blank and the MIT the manifest claims ships with nothing
+ * behind it.
  */
 import { execFileSync } from 'node:child_process'
 import { cpSync, mkdirSync, readdirSync, rmSync } from 'node:fs'
@@ -33,6 +38,17 @@ for (const pkg of [
 ]) {
   const root = build(pkg)
   console.log(`built ${pkg}`)
+
+  // npm reads these from the package root, and this is a workspace: they only
+  // exist at the top of the repository. both are gitignored inside the packages
+  // so the copies never become a second source to keep up to date.
+  for (const file of [
+    'README.md',
+    'LICENSE',
+  ]) {
+    cpSync(file, join(root, file))
+  }
+  console.log('  copied the readme and the licence')
 
   if (pkg === 'tokens') {
     // css needs no compiling, but it has to sit in the published directory
