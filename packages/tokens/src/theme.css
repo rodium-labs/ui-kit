@@ -69,6 +69,11 @@
   --text-body--line-height: 1.65;
 
   --ease-rl: cubic-bezier(0.16, 1, 0.3, 1);
+  /* rl settles: it spends most of its duration arriving, which is right for a
+     control taking its new state and wrong where the travel is the content
+     itself. this one carries the motion through, so a rolling digit or a
+     sweeping track can be read on the way. */
+  --ease-through: cubic-bezier(0.65, 0, 0.35, 1);
 
   --animate-spin-rl: rl-spin 0.7s linear infinite;
   --animate-shimmer: rl-shimmer 1.6s linear infinite;
@@ -116,6 +121,9 @@
   --motion-fast: 120ms;
   --motion-base: 240ms;
   --motion-slow: 480ms;
+  /* for motion read as content rather than as feedback, where the three steps
+     above are all over before the eye has followed them */
+  --motion-slower: 720ms;
 }
 
 @media (width <= 720px) {

@@ -65,7 +65,7 @@ function Digit({ digit }: { digit: number }) {
   return (
     <span className="relative inline-block h-[1em] overflow-hidden align-baseline tabular-nums">
       <span
-        className="flex flex-col transition-transform duration-(--motion-slow) ease-rl motion-reduce:transition-none"
+        className="flex flex-col transition-transform duration-(--motion-slower) ease-through motion-reduce:transition-none"
         style={
           {
             transform: `translateY(-${digit * 10}%)`,
