@@ -32,6 +32,7 @@ import { page as link } from '../pages/link'
 import { page as menu } from '../pages/menu'
 import { page as meter } from '../pages/meter'
 import { page as nativeSelect } from '../pages/native-select'
+import { page as numberInput } from '../pages/number-input'
 import { page as otpInput } from '../pages/otp-input'
 import { page as pagination } from '../pages/pagination'
 import { page as popover } from '../pages/popover'
@@ -100,6 +101,7 @@ export const SECTIONS: readonly DocSection[] = [
       toggle,
       toggleGroup,
       otpInput,
+      numberInput,
     ],
   },
   {

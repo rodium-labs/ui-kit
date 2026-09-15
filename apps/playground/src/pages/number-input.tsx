@@ -1,0 +1,70 @@
+import { NumberInput } from '@rodium-labs/ui'
+import { useState } from 'react'
+import type { DocPage } from '../docs/types'
+
+function Live() {
+  const [replicas, setReplicas] = useState(3)
+  const [timeout, setTimeoutValue] = useState(30)
+  return (
+    <div className="grid max-w-[30rem] gap-6 sm:grid-cols-2">
+      <NumberInput
+        label="Replicas"
+        hint="Between one and ten."
+        value={replicas}
+        onValueChange={setReplicas}
+        min={1}
+        max={10}
+      />
+      <NumberInput
+        label="Timeout"
+        value={timeout}
+        onValueChange={setTimeoutValue}
+        min={0}
+        step={5}
+        unit="s"
+      />
+    </div>
+  )
+}
+
+export const page: DocPage = {
+  slug: 'number-input',
+  title: 'Number input',
+  nav: 'Number input',
+  summary: 'A number with two buttons big enough to press.',
+  examples: [
+    {
+      title: 'Bounded and stepped',
+      code: `<NumberInput label="Replicas" value={n} onValueChange={setN} min={1} max={10} />`,
+      render: () => <Live />,
+    },
+  ],
+  props: [
+    [
+      'value / onValueChange',
+      'number',
+      'Controlled, always.',
+    ],
+    [
+      'min / max',
+      'number',
+      'The buttons disable at the ends.',
+    ],
+    [
+      'step',
+      'number',
+      'How far one press moves it. Defaults to 1.',
+    ],
+    [
+      'unit',
+      'string',
+      'What the number counts, shown after the field.',
+    ],
+  ],
+  notes: (
+    <p>
+      It sits on the native number input rather than replacing it, so the arrow keys and the phone keypad come from the
+      platform. The browser’s own spinner is hidden: it is a four pixel target nobody can hit.
+    </p>
+  ),
+}
