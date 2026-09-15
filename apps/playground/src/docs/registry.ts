@@ -4,6 +4,7 @@ import { page as alert } from '../pages/alert'
 import { page as areaChart } from '../pages/area-chart'
 import { page as aspectRatio } from '../pages/aspect-ratio'
 import { page as avatar } from '../pages/avatar'
+import { page as banner } from '../pages/banner'
 import { page as bar } from '../pages/bar'
 import { page as barChart } from '../pages/bar-chart'
 import { page as barList } from '../pages/bar-list'
@@ -103,6 +104,7 @@ export const SECTIONS: readonly DocSection[] = [
     title: 'Feedback',
     pages: [
       alert,
+      banner,
       toast,
       dialog,
       sheet,
