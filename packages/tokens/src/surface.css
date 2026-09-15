@@ -132,14 +132,20 @@
 
 /* everything past the cover arrives on the scroll that reveals it. the scroller
    is the clock, so there is no script and nothing to hydrate; a browser without
-   view timelines never enters the block and the content is simply there. */
+   view timelines never enters the block and the content is simply there.
+
+   the range is a share of the viewport rather than of the element, so a heading
+   and a whole props table land at the same speed. it has to be a large share:
+   at 140px the block finished arriving while it was still in the bottom fifth
+   of the screen, which is nowhere near where anyone is reading, so by the time
+   the eye reached it the motion was long over and it read as a snap. */
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     .reveal {
       --rise-blur: 6px;
       animation: land-arrive 1s linear backwards;
       animation-timeline: view();
-      animation-range: entry 8px entry 140px;
+      animation-range: entry 0 entry 40vh;
     }
   }
 }

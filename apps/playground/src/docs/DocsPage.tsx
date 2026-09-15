@@ -1,5 +1,5 @@
 import { CodeBlock, type CodeLanguage, cn, Eyebrow, Rule, Table, Title } from '@rodium-labs/ui'
-import type { ReactNode } from 'react'
+import { type ReactNode, useLayoutEffect, useRef } from 'react'
 import type { DocPage } from './types'
 
 function Example({
@@ -38,11 +38,40 @@ const LANDING = [
   'rise rise-4',
 ] as const
 
+/**
+ * A view timeline counts an element that is already on screen as fully
+ * revealed, so on a short page the last blocks were handed an entrance that had
+ * finished before it began and they simply appeared. The ones that start inside
+ * the viewport take the staged rise instead; everything below it keeps the
+ * scroll. Measured in a layout effect, which runs before paint, so the swap is
+ * never visible.
+ */
+function useStageWhatIsAlreadyVisible(ref: { current: HTMLElement | null }): void {
+  useLayoutEffect(() => {
+    const root = ref.current
+    if (!root) return
+    let step = LANDING.length + 2
+    for (const block of root.querySelectorAll<HTMLElement>('.reveal')) {
+      if (block.getBoundingClientRect().top >= window.innerHeight) break
+      block.classList.remove('reveal')
+      block.classList.add('rise', `rise-${Math.min(step, 4)}`)
+      step += 1
+    }
+    // once per route: the page is keyed on its slug, so a new one remounts
+  }, [
+    ref,
+  ])
+}
+
 export function DocsPage({ page }: { page: DocPage }) {
   const Body = page.body
+  const article = useRef<HTMLElement>(null)
+  useStageWhatIsAlreadyVisible(article)
 
   return (
-    <article className="flex flex-col gap-12">
+    <article
+      ref={article}
+      className="flex flex-col gap-12">
       <header className="rise rise-lead flex flex-col gap-4">
         <Eyebrow>{page.slug}/</Eyebrow>
         <Title
