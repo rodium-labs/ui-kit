@@ -35,6 +35,7 @@ import { page as nativeSelect } from '../pages/native-select'
 import { page as numberInput } from '../pages/number-input'
 import { page as otpInput } from '../pages/otp-input'
 import { page as pagination } from '../pages/pagination'
+import { page as passwordInput } from '../pages/password-input'
 import { page as popover } from '../pages/popover'
 import { page as progress } from '../pages/progress'
 import { page as radio } from '../pages/radio'
@@ -102,6 +103,7 @@ export const SECTIONS: readonly DocSection[] = [
       toggleGroup,
       otpInput,
       numberInput,
+      passwordInput,
     ],
   },
   {
