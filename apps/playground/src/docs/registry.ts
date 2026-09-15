@@ -39,6 +39,7 @@ import { page as passwordInput } from '../pages/password-input'
 import { page as popover } from '../pages/popover'
 import { page as progress } from '../pages/progress'
 import { page as radio } from '../pages/radio'
+import { page as rating } from '../pages/rating'
 import { page as scatterChart } from '../pages/scatter-chart'
 import { page as commandPalette } from '../pages/search'
 import { page as select } from '../pages/select'
@@ -104,6 +105,7 @@ export const SECTIONS: readonly DocSection[] = [
       otpInput,
       numberInput,
       passwordInput,
+      rating,
     ],
   },
   {
