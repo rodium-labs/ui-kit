@@ -55,6 +55,16 @@ export interface OdometerProps {
   className?: string
 }
 
+// how close together two changes have to be before the roll gives up.
+//
+// not the roll's own length. a transition that is retargeted mid-flight carries
+// on from where it is, so presses a few hundred milliseconds apart keep the
+// drum turning and simply trail it a little - which is what a drum does. only
+// changes far faster than the eye can follow a roll are worth giving up for: a
+// held arrow key repeats around every 33ms, and frantic clicking lands near
+// 100ms. deliberate pressing sits at 300ms and up, and must never be caught.
+const RUSH = 180
+
 /**
  * A number that rolls to its new value rather than swapping to it.
  *
@@ -64,10 +74,6 @@ export interface OdometerProps {
  * value. Where the surrounding control already announces the number - a
  * spinbutton does - pass `silent` so it is not read twice.
  */
-// how close together two changes have to be before the roll gives up. it is the
-// long duration: a change that lands before the previous roll ended is exactly
-// the case where a roll cannot finish before the next one starts.
-const RUSH = 720
 
 export function Odometer({ value, silent = false, className }: OdometerProps) {
   // the first paint sits on the final digits, so a column only rolls on a

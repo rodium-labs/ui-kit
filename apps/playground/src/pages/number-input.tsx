@@ -73,9 +73,10 @@ export const page: DocPage = {
         focus — the real text and the caret come back for as long as you are typing.
       </p>
       <p>
-        One press gets the whole roll. While they come faster than a roll can finish — a held arrow key repeats about
-        thirty times a second — the digits stop rolling and simply follow the value, and the roll returns the moment you
-        let go. Running it faster instead would read as something going wrong, and holding the number back until you
+        One press gets the whole roll, and presses a few hundred milliseconds apart keep the drum turning and trail the
+        value a little, which is what a drum does. Only changes far faster than the eye can follow a roll give it up — a
+        held arrow key repeats about thirty times a second — and then the digits simply follow the value until you let
+        go. Running the roll faster instead would read as something going wrong, and holding the number back until you
         stop would hide the one thing you are watching to know when to stop.
       </p>
     </>
