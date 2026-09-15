@@ -44,6 +44,7 @@ import { page as sheet } from '../pages/sheet'
 import { page as sideNav } from '../pages/sidenav'
 import { page as skeleton } from '../pages/skeleton'
 import { page as slider } from '../pages/slider'
+import { page as snippet } from '../pages/snippet'
 import { page as sparkline } from '../pages/sparkline'
 import { page as spinner } from '../pages/spinner'
 import { page as stackedBar } from '../pages/stacked-bar'
@@ -145,6 +146,7 @@ export const SECTIONS: readonly DocSection[] = [
       ticker,
       avatar,
       avatarGroup,
+      snippet,
       timeline,
       carousel,
       aspectRatio,
