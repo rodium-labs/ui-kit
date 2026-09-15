@@ -26,6 +26,16 @@
   /* the one fill a bordered control takes on hover */
   --color-night-wash: rgb(255 255 255 / 0.05);
 
+  /* and the one it takes when it is the chosen one. hover and selected were
+     both reaching for night-wash, which left a pressed toggle and a hovered
+     one drawn identically; they are different channels now, neutral and
+     accent, so one can never be mistaken for the other. */
+  --color-brand-green-wash: color-mix(
+    in oklab,
+    var(--color-brand-green) 16%,
+    transparent
+  );
+
   --color-brand-green: #12a776;
   --color-brand-ink: #3d2631;
   --color-brand-pink: #ff95f8;

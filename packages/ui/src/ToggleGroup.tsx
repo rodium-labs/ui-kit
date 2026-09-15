@@ -41,7 +41,7 @@ export function ToggleGroup({ label, options, value, onValueChange, className }:
               option.disabled
                 ? 'pointer-events-none text-ink-on-night-mid opacity-45'
                 : active
-                  ? 'bg-night-wash text-ink-on-night'
+                  ? 'bg-brand-green-wash text-ink-green-on-night'
                   : 'text-ink-on-night-mid hover:bg-night-wash hover:text-ink-on-night',
             )}>
             <input

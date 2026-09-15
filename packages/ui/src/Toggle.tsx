@@ -42,8 +42,11 @@ export function Toggle({
         'transition-colors duration-(--motion-fast) motion-reduce:transition-none',
         'disabled:pointer-events-none disabled:opacity-45',
         SIZE[size],
+        // hover is the neutral channel, pressed is the accent one. they used to
+        // be the same three values, so a hovered toggle and a pressed one were
+        // the same picture and the state could not be read at all.
         pressed
-          ? 'border-night-edge-lit bg-night-wash text-ink-on-night'
+          ? 'border-brand-green bg-brand-green-wash text-ink-green-on-night'
           : 'border-night-edge text-ink-on-night-mid hover:border-night-edge-lit hover:bg-night-wash hover:text-ink-on-night',
         focus,
         className,

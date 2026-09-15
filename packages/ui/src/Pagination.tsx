@@ -52,8 +52,10 @@ export function Pagination({ page, pages, onPageChange, className }: PaginationP
             : {})}
           className={cn(
             'press flex size-9 shrink-0 items-center justify-center border text-[13px] tabular-nums transition-colors duration-(--motion-fast) motion-reduce:transition-none',
+            // the page you are on is a state, not the primary action, and the
+            // solid white fill is what Action's solid tone wears
             n === page
-              ? 'border-transparent bg-ink-on-night font-medium text-night'
+              ? 'border-transparent bg-brand-green font-medium text-on-accent'
               : 'border-night-edge text-ink-on-night-mid hover:border-night-edge-lit hover:bg-night-wash hover:text-ink-on-night',
             focus,
           )}>
