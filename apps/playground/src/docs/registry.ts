@@ -38,6 +38,7 @@ import { page as pagination } from '../pages/pagination'
 import { page as passwordInput } from '../pages/password-input'
 import { page as popover } from '../pages/popover'
 import { page as progress } from '../pages/progress'
+import { page as prose } from '../pages/prose'
 import { page as radio } from '../pages/radio'
 import { page as rating } from '../pages/rating'
 import { page as scatterChart } from '../pages/scatter-chart'
@@ -153,6 +154,7 @@ export const SECTIONS: readonly DocSection[] = [
       avatar,
       avatarGroup,
       snippet,
+      prose,
       timeline,
       carousel,
       aspectRatio,
