@@ -47,6 +47,7 @@ import { page as spinner } from '../pages/spinner'
 import { page as stackedBar } from '../pages/stacked-bar'
 import { page as stat } from '../pages/stat'
 import { page as status } from '../pages/status'
+import { page as steps } from '../pages/steps'
 import { page as switchPage } from '../pages/switch'
 import { page as table } from '../pages/table'
 import { page as tabs } from '../pages/tabs'
@@ -123,6 +124,7 @@ export const SECTIONS: readonly DocSection[] = [
       contents,
       accordion,
       commandPalette,
+      steps,
     ],
   },
   {
