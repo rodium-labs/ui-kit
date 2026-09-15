@@ -25,7 +25,11 @@ function Digit({ digit }: { digit: number }) {
   return (
     <span className="relative inline-block h-[1em] overflow-hidden align-baseline tabular-nums">
       <span
-        className="flex flex-col transition-transform duration-(--motion-slower) ease-through motion-reduce:transition-none"
+        // the host sets the pace. a stat changes every couple of seconds and can
+        // afford a long roll; a control you can press eight times a second
+        // cannot, and a roll that outlasts the next press leaves the field
+        // showing a number it no longer holds.
+        className="flex flex-col transition-transform duration-[var(--odometer-motion,var(--motion-slower))] ease-through motion-reduce:transition-none"
         style={
           {
             transform: `translateY(-${digit * 10}%)`,

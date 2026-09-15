@@ -108,6 +108,9 @@ export function NumberInput({
           <span
             aria-hidden="true"
             className={cn(
+              // fast, because this is a press: the roll has to finish before the
+              // next one starts or the number on screen falls behind the value
+              '[--odometer-motion:var(--motion-fast)]',
               'pointer-events-none absolute inset-0 flex items-center justify-center',
               'text-[16px] text-ink-on-night tabular-nums sm:text-[14px]',
               'transition-opacity duration-(--motion-fast) peer-focus:opacity-0 motion-reduce:transition-none',
