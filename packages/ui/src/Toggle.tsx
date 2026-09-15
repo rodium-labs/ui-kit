@@ -42,12 +42,13 @@ export function Toggle({
         'transition-colors duration-(--motion-fast) motion-reduce:transition-none',
         'disabled:pointer-events-none disabled:opacity-45',
         SIZE[size],
-        // hover is the neutral channel, pressed is the accent one. they used to
-        // be the same three values, so a hovered toggle and a pressed one were
-        // the same picture and the state could not be read at all.
+        // two channels, not one. hover only brightens: edge and ink, no fill.
+        // pressed takes the fill and turns its edge green. the accent is the
+        // mark, never the ink - it is darker than white, so a label painted
+        // with it would make the chosen one the dimmest thing in the row.
         pressed
-          ? 'border-brand-green bg-brand-green-wash text-ink-green-on-night'
-          : 'border-night-edge text-ink-on-night-mid hover:border-night-edge-lit hover:bg-night-wash hover:text-ink-on-night',
+          ? 'border-brand-green bg-night-wash text-ink-on-night'
+          : 'border-night-edge text-ink-on-night-mid hover:border-night-edge-lit hover:text-ink-on-night',
         focus,
         className,
       )}>

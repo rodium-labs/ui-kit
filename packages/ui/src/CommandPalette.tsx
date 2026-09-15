@@ -232,7 +232,10 @@ export function CommandPalette({
                     // the fast step: long enough to follow, short enough that
                     // holding the key down does not lag behind the selection
                     'transition-colors duration-(--motion-fast) ease-rl motion-reduce:transition-none',
-                    isActive ? 'bg-brand-green-wash text-ink-green-on-night' : 'text-ink-on-night-mid',
+                    'relative before:absolute before:inset-y-0 before:start-0 before:w-0.5 before:transition-colors before:duration-(--motion-fast)',
+                    isActive
+                      ? 'bg-night-wash text-ink-on-night before:bg-brand-green'
+                      : 'text-ink-on-night-mid before:bg-transparent',
                   )}>
                   <span className="min-w-0 flex-1 truncate">{item.label}</span>
                   {item.hint ? <span className="shrink-0 text-[12px] text-ink-on-night-dim">{item.hint}</span> : null}

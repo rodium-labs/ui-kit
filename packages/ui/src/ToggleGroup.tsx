@@ -38,11 +38,14 @@ export function ToggleGroup({ label, options, value, onValueChange, className }:
               // the kit's ring sits 4px outside its control, which here would
               // be drawn over the neighbouring segment. this one is inset.
               'has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-[-2px] has-[:focus-visible]:outline-(--color-brand-green)',
+              // the chosen segment is the lit one, with a green rule under it.
+              // hover only brightens the label, so the two never coincide.
+              'after:absolute after:inset-x-0 after:bottom-0 after:h-px after:transition-colors after:duration-(--motion-fast)',
               option.disabled
                 ? 'pointer-events-none text-ink-on-night-mid opacity-45'
                 : active
-                  ? 'bg-brand-green-wash text-ink-green-on-night'
-                  : 'text-ink-on-night-mid hover:bg-night-wash hover:text-ink-on-night',
+                  ? 'bg-night-wash text-ink-on-night after:bg-brand-green'
+                  : 'text-ink-on-night-mid after:bg-transparent hover:text-ink-on-night',
             )}>
             <input
               type="radio"

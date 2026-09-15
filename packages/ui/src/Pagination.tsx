@@ -52,11 +52,12 @@ export function Pagination({ page, pages, onPageChange, className }: PaginationP
             : {})}
           className={cn(
             'press flex size-9 shrink-0 items-center justify-center border text-[13px] tabular-nums transition-colors duration-(--motion-fast) motion-reduce:transition-none',
-            // the page you are on is a state, not the primary action, and the
-            // solid white fill is what Action's solid tone wears
+            // the page you are on is a state, not the primary action, so it
+            // takes the accent as an edge rather than as a solid fill: one
+            // saturated block in a row of hairlines reads as a different kit
             n === page
-              ? 'border-transparent bg-brand-green font-medium text-on-accent'
-              : 'border-night-edge text-ink-on-night-mid hover:border-night-edge-lit hover:bg-night-wash hover:text-ink-on-night',
+              ? 'border-brand-green bg-night-wash font-medium text-ink-on-night'
+              : 'border-night-edge text-ink-on-night-mid hover:border-night-edge-lit hover:text-ink-on-night',
             focus,
           )}>
           {n}

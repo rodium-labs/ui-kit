@@ -52,8 +52,9 @@ export const page: DocPage = {
   ],
   notes: (
     <p>
-      The current page carries <code className="text-ink-on-night">aria-current="page"</code> as well as the filled
-      treatment, so the position is not held by colour alone. The steps are icon-only and named for screen readers.
+      The current page carries <code className="text-ink-on-night">aria-current="page"</code> as well as the accent edge
+      and the lit label, so the position is not held by colour alone. The steps are icon-only and named for screen
+      readers.
     </p>
   ),
 }

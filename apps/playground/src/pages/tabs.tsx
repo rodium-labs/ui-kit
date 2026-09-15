@@ -55,7 +55,7 @@ export const page: DocPage = {
   slug: 'tabs',
   title: 'Tabs',
   summary:
-    'One panel at a time. The selected tab draws the same underline the bar’s links draw on hover, so the two read as one idea.',
+    'One panel at a time. The selected tab is the lit one and its underline runs in the accent; hovering another only brings its label up.',
   examples: [
     {
       title: 'With panels',

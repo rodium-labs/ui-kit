@@ -98,11 +98,12 @@ export function Tabs({
               TAB,
               focus,
               'disabled:pointer-events-none disabled:opacity-35',
-              // the selected tab carries the accent; hovering another one only
-              // lifts it to full ink. before this both landed on the same white
-              // text and the same full underline.
+              // the selected tab's underline is green and its label is white;
+              // hovering another one lifts the label and draws a plain rule.
+              // both used to land on white text and a full underline, which is
+              // why hover read as selected.
               item.value === active
-                ? 'text-ink-green-on-night after:scale-x-100 after:bg-brand-green'
+                ? 'text-ink-on-night after:scale-x-100 after:bg-brand-green'
                 : 'text-ink-on-night-dim after:scale-x-0 hover:text-ink-on-night hover:after:scale-x-100',
             )}>
             {item.label}
