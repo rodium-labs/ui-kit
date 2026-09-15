@@ -93,6 +93,10 @@ export function BarChart({ title, caption, name, points, emphasis, height = 180,
           {points.map((p, i) => {
             const size = ((p.value - of.min) / (of.max - of.min)) * h
             const x = PAD.left + i * slot + (slot - bar) / 2
+            // scale-2, not scale-1: a bar that has been pushed into the
+            // background still carries its value against the axis, so it has to
+            // clear 3:1 on this ground. the ramp's dimmest step measures 2.41
+            // and is only legal as the floor of a scale that ships a legend.
             const lit = emphasis === undefined || p.label === emphasis
             return (
               <g key={p.label}>
@@ -103,14 +107,14 @@ export function BarChart({ title, caption, name, points, emphasis, height = 180,
                   height={Math.max(0, size)}
                   // rounded at the data end, square where it meets the baseline
                   rx={4}
-                  fill={lit ? 'var(--color-series-1)' : 'var(--color-scale-1)'}
+                  fill={lit ? 'var(--color-series-1)' : 'var(--color-scale-2)'}
                 />
                 <rect
                   x={x}
                   y={PAD.top + h - Math.min(size, 4)}
                   width={bar}
                   height={Math.min(size, 4)}
-                  fill={lit ? 'var(--color-series-1)' : 'var(--color-scale-1)'}
+                  fill={lit ? 'var(--color-series-1)' : 'var(--color-scale-2)'}
                 />
                 {/* a hit target the whole slot wide, so a thin bar is still easy to point at */}
                 <rect

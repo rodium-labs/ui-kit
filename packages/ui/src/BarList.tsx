@@ -37,6 +37,8 @@ export function BarList({ title, caption, name, points, emphasis, className }: B
       <ul className="flex flex-col gap-2.5">
         {points.map(p => {
           const width = Math.max(1, ((p.value - of.min) / (of.max - of.min)) * 100)
+          // scale-2 clears 3:1; the ramp's dimmest step does not, and a quiet
+          // bar is still a bar someone has to read against its neighbours
           const lit = emphasis === undefined || p.label === emphasis
           return (
             <li
@@ -55,7 +57,7 @@ export function BarList({ title, caption, name, points, emphasis, className }: B
                   )}
                   style={{
                     width: `${width}%`,
-                    background: lit ? 'var(--color-series-1)' : 'var(--color-scale-1)',
+                    background: lit ? 'var(--color-series-1)' : 'var(--color-scale-2)',
                   }}
                 />
               </div>
