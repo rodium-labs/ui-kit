@@ -553,6 +553,36 @@
   }
 }
 
+/* a strip that leaves by folding rather than by vanishing. the display switch
+   sits outside the motion query on purpose: inside it, a reader with reduced
+   motion on would get a banner that never goes away. */
+.strip-out {
+  display: none;
+}
+
+.strip-out[data-open] {
+  display: block;
+}
+
+@supports (interpolate-size: allow-keywords) {
+  @media (prefers-reduced-motion: no-preference) {
+    .strip-out {
+      block-size: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition:
+        block-size var(--motion-base) var(--ease-through),
+        opacity var(--motion-fast) linear,
+        display var(--motion-base) allow-discrete;
+    }
+
+    .strip-out[data-open] {
+      block-size: auto;
+      opacity: 1;
+    }
+  }
+}
+
 /* a fold opens to its own height. interpolate-size is what lets auto be a
    transition endpoint at all; without it the block-size step is discrete. */
 @supports (interpolate-size: allow-keywords) {

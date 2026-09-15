@@ -47,40 +47,43 @@ const TONE: Record<
 // well as drawn, because a colour on an edge is not something everyone reads.
 export function Banner({ tone = 'info', children, action, dismissible = false, className }: BannerProps) {
   const [gone, setGone] = useState(false)
-  if (gone) return null
   const skin = TONE[tone]
 
   return (
+    // it stays mounted and marked rather than being removed: an element taken
+    // out of the tree has nowhere to animate to, and the page under it jumps
+    // the full height of the banner in one frame.
+    // the folding shell is the outer element and the row is inside it: the
+    // display switch that drives the fold would otherwise be fighting the flex
+    // that lays the banner out, and win on specificity.
     <output
-      className={cn(
-        'block',
-        'flex w-full flex-wrap items-center gap-x-4 gap-y-2 border-b px-4 py-3',
-        skin.edge,
-        className,
-      )}>
-      <span
-        aria-hidden="true"
-        className={cn('flex shrink-0', tone === 'info' ? 'text-ink-on-night-dim' : 'text-ink-on-night-mid')}>
-        {tone === 'info' ? <Info size={14} /> : <Warning size={14} />}
-      </span>
-      <p className={cn('min-w-0 flex-1 text-[13px] leading-[1.6]', skin.ink)}>
-        <span className="sr-only">{skin.word}: </span>
-        {children}
-      </p>
-      {action ? <span className="shrink-0">{action}</span> : null}
-      {dismissible ? (
-        <button
-          type="button"
-          onClick={() => setGone(true)}
-          aria-label="Dismiss"
-          className={cn(
-            'press -me-1 flex size-8 shrink-0 cursor-pointer items-center justify-center text-ink-on-night-dim',
-            'transition-colors duration-(--motion-fast) hover:text-ink-on-night motion-reduce:transition-none',
-            focus,
-          )}>
-          <Close size={12} />
-        </button>
-      ) : null}
+      data-open={gone ? undefined : true}
+      className={cn('strip-out w-full', className)}>
+      <div className={cn('flex w-full flex-wrap items-center gap-x-4 gap-y-2 border-b px-4 py-3', skin.edge)}>
+        <span
+          aria-hidden="true"
+          className={cn('flex shrink-0', tone === 'info' ? 'text-ink-on-night-dim' : 'text-ink-on-night-mid')}>
+          {tone === 'info' ? <Info size={14} /> : <Warning size={14} />}
+        </span>
+        <p className={cn('min-w-0 flex-1 text-[13px] leading-[1.6]', skin.ink)}>
+          <span className="sr-only">{skin.word}: </span>
+          {children}
+        </p>
+        {action ? <span className="shrink-0">{action}</span> : null}
+        {dismissible ? (
+          <button
+            type="button"
+            onClick={() => setGone(true)}
+            aria-label="Dismiss"
+            className={cn(
+              'press -me-1 flex size-8 shrink-0 cursor-pointer items-center justify-center text-ink-on-night-dim',
+              'transition-colors duration-(--motion-fast) hover:text-ink-on-night motion-reduce:transition-none',
+              focus,
+            )}>
+            <Close size={12} />
+          </button>
+        ) : null}
+      </div>
     </output>
   )
 }
